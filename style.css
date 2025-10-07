@@ -32,25 +32,9 @@ body {
   justify-content: space-between;
   padding: 10px 16px;
 }
-.logo-mark {
-  height: 40px;          /* base height for desktop */
-  width: auto;           /* maintain aspect ratio */
-  object-fit: contain;   /* no cropping */
-  display: block;
-}
-
-/* Fine-tune vertical alignment with text */
-.logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* Optional: reduce spacing if logo + text look too far apart */
-.logo-text {
-  font-size: 1.1rem;
-  font-weight: 700;
-}
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark { font-size: 28px; }
+.logo-text { font-family: Fredoka, Inter, sans-serif; font-weight: 700; color: var(--text); }
 
 .nav { display: flex; gap: 12px; align-items: center; }
 .nav a { text-decoration: none; color: var(--text); padding: 8px 12px; border-radius: 10px; }
@@ -175,14 +159,3 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
     height: 34px;
   }
 }
-
-/* Mobile: compact header logo */
-@media (max-width: 600px) {
-  .logo-mark {
-    height: 28px;
-  }
-  .logo-text {
-    font-size: 1rem;
-  }
-}
-
