@@ -97,3 +97,57 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
   .hero-inner { grid-template-columns: 1fr; }
   .grid-2 { grid-template-columns: 1fr; }
 }
+
+
+/* ===== Header & Nav – mobilfix ===== */
+.nav-toggle {
+  display: none;
+  width: 40px; height: 40px;
+  border: 0; background: transparent; cursor: pointer;
+  border-radius: 10px;
+}
+.nav-toggle:focus { outline: 2px solid var(--brand); }
+.nav-toggle .bar {
+  display: block; width: 22px; height: 2px; margin: 5px auto;
+  background: var(--text); border-radius: 2px;
+}
+
+/* Desktop: oförändrat – nav horisontellt */
+.site-header { position: sticky; top: 0; z-index: 50; }
+
+/* Mobilmeny (≤ 760px): fäll in menyn bakom en knapp */
+@media (max-width: 760px) {
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  .nav {
+    position: absolute; top: 56px; right: 12px; left: 12px;
+    display: none; flex-direction: column; gap: 6px;
+    background: #fff; border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px; box-shadow: var(--shadow); padding: 8px;
+  }
+  .nav.open { display: flex; }
+  .nav a { padding: 12px; border-radius: 10px; }
+  .nav .cta { text-align: center; }
+  body.no-scroll { overflow: hidden; }
+}
+
+/* ===== Hero – knappar & spacing på mobil ===== */
+@media (max-width: 760px) {
+  .hero { padding-top: 28px; padding-bottom: 36px; }
+  .hero-actions { gap: 8px; }
+  .hero-actions .btn { width: 100%; } /* gör knappar fullbredd */
+}
+
+/* Gör ghost-knappen tydligare på mobil/ljus bakgrund */
+.btn.ghost {
+  background: transparent;
+  border-color: rgba(0,0,0,0.14);
+}
+
+/* Ikonraden i heron – låt den brytas snyggt */
+.hero-ill img { max-width: 64px; max-height: 64px; }
+
+/* ===== Små typografijusteringar (för att undvika radbryt i menylänkar) ===== */
+@media (max-width: 360px) {
+  .nav a { font-size: 15px; }
+  .logo-text { font-size: 16px; }
+}
