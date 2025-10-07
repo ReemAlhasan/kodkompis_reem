@@ -16,7 +16,16 @@
       <span class="logo-mark" aria-hidden="true">🤖</span>
       <span class="logo-text">Kodkompis Reem</span>
     </a>
-    <nav class="nav" aria-label="Huvudmeny">
+
+    <!-- Hamburger -->
+    <button id="navToggle" class="nav-toggle" aria-label="Öppna meny" aria-expanded="false" aria-controls="primary-nav">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+    </button>
+
+    <!-- Meny -->
+    <nav id="primary-nav" class="nav" aria-label="Huvudmeny">
       <a href="#om">Om Reem</a>
       <a href="#tjanster">Tjänster</a>
       <a href="#pussel">Dagens pussel</a>
@@ -24,12 +33,13 @@
     </nav>
   </header>
 
+
   <main id="top">
     <!-- HERO -->
     <section class="hero" role="region" aria-labelledby="hero-title">
       <div class="hero-inner">
-        <h1 id="hero-title">Programmering för barn – tryggt, kul och smart 💡</h1>
-        <p class="lead">Hej! Jag heter <strong>Reem</strong> och jag studerar <strong>AI och Medieteknik</strong>. Jag älskar att hjälpa barn att upptäcka kodning – som att lära sig prata med snälla robotar.</p>
+        <h1 id="hero-title">Programmering och matematik för barn – tryggt, kul och smart 💡</h1>
+        <p class="lead">Hej! Jag heter <strong>Reem</strong> och jag studerar <strong>till Civilingenjör i Medieteknik och AI</strong>. Jag älskar att hjälpa barn att upptäcka kodning – som att lära sig prata med snälla robotar.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#tjanster">Se kurser</a>
           <a class="btn ghost" href="#kontakt">Boka samtal för förälder</a>
@@ -200,7 +210,7 @@
             <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
           </form>
 
-          <p class="contact-meta">E-post: <a href="mailto:reemalhasan60@gmail.com'">reemalhasan60@gmail.com'</a> · Telefon: <a href="tel:+46704468315">070-446 83 15</a></p>
+          <p class="contact-meta">E-post: <a href="mailto:kodkompisreem@gmail.com">KodKompisReem@gmail.com</a> · Telefon: <a href="tel:+46704468315">070-446 83 15</a></p>
         </div>
         <aside class="card soft">
           <h3>Trygghet & Integritet</h3>
@@ -256,15 +266,29 @@
         } else {
           const data = await res.json().catch(()=>({}));
           const msg = (data && data.errors && data.errors[0] && data.errors[0].message)
-            || 'Ett fel uppstod. Försök igen eller mejla reemalhasan60@gmail.com';
+            || 'Ett fel uppstod. Försök igen eller mejla kodkompisreem@gmail.com';
           note.textContent = msg;
         }
       } catch (err) {
-        note.textContent = 'Nätverksfel. Kontrollera din uppkoppling eller mejla reemalhasan60@gmail.com';
+        note.textContent = 'Nätverksfel. Kontrollera din uppkoppling eller mejla kodkompisreem@gmail.com';
       }
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script>
+    // Hamburger toggle
+    (function(){
+      const toggle = document.getElementById('navToggle');
+      const nav = document.getElementById('primary-nav');
+      if (!toggle || !nav) return;
+      toggle.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.classList.toggle('no-scroll', open);
+      });
+    })();
+  </script>
+
 </body>
 </html>
