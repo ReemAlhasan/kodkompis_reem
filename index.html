@@ -17,8 +17,6 @@
     <span class="logo-text">Kodkompis Reem</span>
   </a>
 
-
-
     <!-- Hamburger -->
     <button id="navToggle" class="nav-toggle" aria-label="Öppna meny" aria-expanded="false" aria-controls="primary-nav">
       <span class="bar" aria-hidden="true"></span>
@@ -29,12 +27,12 @@
     <!-- Meny -->
     <nav id="primary-nav" class="nav" aria-label="Huvudmeny">
       <a href="#om">Om Reem</a>
-      <a href="#tjanster">Tjänster</a>
+      <a href="#tjanster">Programmering</a>
+      <a href="#matte">Mattehjälp</a>
       <a href="#pussel">Dagens pussel</a>
       <a class="cta" href="#kontakt">Kontakta</a>
     </nav>
   </header>
-
 
   <main id="top">
     <!-- HERO -->
@@ -42,6 +40,10 @@
       <div class="hero-inner">
         <h1 id="hero-title">Programmering och matematik för barn – tryggt, kul och smart 💡</h1>
         <p class="lead">Hej! Jag heter <strong>Reem</strong> och jag studerar <strong>till Civilingenjör i Medieteknik och AI</strong>. Jag älskar att hjälpa barn att upptäcka kodning – som att lära sig prata med snälla robotar.</p>
+        <div class="hero-math">
+          <h2 class="hero-math-title">Lär dig matte online – enkelt, flexibelt och på ditt språk.</h2>
+          <p class="hero-math-sub">Från grundskola till universitet – Reem förklarar tills du förstår.</p>
+        </div>
         <div class="hero-actions">
           <a class="btn primary" href="#tjanster">Se kurser</a>
           <a class="btn ghost" href="#kontakt">Boka samtal för förälder</a>
@@ -82,7 +84,7 @@
     <!-- TJÄNSTER -->
     <section id="tjanster" class="section" aria-labelledby="tjanster-title">
       <div class="container">
-        <h2 id="tjanster-title">Tjänster för barn & föräldrar</h2>
+        <h2 id="tjanster-title">Programmering för barn & föräldrar</h2>
         <div class="cards">
           <article class="card">
             <h3>Onlinekurs (6–8 år)</h3>
@@ -142,6 +144,66 @@
       </div>
     </section>
 
+    <!-- MATTE -->
+    <section id="matte" class="section" aria-labelledby="matte-title">
+      <div class="container">
+        <h2 id="matte-title">Mattehjälp online 🧮📏🎓</h2>
+        <p>Alla lektioner sker online (Zoom/Google Meet). Inga fysiska möten – flexibelt och tryggt.</p>
+
+        <div class="cards">
+          <!-- Mellan/Högstadiet -->
+          <article class="card">
+            <h3>🧮 Mellan- & högstadiet (åk 4–9)</h3>
+            <p><strong>Fokus:</strong> förstå grunderna, bygga självförtroende, logiskt tänkande.</p>
+            <ul class="meta">
+              <li>Format: online via Zoom/Meet</li>
+              <li>Grupp (3–4 elever): <strong>45 min – 150 kr/elev</strong></li>
+              <li>Privatlektion: <strong>45 min – 350 kr</strong></li>
+            </ul>
+            <a class="btn primary" href="#kontakt">Boka gratis prova-på (30 min)</a>
+          </article>
+
+          <!-- Gymnasiet -->
+          <article class="card">
+            <h3>📏 Gymnasiematte (Matte 1–5, teknik/natur)</h3>
+            <p><strong>Fokus:</strong> kursstöd, nationella prov, koppling till programmering.</p>
+            <ul class="meta">
+              <li>Individuell: <strong>60 min – 450–500 kr</strong></li>
+              <li>Två elever: <strong>60 min – 350 kr/elev</strong></li>
+            </ul>
+            <a class="btn primary" href="#kontakt">Boka din online-lektion idag</a>
+          </article>
+
+          <!-- Universitet -->
+          <article class="card">
+            <h3>🎓 Universitet (Analys, Linjär algebra, Statistik, AI-matte)</h3>
+            <p><strong>Fokus:</strong> tentaförberedelse, problemlösning, koppling till kod.</p>
+            <ul class="meta">
+              <li>Individuell: <strong>60–75 min – 550–650 kr</strong></li>
+              <li>Grupp (2–3 studenter): <strong>400 kr/elev</strong></li>
+              <li>Tenta-akut: <strong>90 min – 800 kr</strong></li>
+              <li>Extra: <strong>+150 kr</strong> för skriftlig feedback</li>
+            </ul>
+            <a class="btn primary" href="#kontakt">Behöver du tenta-hjälp? Boka nu</a>
+          </article>
+        </div>
+
+        <!-- Paket & rabatter -->
+        <div class="cards" style="margin-top:16px">
+          <article class="card soft">
+            <h3>💼 Paket & rabatter</h3>
+            <ul class="meta">
+              <li>Prova-på: <strong>1 lektion – Gratis eller 99 kr</strong></li>
+              <li>Mini-paket: <strong>4 lektioner – 1 400 kr</strong> (10 % rabatt)</li>
+              <li>Standard: <strong>8 lektioner – 2 700 kr</strong> (15 % rabatt)</li>
+              <li>Intensiv tenta-vecka: <strong>5 × 2 h – 4 500 kr</strong></li>
+            </ul>
+            <a class="btn" href="#kontakt">Be om schema & startdatum</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- DAGENS PUSSEL -->
     <section id="pussel" class="section" aria-labelledby="pussel-title">
       <div class="container">
@@ -161,7 +223,7 @@
 
         <article class="puzzle-card" aria-live="polite">
           <h3 id="puzzle-title">—</h3>
-          <p id="puzzle-text">Tryck på ”Visa dagens pussel”.</p>
+          <p id="puzzle-text">Tryck på "Visa dagens pussel".</p>
           <textarea id="puzzle-answer" placeholder="Skriv ditt svar här…" aria-label="Ditt svar"></textarea>
           <div class="puzzle-actions">
             <button id="checkAnswer" class="btn">Kolla svar</button>
@@ -185,6 +247,15 @@
             <input type="hidden" name="_subject" value="Ny intresseanmälan – Kodkompis Reem" />
             <!-- Honeypot mot spam -->
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <div class="field">
+              <label for="topic">Ämne</label>
+              <select id="topic" name="topic" required>
+                <option value="">Välj ämne…</option>
+                <option>Programmering</option>
+                <option>Mattehjälp</option>
+              </select>
+            </div>
 
             <div class="field">
               <label for="parentName">Förälders namn</label>
@@ -294,7 +365,3 @@
 
 </body>
 </html>
-
-
-
-
