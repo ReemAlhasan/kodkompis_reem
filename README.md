@@ -1,6 +1,6 @@
 # Kodkompis Reem
 
-Kodkompis Reem is a playful, safe website for teaching programming and mathematics to children and young people (ages 6–16). The site offers online courses, coaching, and interactive puzzles, all designed to foster creativity, logical thinking, and confidence with technology.
+Kodkompis Reem is a playful, safe website for teaching programming and mathematics to children and young people (ages 6–25). The site offers online courses, coaching, and interactive puzzles, all designed to foster creativity, logical thinking, and confidence with technology.
 
 ## Features
 
