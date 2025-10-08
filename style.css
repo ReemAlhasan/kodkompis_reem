@@ -159,3 +159,23 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
     height: 34px;
   }
 }
+
+/* ===== Hero Math Section ===== */
+.hero-math { margin-top: 16px; }
+.hero-math-title {
+  font-size: clamp(18px, 2.4vw, 22px);
+  margin: 0 0 4px 0;
+  font-family: Fredoka, Inter, sans-serif;
+  font-weight: 600;
+}
+.hero-math-sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+/* ===== Math Section Card Enhancements ===== */
+.meta li strong { 
+  color: var(--text); 
+  font-weight: 600;
+}
