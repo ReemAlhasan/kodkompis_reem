@@ -30,6 +30,7 @@ body {
   color: var(--text);
   line-height: 1.6;
 }
+body.no-scroll { overflow: hidden; }
 
 /* === Header === */
 .site-header {
@@ -37,9 +38,10 @@ body {
   top: 0;
   z-index: 1000;
   background: var(--header-bg);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto auto; /* logo | controls | nav (desktop) */
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
   padding: 10px 16px;
 }
 
@@ -56,27 +58,14 @@ body {
   color: var(--text);
 }
 
-/* === Navigation === */
-.nav {
+/* === Header controls (theme + hamburger) === */
+.header-controls {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-.nav a {
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 10px;
-  color: var(--text);
-}
-.nav a:hover {
-  background: var(--hover-bg);
-}
-.nav .cta {
-  background: var(--brand);
-  color: #fff;
+  gap: 10px;
 }
 
-/* === Theme Toggle === */
+/* Theme toggle is ALWAYS visible */
 .theme-toggle {
   border: none;
   background: var(--hover-bg);
@@ -86,13 +75,11 @@ body {
   cursor: pointer;
   transition: transform 0.15s ease;
 }
-.theme-toggle:hover {
-  transform: translateY(-1px);
-}
+.theme-toggle:hover { transform: translateY(-1px); }
 
-/* === Hamburger === */
+/* Hamburger */
 .nav-toggle {
-  display: none;
+  display: none;              /* shown on mobile */
   flex-direction: column;
   gap: 4px;
   background: none;
@@ -105,6 +92,21 @@ body {
   background: var(--text);
   border-radius: 2px;
 }
+
+/* === Navigation === */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav a {
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: var(--text);
+}
+.nav a:hover { background: var(--hover-bg); }
+.nav .cta { background: var(--brand); color: #fff; }
 
 /* === Hero === */
 .hero {
@@ -134,19 +136,9 @@ body {
   text-decoration: none;
   font-weight: 600;
 }
-.btn.primary {
-  background: var(--brand);
-  color: #fff;
-}
-.btn.secondary {
-  background: var(--hover-bg);
-  color: var(--text);
-}
-.hero-ill {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-}
+.btn.primary { background: var(--brand); color: #fff; }
+.btn.secondary { background: var(--hover-bg); color: var(--text); }
+.hero-ill { display: flex; gap: 16px; justify-content: center; }
 .hero-ill img {
   width: 72px;
   height: 72px;
@@ -172,11 +164,7 @@ body {
 #puzzle-feedback { margin-top: 12px; font-weight: 600; }
 
 /* === Form === */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+form { display: flex; flex-direction: column; gap: 10px; }
 input, textarea, select, button {
   font: inherit;
   border-radius: 8px;
@@ -190,9 +178,7 @@ button {
   color: #fff;
   font-weight: 600;
 }
-button:hover {
-  opacity: 0.9;
-}
+button:hover { opacity: 0.9; }
 
 /* === Footer === */
 .site-footer {
@@ -204,18 +190,22 @@ button:hover {
 }
 
 /* === Responsive === */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  .site-header {
+    grid-template-columns: 1fr auto; /* logo | controls ; nav becomes dropdown */
+  }
   .nav-toggle { display: flex; }
   .nav {
     position: absolute;
     top: 100%;
-    right: 0;
+    right: 8px;
     background: var(--header-bg);
     flex-direction: column;
-    align-items: flex-start;
-    width: 200px;
+    align-items: stretch;
+    width: min(260px, 92vw);
     padding: 10px;
     box-shadow: var(--shadow);
+    border-radius: 12px;
     transform: translateY(-10px);
     opacity: 0;
     pointer-events: none;
@@ -226,8 +216,7 @@ button:hover {
     pointer-events: auto;
     transform: translateY(0);
   }
-  .nav a, .theme-toggle {
+  .nav a {
     width: 100%;
-    text-align: left;
   }
 }
