@@ -15,18 +15,44 @@
       const q = new URLSearchParams({ ...params, callback: cb });
       const s = document.createElement('script');
 
+      // Loading progress updates
+      let stage = 'connecting';
+      const progressInterval = setInterval(() => {
+        const messages = {
+          'connecting': 'Ansluter till servern...',
+          'loading': 'Laddar pusseldata...',
+          'processing': 'Bearbetar innehåll...'
+        };
+        const feedbackEl = $('puzzle-feedback');
+        if (feedbackEl && messages[stage]) {
+          feedbackEl.textContent = messages[stage];
+        }
+        // Rotate through stages
+        if (stage === 'connecting') stage = 'loading';
+        else if (stage === 'loading') stage = 'processing';
+      }, 1500);
+
       const timer = setTimeout(() => {
         cleanup();
         reject(new Error('JSONP timeout'));
       }, timeoutMs);
 
       function cleanup() {
+        clearInterval(progressInterval);
         clearTimeout(timer);
         delete window[cb];
         s.remove();
       }
 
-      window[cb] = (data) => { try { resolve(data); } finally { cleanup(); } };
+      window[cb] = (data) => { 
+        try { 
+          cleanup();
+          resolve(data); 
+        } catch (err) { 
+          cleanup();
+          reject(err);
+        }
+      };
 
       // cache-buster på dagsnivå minskar fel-cache
       const todayISO = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
@@ -86,13 +112,68 @@
   let remote = null;      // kartan per ålder
   let serverDateKey = ''; // från servern (Europe/Stockholm)
 
+  // ---------- UI State Management ----------
+  function setLoadingState(loading) {
+    const loadBtn = $('loadPuzzle');
+    const answerInput = $('puzzle-answer');
+    const checkBtn = $('checkAnswer');
+    const hintBtn = $('showHint');
+    const revealBtn = $('reveal');
+    
+    if (loading) {
+      // Show loading state
+      loadBtn.disabled = true;
+      loadBtn.classList.add('loading');
+      loadBtn.textContent = 'Laddar...';
+      
+      // Show loading message
+      $('puzzle-title').textContent = 'Laddar pussel...';
+      $('puzzle-text').textContent = 'Vänligen vänta medan dagens pussel hämtas.';
+      
+      // Disable interactive elements
+      answerInput.disabled = true;
+      checkBtn.disabled = true;
+      hintBtn.disabled = true;
+      revealBtn.disabled = true;
+      $('puzzle-feedback').textContent = 'Ansluter till servern...';
+    } else {
+      // Hide loading state
+      loadBtn.disabled = false;
+      loadBtn.classList.remove('loading');
+      loadBtn.textContent = 'Visa dagens pussel';
+      
+      // Re-enable interactive elements (but keep reveal disabled until puzzle loads)
+      answerInput.disabled = false;
+      checkBtn.disabled = false;
+      hintBtn.disabled = false;
+    }
+  }
+
+  function setErrorState(message) {
+    setLoadingState(false);
+    $('puzzle-title').textContent = 'Kunde inte ladda pussel';
+    $('puzzle-text').textContent = message || 'Nätverksfel. Försök igen eller använd offline-läget.';
+    $('puzzle-answer').value = '';
+    $('puzzle-feedback').textContent = '';
+    
+    // Disable action buttons
+    $('checkAnswer').disabled = true;
+    $('showHint').disabled = true;
+    $('reveal').disabled = true;
+    $('puzzle-answer').disabled = true;
+  }
+
   async function ensureRemote(group) {
     if (remote) return remote;
+    
     const endpoint = (typeof window !== 'undefined' && window.PUZZLES_ENDPOINT) ? window.PUZZLES_ENDPOINT : null;
-    if (!endpoint) return null;
+    if (!endpoint) {
+      throw new Error('No endpoint configured');
+    }
+    
     try {
-      // Hämta gärna bara relevant ålder för snabbare laddning
       const payload = await jsonp(endpoint, { age: group });
+      
       if (payload && typeof payload === 'object') {
         if ('dateKey' in payload && 'data' in payload) {
           serverDateKey = String(payload.dateKey || '').trim();
@@ -103,16 +184,94 @@
         }
         return remote;
       }
-      return null;
+      throw new Error('Invalid server response');
     } catch (e) {
-      console.warn('JSONP misslyckades:', e);
-      return null;
+      console.warn('JSONP failed:', e);
+      throw e; // Re-throw to handle in loadPuzzle
     }
   }
 
   function bankFor(group) {
     if (remote && Array.isArray(remote[group]) && remote[group].length) return remote[group];
     return localPools[group] || [];
+  }
+
+  // ---------- Enhanced loadPuzzle function ----------
+  async function loadPuzzle() {
+    const group = $('age').value;
+    
+    // Show loading state immediately
+    setLoadingState(true);
+
+    try {
+      // Försök hämta serverdata (gruppfiltrerat). Misslyckas → fallback.
+      await ensureRemote(group);
+
+      const list = bankFor(group);
+      if (!list.length) {
+        setErrorState('Inga pussel tillgängliga för den här åldersgruppen idag.');
+        return;
+      }
+
+      // Seed: använd serverns dateKey (stabil) → annars lokal (fallback)
+      const seedDate = serverDateKey || todayKeyLocal();
+      const idx = pickIndex(list.length, `${seedDate}|${group}`);
+      const p = list[Math.min(Math.max(idx, 0), list.length - 1)];
+
+      // Update UI with puzzle content
+      $('puzzle-title').textContent = p.title || 'Dagens pussel';
+      $('puzzle-text').textContent = p.text || '';
+      $('puzzle-answer').value = '';
+      $('puzzle-feedback').textContent = '';
+
+      // Enable all interactive elements
+      setLoadingState(false);
+      $('checkAnswer').disabled = false;
+      $('showHint').disabled = false;
+      $('reveal').disabled = false;
+      $('puzzle-answer').disabled = false;
+
+      // Re-bind event handlers
+      $('checkAnswer').onclick = () => { void checkAnswerWithEither(p); };
+      $('showHint').onclick = () => showHint(p);
+      $('reveal').onclick = () => revealAnswer(p);
+      
+      // Focus the answer input for better UX
+      $('puzzle-answer').focus();
+
+    } catch (error) {
+      console.error('Puzzle loading error:', error);
+      
+      // Fallback: try to load from local pool
+      try {
+        const list = localPools[group] || [];
+        if (list.length) {
+          const seedDate = todayKeyLocal();
+          const idx = pickIndex(list.length, `${seedDate}|${group}`);
+          const p = list[Math.min(Math.max(idx, 0), list.length - 1)];
+          
+          $('puzzle-title').textContent = p.title || 'Dagens pussel (Offline)';
+          $('puzzle-text').textContent = p.text || '';
+          $('puzzle-answer').value = '';
+          
+          setLoadingState(false);
+          $('checkAnswer').disabled = false;
+          $('showHint').disabled = false;
+          $('reveal').disabled = false;
+          $('puzzle-answer').disabled = false;
+          
+          $('checkAnswer').onclick = () => { void checkAnswerWithEither(p); };
+          $('showHint').onclick = () => showHint(p);
+          $('reveal').onclick = () => revealAnswer(p);
+          
+          $('puzzle-feedback').textContent = 'Använder offline-pussel.';
+        } else {
+          setErrorState('Kunde inte ladda pussel från servern och inga offline-pussel finns.');
+        }
+      } catch (fallbackError) {
+        setErrorState('Kunde inte ladda några pussel. Försök igen senare.');
+      }
+    }
   }
 
   // ---------- UI & interaktion ----------
@@ -148,36 +307,6 @@
     } else {
       $('puzzle-feedback').textContent = '—';
     }
-  }
-
-  async function loadPuzzle() {
-    const group = $('age').value;
-
-    // Försök hämta serverdata (gruppfiltrerat). Misslyckas → fallback.
-    await ensureRemote(group);
-
-    const list = bankFor(group);
-    if (!list.length) {
-      $('puzzle-title').textContent = '—';
-      $('puzzle-text').textContent = 'Inga aktiva pussel idag.';
-      $('puzzle-answer').value = '';
-      $('puzzle-feedback').textContent = '';
-      return;
-    }
-
-    // Seed: använd serverns dateKey (stabil) → annars lokal (fallback)
-    const seedDate = serverDateKey || todayKeyLocal();
-    const idx = pickIndex(list.length, `${seedDate}|${group}`);
-    const p = list[Math.min(Math.max(idx, 0), list.length - 1)];
-
-    $('puzzle-title').textContent = p.title || 'Dagens pussel';
-    $('puzzle-text').textContent = p.text || '';
-    $('puzzle-answer').value = '';
-    $('puzzle-feedback').textContent = '';
-
-    $('checkAnswer').onclick = () => { void checkAnswerWithEither(p); };
-    $('showHint').onclick = () => showHint(p);
-    $('reveal').onclick = () => revealAnswer(p);
   }
 
   $('loadPuzzle').addEventListener('click', loadPuzzle);
