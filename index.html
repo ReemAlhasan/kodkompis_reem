@@ -4,33 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kodkompis Reem – Lär dig programmering och matematik på ett tryggt och lekfullt sätt</title>
-  <meta name="description" content="Reem undervisar barn och unga i programmering online – kurser, coaching och workshops för åldrarna 6–16 år." />
+  <meta name="description" content="Reem undervisar barn och ung...nline – kurser, coaching och workshops för åldrarna 6–16 år." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:w...00&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="site-header">
-    <a class="logo" href="#top" aria-label="Start – Kodkompis Reem">
-      <span class="logo-mark" aria-hidden="true">🤖</span>
-      <span class="logo-text">Kodkompis Reem</span>
-    </a>
-  
-    <!-- Dark mode toggle -->
-    <button id="themeToggle" class="theme-toggle btn ghost" aria-label="Byt färgtema">
-      <span class="theme-icon" aria-hidden="true">🌙</span>
-    </button>
-  
+  <a class="logo" href="#top" aria-label="Start – Kodkompis Reem">
+    <span class="logo-mark" aria-hidden="true">🤖</span>
+    <span class="logo-text">Kodkompis Reem</span>
+  </a>
+
     <!-- Hamburger -->
     <button id="navToggle" class="nav-toggle" aria-label="Öppna meny" aria-expanded="false" aria-controls="primary-nav">
       <span class="bar" aria-hidden="true"></span>
       <span class="bar" aria-hidden="true"></span>
       <span class="bar" aria-hidden="true"></span>
     </button>
-  
+
     <!-- Meny -->
     <nav id="primary-nav" class="nav" aria-label="Huvudmeny">
+      <button id="themeToggle" class="theme-toggle" aria-label="Byt tema" title="Växla tema">🌙</button>
       <a href="#om">Om Reem</a>
       <a href="#tjanster">Programmering</a>
       <a href="#matte">Mattehjälp</a>
@@ -38,6 +34,7 @@
       <a class="cta" href="#kontakt">Kontakta</a>
     </nav>
   </header>
+
 
   <main id="top">
     <!-- HERO -->
@@ -62,7 +59,7 @@
     </section>
 
     <!-- OM -->
-    <section id="om" class="section" aria-labelledby="om-title">
+    <section id="om" class="section">
       <div class="container grid-2">
         <div>
           <h2 id="om-title">Vem är Reem?</h2>
@@ -87,7 +84,7 @@
     </section>
 
     <!-- TJÄNSTER -->
-    <section id="tjanster" class="section" aria-labelledby="tjanster-title">
+    <section id="tjanster" class="section">
       <div class="container">
         <h2 id="tjanster-title">Programmering för barn & föräldrar</h2>
         <div class="cards">
@@ -139,7 +136,7 @@
     </section>
 
     <!-- MATTE -->
-    <section id="matte" class="section" aria-labelledby="matte-title">
+    <section id="matte" class="section">
       <div class="container">
         <h2 id="matte-title">Mattehjälp online 🧮📏🎓</h2>
         <p>Alla lektioner sker online (Zoom/Google Meet). Inga fysiska möten – flexibelt och tryggt.</p>
@@ -184,7 +181,7 @@
     </section>
 
     <!-- DAGENS PUSSEL -->
-    <section id="pussel" class="section" aria-labelledby="pussel-title">
+    <section id="pussel" class="section">
       <div class="container">
         <h2 id="pussel-title">Dagens kodpussel 🧩</h2>
         <p>Välj ålder och lös ett kort pussel. Svara direkt här och avslöja facit när du är klar!</p>
@@ -223,7 +220,7 @@
     </section>
 
     <!-- KONTAKT -->
-    <section id="kontakt" class="section" aria-labelledby="kontakt-title">
+    <section id="kontakt" class="section">
       <div class="container grid-2">
         <div>
           <h2 id="kontakt-title">Kontakta Reem</h2>
@@ -370,75 +367,33 @@
   </script>
 
   <script>
-    // Theme management
+    // --- Theme boot ---
     (function() {
-      const themeToggle = document.getElementById('themeToggle');
-      const themeIcon = themeToggle?.querySelector('.theme-icon');
-      const STORAGE_KEY = 'kodkompis-theme';
-      
-      // Get system preference
-      function getSystemTheme() {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const saved = localStorage.getItem('theme'); // 'light' | 'dark' | null
+      const initial = saved ? saved : (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', initial);
+    })();
+    // --- Theme toggle button ---
+    (function() {
+      const btn = document.getElementById('themeToggle');
+      if (!btn) return;
+      function label() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        btn.textContent = isDark ? '☀️' : '🌙';
+        btn.setAttribute('aria-label', isDark ? 'Byt till ljust läge' : 'Byt till mörkt läge');
+        btn.title = isDark ? 'Byt till ljust läge' : 'Byt till mörkt läge';
       }
-      
-      // Get saved theme or system preference
-      function getTheme() {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        return saved || getSystemTheme();
-      }
-      
-      // Set theme
-      function setTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem(STORAGE_KEY, theme);
-        updateThemeIcon(theme);
-      }
-      
-      // Update toggle button icon
-      function updateThemeIcon(theme) {
-        if (!themeIcon) return;
-        themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-        themeToggle.setAttribute('aria-label', 
-          theme === 'dark' ? 'Byt till ljust läge' : 'Byt till mörkt läge');
-      }
-      
-      // Toggle theme
-      function toggleTheme() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-      }
-      
-      // Initialize theme
-      function initTheme() {
-        const theme = getTheme();
-        setTheme(theme);
-        
-        // Listen for system theme changes (if no manual preference)
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-          if (!localStorage.getItem(STORAGE_KEY)) {
-            setTheme(e.matches ? 'dark' : 'light');
-          }
-        });
-        
-        // Add click event to toggle button
-        if (themeToggle) {
-          themeToggle.addEventListener('click', toggleTheme);
-        }
-      }
-      
-      // Initialize when DOM is loaded
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initTheme);
-      } else {
-        initTheme();
-      }
+      label();
+      btn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        label();
+      });
     })();
   </script>
+
 </body>
 </html>
-
-
-
-
-
