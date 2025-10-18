@@ -364,8 +364,75 @@
     })();
   </script>
 
+  <script>
+    // Theme management
+    (function() {
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = themeToggle?.querySelector('.theme-icon');
+      const STORAGE_KEY = 'kodkompis-theme';
+      
+      // Get system preference
+      function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      
+      // Get saved theme or system preference
+      function getTheme() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        return saved || getSystemTheme();
+      }
+      
+      // Set theme
+      function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem(STORAGE_KEY, theme);
+        updateThemeIcon(theme);
+      }
+      
+      // Update toggle button icon
+      function updateThemeIcon(theme) {
+        if (!themeIcon) return;
+        themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        themeToggle.setAttribute('aria-label', 
+          theme === 'dark' ? 'Byt till ljust läge' : 'Byt till mörkt läge');
+      }
+      
+      // Toggle theme
+      function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+      }
+      
+      // Initialize theme
+      function initTheme() {
+        const theme = getTheme();
+        setTheme(theme);
+        
+        // Listen for system theme changes (if no manual preference)
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+          if (!localStorage.getItem(STORAGE_KEY)) {
+            setTheme(e.matches ? 'dark' : 'light');
+          }
+        });
+        
+        // Add click event to toggle button
+        if (themeToggle) {
+          themeToggle.addEventListener('click', toggleTheme);
+        }
+      }
+      
+      // Initialize when DOM is loaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTheme);
+      } else {
+        initTheme();
+      }
+    })();
+  </script>
 </body>
 </html>
+
 
 
 
