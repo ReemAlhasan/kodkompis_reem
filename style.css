@@ -39,7 +39,7 @@ body.no-scroll { overflow: hidden; }
   z-index: 1000;
   background: var(--header-bg);
   display: grid;
-  grid-template-columns: 1fr auto auto; /* logo | controls | nav (desktop) */
+  grid-template-columns: 1fr auto auto; /* logo | nav | controls */
   align-items: center;
   gap: 12px;
   padding: 10px 16px;
@@ -58,10 +58,26 @@ body.no-scroll { overflow: hidden; }
   color: var(--text);
 }
 
+/* === Navigation === */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav a {
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: var(--text);
+}
+.nav a:hover { background: var(--hover-bg); }
+.nav .cta { background: var(--brand); color: #fff; }
+
 /* === Header controls (theme + hamburger) === */
 .header-controls {
   display: flex;
   align-items: center;
+  justify-self: end; /* stick to the far right */
   gap: 10px;
 }
 
@@ -92,21 +108,6 @@ body.no-scroll { overflow: hidden; }
   background: var(--text);
   border-radius: 2px;
 }
-
-/* === Navigation === */
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.nav a {
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 10px;
-  color: var(--text);
-}
-.nav a:hover { background: var(--hover-bg); }
-.nav .cta { background: var(--brand); color: #fff; }
 
 /* === Hero === */
 .hero {
