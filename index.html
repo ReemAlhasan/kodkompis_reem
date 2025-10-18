@@ -194,17 +194,25 @@
 
           <button id="loadPuzzle" class="btn">Visa dagens pussel</button>
         </div>
-
+        
+        <!-- In the puzzle section, update the puzzle-card -->
         <article class="puzzle-card" aria-live="polite">
-          <h3 id="puzzle-title">—</h3>
-          <p id="puzzle-text">Tryck på "Visa dagens pussel".</p>
-          <textarea id="puzzle-answer" placeholder="Skriv ditt svar här…" aria-label="Ditt svar"></textarea>
-          <div class="puzzle-actions">
-            <button id="checkAnswer" class="btn">Kolla svar</button>
-            <button id="showHint" class="btn ghost">Ledtråd</button>
-            <button id="reveal" class="btn ghost">Visa facit</button>
+          <div id="puzzle-loading" class="puzzle-loading" style="display: none;">
+            <div class="loading-spinner" aria-hidden="true"></div>
+            <p>Hämtar dagens pussel<span class="loading-text"></span></p>
           </div>
-          <p id="puzzle-feedback" class="feedback" role="status" aria-live="assertive"></p>
+          
+          <div id="puzzle-content">
+            <h3 id="puzzle-title">—</h3>
+            <p id="puzzle-text">Tryck på "Visa dagens pussel".</p>
+            <textarea id="puzzle-answer" placeholder="Skriv ditt svar här…" aria-label="Ditt svar" disabled></textarea>
+            <div class="puzzle-actions">
+              <button id="checkAnswer" class="btn" disabled>Kolla svar</button>
+              <button id="showHint" class="btn ghost" disabled>Ledtråd</button>
+              <button id="reveal" class="btn ghost" disabled>Visa facit</button>
+            </div>
+            <p id="puzzle-feedback" class="feedback" role="status" aria-live="assertive"></p>
+          </div>
         </article>
       </div>
     </section>
@@ -358,6 +366,7 @@
 
 </body>
 </html>
+
 
 
 
