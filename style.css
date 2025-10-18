@@ -99,7 +99,66 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
   .grid-2 { grid-template-columns: 1fr; }
 }
 
+/* ===== Loading States ===== */
+.loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.7;
+}
 
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid var(--brand);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text::after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60%, 100% { content: '...'; }
+}
+
+.puzzle-loading {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--muted);
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--brand);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 /* ===== Header & Nav – mobilfix ===== */
 .nav-toggle {
   display: none;
@@ -179,3 +238,4 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
   color: var(--text); 
   font-weight: 600;
 }
+
