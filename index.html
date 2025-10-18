@@ -300,7 +300,8 @@
       if (!form) return;
   
       form.addEventListener('submit', async (e) => {
-        if (!window.fetch) return;   // allow HTML fallback
+        // Allow pure HTML fallback if fetch is missing
+        if (!window.fetch) return;
         e.preventDefault();
   
         if (!form.checkValidity()) {
@@ -322,11 +323,11 @@
         try {
           await fetch(form.action, {
             method: 'POST',
-            mode: 'no-cors',          // ✅ avoids preflight
-            body: new FormData(form)  // ✅ sends as simple request
+            mode: 'no-cors',          // 🔑 no CORS preflight
+            body: new FormData(form)  // 🔑 FormData (no headers!)
           });
   
-          // we can’t read response in no-cors, so just assume success
+          // Response is opaque in no-cors, so we optimistically show success.
           note.textContent = 'Tack! Ditt meddelande är skickat. Jag återkommer inom 24 timmar.';
           form.reset();
         } catch (err) {
@@ -338,6 +339,7 @@
   
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  
 
 
   <script>
@@ -356,5 +358,6 @@
 
 </body>
 </html>
+
 
 
