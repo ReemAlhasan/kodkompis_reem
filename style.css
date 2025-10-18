@@ -1,6 +1,7 @@
 :root {
   /* Light mode (default) */
   --bg: #fffdf8;
+  --bg-rgb: 255, 253, 248; /* ← används för semitransparent header */
   --text: #1d1c1c;
   --muted: #4e4c4c;
   --brand: #6a5cff;
@@ -9,16 +10,23 @@
   --card: #ffffff;
   --shadow: 0 8px 24px rgba(0,0,0,0.08);
   --radius: 16px;
-  
+
   /* New semantic colors */
   --surface: var(--card);
   --border: rgba(0,0,0,0.08);
   --border-strong: rgba(0,0,0,0.15);
+
+  /* Unified spacing for cards & buttons */
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 20px;
 }
 
 /* Dark mode variables */
 [data-theme="dark"] {
   --bg: #0f0f0f;
+  --bg-rgb: 15, 15, 15; /* ← rätt bakgrund i sticky header */
   --text: #f5f5f5;
   --muted: #a0a0a0;
   --brand: #8b80ff;
@@ -26,10 +34,10 @@
   --accent: #ffca28;
   --card: #1a1a1a;
   --shadow: 0 8px 24px rgba(0,0,0,0.4);
-  
+
   /* Semantic colors for dark mode */
-  --surface: #2a2a2a;
-  --border: rgba(255,255,255,0.1);
+  --surface: #222;           /* lite ljusare än kortet för kontrast */
+  --border: rgba(255,255,255,0.08);
   --border-strong: rgba(255,255,255,0.2);
 }
 
@@ -37,6 +45,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0f0f0f;
+    --bg-rgb: 15, 15, 15;
     --text: #f5f5f5;
     --muted: #a0a0a0;
     --brand: #8b80ff;
@@ -44,8 +53,8 @@
     --accent: #ffca28;
     --card: #1a1a1a;
     --shadow: 0 8px 24px rgba(0,0,0,0.4);
-    --surface: #2a2a2a;
-    --border: rgba(255,255,255,0.1);
+    --surface: #222;
+    --border: rgba(255,255,255,0.08);
     --border-strong: rgba(255,255,255,0.2);
   }
 }
@@ -63,7 +72,7 @@ body {
 
 /* Smooth transitions for theme change */
 .card, .btn, input, textarea, select, .puzzle-card {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.2s ease, transform 0.05s ease;
 }
 
 /* Reduce motion for prefers-reduced-motion */
@@ -71,10 +80,7 @@ body {
   html, body, .card, .btn, input, textarea, select, .puzzle-card {
     transition: none;
   }
-  
-  .theme-icon {
-    transition: none;
-  }
+  .theme-icon { transition: none; }
 }
 
 /* Header */
@@ -83,7 +89,8 @@ body {
   top: 0;
   z-index: 50;
   backdrop-filter: saturate(140%) blur(6px);
-  background: rgba(var(--bg-rgb, 255, 253, 248), 0.8);
+  /* använd rgb-variabel för båda teman */
+  background: rgba(var(--bg-rgb), 0.82);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -94,11 +101,33 @@ body {
 .logo-mark { font-size: 28px; }
 .logo-text { font-family: Fredoka, Inter, sans-serif; font-weight: 700; color: var(--text); }
 
+/* Nav */
 .nav { display: flex; gap: 12px; align-items: center; }
-.nav a { text-decoration: none; color: var(--text); padding: 8px 12px; border-radius: 10px; }
+.nav a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 10px;
+  outline: none;
+}
 .nav a:hover { background: rgba(0,0,0,0.05); }
-[data-theme="dark"] .nav a:hover { background: rgba(255,255,255,0.1); }
-.nav .cta { background: var(--brand); color: #fff; }
+[data-theme="dark"] .nav a:hover { background: rgba(255,255,255,0.08); }
+
+/* tydliga focus-states */
+.nav a:focus-visible,
+.btn:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--brand) 70%, transparent);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+.nav .cta {
+  background: var(--brand);
+  color: #fff;
+}
 
 /* Theme Toggle Button */
 .theme-toggle {
@@ -112,27 +141,21 @@ body {
   font-size: 18px;
   transition: all 0.3s ease;
   margin-right: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
 }
-
 .theme-toggle:hover {
-  transform: scale(1.1);
+  transform: scale(1.06);
   background: var(--surface);
 }
-
-/* Theme icon animations */
-[data-theme="dark"] .theme-icon {
-  transform: rotate(180deg);
-}
-
-.theme-icon {
-  transition: transform 0.5s ease;
-}
+[data-theme="dark"] .theme-icon { transform: rotate(180deg); }
+.theme-icon { transition: transform 0.5s ease; }
 
 /* Hero */
 .hero { 
   padding: 48px 16px; 
   background: linear-gradient(180deg, 
-    color-mix(in srgb, var(--brand) 5%, transparent) 0%, 
+    color-mix(in srgb, var(--brand) 6%, transparent) 0%, 
     var(--bg) 100%);
 }
 .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; gap: 24px; align-items: center; grid-template-columns: 1.2fr 0.8fr; }
@@ -161,8 +184,15 @@ body {
   border: 1px dashed var(--brand);
   opacity: 0.9;
 }
-.card h3 { margin-top: 0; font-family: Fredoka, Inter, sans-serif; }
-.meta { color: var(--muted); padding-left: 16px; }
+.card h3 { 
+  margin-top: 0; 
+  margin-bottom: var(--space-2);
+  font-family: Fredoka, Inter, sans-serif; 
+}
+.card p { margin-top: 0; margin-bottom: var(--space-2); }
+.meta { color: var(--muted); padding-left: 16px; margin-bottom: var(--space-3); }
+.meta li { margin-bottom: 6px; }
+.meta li strong { color: var(--text); font-weight: 600; }
 
 /* Lists */
 .check { list-style: none; padding: 0; margin: 0; }
@@ -177,15 +207,27 @@ body {
   gap: 8px; 
   padding: 10px 14px; 
   border-radius: 12px; 
-  border: 2px solid transparent; 
+  border: 2px solid var(--border); 
   background: var(--surface); 
   color: var(--text); 
   text-decoration: none; 
   cursor: pointer; 
-  border-color: var(--border);
+  min-height: 40px;
 }
-.btn:hover { box-shadow: var(--shadow); }
-.btn.primary { background: var(--brand); color: #fff; border-color: var(--brand); }
+.btn:hover { 
+  box-shadow: var(--shadow); 
+  transform: translateY(-1px);
+}
+.btn:active { transform: translateY(0); }
+.btn.primary { 
+  background: var(--brand); 
+  color: #fff; 
+  border-color: var(--brand); 
+}
+.btn.primary:hover {
+  background: color-mix(in srgb, var(--brand) 88%, black 12%);
+  border-color: color-mix(in srgb, var(--brand) 90%, black 10%);
+}
 .btn.ghost { 
   background: transparent; 
   border-color: var(--border-strong);
@@ -239,12 +281,7 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
 }
 
 /* ===== Loading States ===== */
-.loading {
-  position: relative;
-  pointer-events: none;
-  opacity: 0.7;
-}
-
+.loading { position: relative; pointer-events: none; opacity: 0.7; }
 .loading::after {
   content: '';
   position: absolute;
@@ -258,22 +295,10 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.loading-text::after {
-  content: '...';
-  animation: dots 1.5s steps(4, end) infinite;
-}
-
-@keyframes dots {
-  0%, 20% { content: '.'; }
-  40% { content: '..'; }
-  60%, 100% { content: '...'; }
-}
+.loading-text::after { content: '...'; animation: dots 1.5s steps(4, end) infinite; }
+@keyframes dots { 0%, 20% { content: '.'; } 40% { content: '..'; } 60%, 100% { content: '...'; } }
 
 .puzzle-loading {
   min-height: 120px;
@@ -284,7 +309,6 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
   gap: 12px;
   color: var(--muted);
 }
-
 .loading-spinner {
   width: 32px;
   height: 32px;
@@ -294,10 +318,7 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
   animation: spin 1s linear infinite;
 }
 
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 /* ===== Header & Nav – mobilfix ===== */
 .nav-toggle {
@@ -347,30 +368,22 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
   .nav a { padding: 12px; border-radius: 10px; }
   .nav .cta { text-align: center; }
   body.no-scroll { overflow: hidden; }
-  
+
   /* Adjust theme toggle for mobile */
-  .theme-toggle {
-    margin-right: 4px;
-  }
+  .theme-toggle { margin-right: 4px; }
 }
 
 /* ===== Hero – knappar & spacing på mobil ===== */
 @media (max-width: 760px) {
   .hero { padding-top: 28px; padding-bottom: 36px; }
   .hero-actions { gap: 8px; }
-  .hero-actions .btn { width: 100%; } /* gör knappar fullbredd */
-}
-
-/* Gör ghost-knappen tydligare på mobil/ljus bakgrund */
-.btn.ghost {
-  background: transparent;
-  border-color: var(--border-strong);
+  .hero-actions .btn { width: 100%; }
 }
 
 /* Ikonraden i heron – låt den brytas snyggt */
 .hero-ill img { max-width: 64px; max-height: 64px; }
 
-/* ===== Små typografijusteringar (för att undvika radbryt i menylänkar) ===== */
+/* ===== Små typografijusteringar ===== */
 @media (max-width: 360px) {
   .nav a { font-size: 15px; }
   .logo-text { font-size: 16px; }
@@ -378,9 +391,7 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
 
 /* Tablet: slightly smaller header and logo */
 @media (max-width: 900px) {
-  .logo-mark {
-    height: 34px;
-  }
+  .logo-mark { height: 34px; }
 }
 
 /* ===== Hero Math Section ===== */
@@ -391,29 +402,15 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
   font-family: Fredoka, Inter, sans-serif;
   font-weight: 600;
 }
-.hero-math-sub {
-  margin: 0;
-  color: var(--muted);
-  font-size: clamp(14px, 2vw, 16px);
-}
+.hero-math-sub { margin: 0; color: var(--muted); font-size: clamp(14px, 2vw, 16px); }
 
-/* ===== Math Section Card Enhancements ===== */
-.meta li strong { 
-  color: var(--text); 
-  font-weight: 600;
-}
-
-/* Optional: Add subtle loading animation to puzzle card */
+/* Optional: skeleton loading on puzzle card */
 .puzzle-card.loading {
   background: linear-gradient(90deg, var(--surface) 25%, color-mix(in srgb, var(--surface) 80%, transparent) 50%, var(--surface) 75%);
   background-size: 200% 100%;
   animation: loading-shine 1.5s infinite;
 }
-
-@keyframes loading-shine {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
+@keyframes loading-shine { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
 /* Responsive */
 @media (max-width: 900px) {
