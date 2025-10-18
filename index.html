@@ -292,65 +292,53 @@
   </script>
 
   <script src="pussel.js"></script>
-
+  
   <script>
-    // Kontaktformulär – POST JSON direkt till Google Apps Script
     (function () {
       const form = document.getElementById('contactForm');
       const note = document.getElementById('formNote');
-
       if (!form) return;
-
+  
       form.addEventListener('submit', async (e) => {
-        // Om fetch saknas låt klassisk POST ske
-        if (!window.fetch) return;
-
+        if (!window.fetch) return;   // allow HTML fallback
         e.preventDefault();
-
+  
         if (!form.checkValidity()) {
           note.textContent = 'Kolla så att alla fält är ifyllda korrekt.';
           form.reportValidity();
           return;
         }
-
-        // Honeypot: om bot har fyllt i hp-fältet, låtsas som "OK" utan att skicka
+  
+        // Honeypot (bot-skydd)
         const hp = form.querySelector('input[name="hp"]')?.value || '';
         if (hp.trim() !== '') {
-          note.textContent = 'Tack! Ditt meddelande är skickat.'; // tyst fail
+          note.textContent = 'Tack! Ditt meddelande är skickat.'; // tyst OK
           form.reset();
           return;
         }
-
-        // Bygg JSON – håll nycklar enkla: name, email, phone, topic, childAge, message, consent
-        const data = Object.fromEntries(new FormData(form).entries());
-
+  
         note.textContent = 'Skickar…';
+  
         try {
-          const res = await fetch(form.action, {
+          await fetch(form.action, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            mode: 'no-cors',          // ✅ avoids preflight
+            body: new FormData(form)  // ✅ sends as simple request
           });
-
-          if (res.ok) {
-            // Försök läsa ev. JSON-svar (inte krav)
-            await res.json().catch(() => null);
-            note.textContent = 'Tack! Ditt meddelande är skickat. Jag återkommer inom 24 timmar.';
-            form.reset();
-          } else {
-            const errText = await res.text().catch(() => '');
-            note.textContent = 'Ett fel uppstod. Försök igen eller mejla kodkompisreem@gmail.com';
-            console.error('Kontaktform fel:', errText);
-          }
+  
+          // we can’t read response in no-cors, so just assume success
+          note.textContent = 'Tack! Ditt meddelande är skickat. Jag återkommer inom 24 timmar.';
+          form.reset();
         } catch (err) {
-          note.textContent = 'Nätverksfel. Kontrollera din uppkoppling eller mejla kodkompisreem@gmail.com';
           console.error('Kontaktform undantag:', err);
+          note.textContent = 'Nätverksfel. Kontrollera din uppkoppling eller mejla kodkompisreem@gmail.com';
         }
       });
     })();
-
+  
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
 
   <script>
     // Hamburger toggle
@@ -368,4 +356,5 @@
 
 </body>
 </html>
+
 
