@@ -129,17 +129,6 @@
             </ul>
             <a class="btn" href="#kontakt">Boka samtal</a>
           </article>
-
-          <!-- <article class="card">
-            <h3>Workshops (helg)</h3>
-            <p><strong>Föräldratext:</strong> Intensiva pass för skolor/föreningar: spelbygge, AI i vardagen, eller robotlogik.</p>
-            <ul class="meta">
-              <li>1–3 timmar</li>
-              <li>Upp till 20 deltagare</li>
-              <li>Teman efter önskemål</li>
-            </ul>
-            <a class="btn" href="#kontakt">Be om offert</a>
-          </article> -->
         </div>
       </div>
     </section>
@@ -186,20 +175,6 @@
             <a class="btn primary" href="#kontakt">Behöver du tenta-hjälp? Boka nu</a>
           </article>
         </div>
-
-        <!-- Paket & rabatter -->
-        <div class="cards" style="margin-top:16px">
-          <!-- <article class="card soft">
-            <h3>💼 Paket & rabatter</h3>
-            <ul class="meta">
-              <li>Prova-på: <strong>1 lektion – Gratis eller 99 kr</strong></li>
-              <li>Mini-paket: <strong>4 lektioner – 1 400 kr</strong> (10 % rabatt)</li>
-              <li>Standard: <strong>8 lektioner – 2 700 kr</strong> (15 % rabatt)</li>
-              <li>Intensiv tenta-vecka: <strong>5 × 2 h – 4 500 kr</strong></li>
-            </ul>
-            <a class="btn" href="#kontakt">Be om schema & startdatum</a>
-          </article> -->
-        </div>
       </div>
     </section>
 
@@ -241,11 +216,10 @@
           <h2 id="kontakt-title">Kontakta Reem</h2>
           <p>Har du frågor eller vill du boka en plats? Fyll i formuläret så återkommer jag inom 24 timmar.</p>
 
-          <!-- Formspree-koppling -->
-          <form id="contactForm" class="form" action="https://formspree.io/f/xnngbvbw" method="POST">
-            <input type="hidden" name="_subject" value="Ny intresseanmälan – Kodkompis Reem" />
-            <!-- Honeypot mot spam -->
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <!-- Direkt till Google Apps Script (ersätter Formspree) -->
+          <form id="contactForm" class="form" action="https://script.google.com/macros/s/AKfycbyICZK-7r117CDJ7sWiURDRBY7_wDYfNodXuSDX7seZGarJytO-epd9lIarP8VnKRUD8g/exec" method="POST" novalidate>
+            <!-- Honeypot mot spam-botar -->
+            <input type="text" name="hp" style="display:none" tabindex="-1" autocomplete="off" />
 
             <div class="field">
               <label for="topic">Ämne</label>
@@ -258,32 +232,36 @@
 
             <div class="field">
               <label for="parentName">Förälders namn</label>
-              <input id="parentName" name="parentName" type="text" required autocomplete="name" />
+              <input id="parentName" name="name" type="text" required autocomplete="name" />
             </div>
+
             <div class="field">
               <label for="email">E-post</label>
               <input id="email" name="email" type="email" required autocomplete="email" />
             </div>
 
             <div class="field">
-              <label for="Mobilnummer">Mobilnummer</label>
-              <input id="Mobilnummer" name="Mobilnummer" type="tel"  required autocomplete="mobilnummer" />
+              <label for="phone">Mobilnummer</label>
+              <input id="phone" name="phone" type="tel" required autocomplete="tel" />
             </div>
-            
+
             <div class="field">
               <label for="childAge">Barnets ålder</label>
               <input id="childAge" name="childAge" type="number" min="3" max="25" required />
             </div>
+
             <div class="field">
               <label for="message">Meddelande</label>
-              <textarea id="message" name="message" rows="4" placeholder="Berätta gärna vad ni är intresserade av…"></textarea>
+              <textarea id="message" name="message" rows="4" placeholder="Berätta gärna vad ni är intresserade av…" required></textarea>
             </div>
+
             <div class="field">
               <label class="checkbox">
                 <input type="checkbox" name="consent" value="Godkänner" required />
                 Jag samtycker till att mina uppgifter används för att Reem ska kunna kontakta mig.
               </label>
             </div>
+
             <button class="btn primary" type="submit">Skicka</button>
             <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
           </form>
@@ -316,44 +294,64 @@
   <script src="pussel.js"></script>
 
   <script>
-    // Formspree – AJAX + fallback
-    const form = document.getElementById('contactForm');
-    const note = document.getElementById('formNote');
+    // Kontaktformulär – POST JSON direkt till Google Apps Script
+    (function () {
+      const form = document.getElementById('contactForm');
+      const note = document.getElementById('formNote');
 
-    form.addEventListener('submit', async (e) => {
-      // Om browsern saknar fetch – låt HTML POST hantera det
-      if (!window.fetch) return;
-      e.preventDefault();
+      if (!form) return;
 
-      if (!form.checkValidity()) {
-        note.textContent = 'Kolla så att alla fält är ifyllda korrekt.';
-        form.reportValidity();
-        return;
-      }
+      form.addEventListener('submit', async (e) => {
+        // Om fetch saknas låt klassisk POST ske
+        if (!window.fetch) return;
 
-      note.textContent = 'Skickar…';
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(form)
-        });
-        if (res.ok) {
-          note.textContent = 'Tack! Ditt meddelande är skickat. Jag återkommer inom 24 timmar.';
-          form.reset();
-        } else {
-          const data = await res.json().catch(()=>({}));
-          const msg = (data && data.errors && data.errors[0] && data.errors[0].message)
-            || 'Ett fel uppstod. Försök igen eller mejla kodkompisreem@gmail.com';
-          note.textContent = msg;
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+          note.textContent = 'Kolla så att alla fält är ifyllda korrekt.';
+          form.reportValidity();
+          return;
         }
-      } catch (err) {
-        note.textContent = 'Nätverksfel. Kontrollera din uppkoppling eller mejla kodkompisreem@gmail.com';
-      }
-    });
+
+        // Honeypot: om bot har fyllt i hp-fältet, låtsas som "OK" utan att skicka
+        const hp = form.querySelector('input[name="hp"]')?.value || '';
+        if (hp.trim() !== '') {
+          note.textContent = 'Tack! Ditt meddelande är skickat.'; // tyst fail
+          form.reset();
+          return;
+        }
+
+        // Bygg JSON – håll nycklar enkla: name, email, phone, topic, childAge, message, consent
+        const data = Object.fromEntries(new FormData(form).entries());
+
+        note.textContent = 'Skickar…';
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+
+          if (res.ok) {
+            // Försök läsa ev. JSON-svar (inte krav)
+            await res.json().catch(() => null);
+            note.textContent = 'Tack! Ditt meddelande är skickat. Jag återkommer inom 24 timmar.';
+            form.reset();
+          } else {
+            const errText = await res.text().catch(() => '');
+            note.textContent = 'Ett fel uppstod. Försök igen eller mejla kodkompisreem@gmail.com';
+            console.error('Kontaktform fel:', errText);
+          }
+        } catch (err) {
+          note.textContent = 'Nätverksfel. Kontrollera din uppkoppling eller mejla kodkompisreem@gmail.com';
+          console.error('Kontaktform undantag:', err);
+        }
+      });
+    })();
 
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
   <script>
     // Hamburger toggle
     (function(){
@@ -370,9 +368,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
