@@ -196,7 +196,7 @@
 
         <div class="puzzle-ui">
           <label for="age">Ålder</label>
-          <select id="age" aria-label="Välj åldersgrupp">
+          <select id="age" name="age" aria-label="Välj åldersgrupp">
             <option value="6-8">6–8 år</option>
             <option value="9-12">9–12 år</option>
             <option value="13-16">13–16 år</option>
@@ -229,7 +229,7 @@
           <!-- Direkt till Google Apps Script (ersätter Formspree) -->
           <form id="contactForm" class="form" action="https://script.google.com/macros/s/AKfycbyFK62JErVwKmvus6m72PyVXJHpQs7Sp-rE9ogj_IWocmY6kQB4HQpZpmwlhh0eWCUEjA/exec" method="POST" novalidate>
             <!-- Honeypot mot spam-botar -->
-            <input type="text" name="hp" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <div class="field">
               <label for="topic">Ämne</label>
