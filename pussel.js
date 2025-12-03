@@ -57,7 +57,10 @@
       // cache-buster på dagsnivå minskar fel-cache
       const todayISO = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
       s.src = url + (url.includes('?') ? '&' : '?') + q.toString() + `&_t=${todayISO}`;
-      s.onerror = () => { cleanup(); reject(new Error('JSONP error')); };
+      s.onerror = () => { 
+        cleanup(); 
+        reject(new Error('JSONP error')); 
+      };
       document.head.appendChild(s);
     });
   }
