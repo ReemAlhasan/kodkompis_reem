@@ -12,10 +12,10 @@
 
 VIKTIG INFORMATION OM KODKOMPIS REEM:
 - Reem studerar till Civilingenjör i Medieteknik och AI vid Linköpings universitet
-- Erbjuder programmeringskurser för åldrarna 6-16 år
+- Erbjuder programmeringskurser för alla åldrar
 - Erbjuder mattehjälp från grundskola till universitet
 - Alla lektioner sker online via Google Meet
-- Privatlektioner kostar från 149 kr (varierar efter ålder och längd)
+- Lektionkostnad varierar efter ålder, innehåll och intriktning
 - Bokning sker via Google Calendar: https://calendar.app.google/hcGm2jFduV7YPKEc6
 - E-post: kodkompisreem@gmail.com
 
@@ -23,7 +23,7 @@ KURSER:
 - 6-8 år: Scratch Jr, visuella block, små berättelser och spel (149 kr/60 min)
 - 9-12 år: Scratch & Python, spel och logik (175 kr/60 min)
 - 13-16 år: Python & webbutveckling, AI, portföljprojekt (199 kr/60 min)
-- Coaching 1:1: Personlig handledning (200 kr/30 min)
+- Coaching 1:1: Personlig handledning (200 kr/60 min)
 
 MATTEHJÄLP:
 - Lågstadiet (åk 1-3): 149 kr/60 min
