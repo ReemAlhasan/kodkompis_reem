@@ -1,4 +1,4 @@
-// Translations for Kodkompis Reem website
+                                                                                                            // Translations for Kodkompis Reem website
 // Swedish (sv), English (en), Arabic (ar)
 
 const translations = {
@@ -17,7 +17,7 @@ const translations = {
     
     // Hero
     heroTitle: "Programmering och matematik för barn och unga – tryggt, kul och smart 💡",
-    heroLead: "Hej! Jag heter <strong>Reem</strong> och jag studerar <strong>till Civilingenjör i Medieteknik och AI</strong>. Jag älskar att hjälpa barn att upptäcka kodning – som att lära sig prata med snälla robotar.",
+    heroLead: "Hej! Jag heter <strong>Reem</strong> och jag studerar <strong>till Civilingenjör i Medieteknik och AI</strong>. Jag älskar att hjälpa barn och unga att upptäcka kodning – som att lära sig prata med snälla robotar.",
     heroMathTitle: "Lär dig matte online – enkelt och flexibelt",
     heroMathSub: "Från grundskola till universitet – Reem förklarar tills du förstår.",
     heroBtnBook: "Boka lektion",
