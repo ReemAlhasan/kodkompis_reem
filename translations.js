@@ -29,7 +29,7 @@ const translations = {
     aboutItem1: "Trygg och positiv lärmiljö",
     aboutItem2: "Personlig uppföljning och feedback",
     aboutItem3: "Åldersanpassat innehåll",
-    aboutBtn: "Boka din lektion",
+    aboutBtn: "Läs mer om bokning",
     aboutWhyTitle: "Varför kodning för barn?",
     aboutWhy1: "Kodning tränar logiskt tänkande, kreativitet och problemlösning – superkrafter för framtiden! 🎯",
     aboutWhy2: "Vi bygger spel, små appar och robotlogik. Barnen får skapa, testa och våga göra fel.",
@@ -50,6 +50,7 @@ const translations = {
     progIndividual: "Individuell:",
     progBtnBook: "Boka lektion",
     progBtnDirect: "Boka direkt",
+    progBtnLearn: "Läs mer",
     
     // Math
     mathTitle: "Mattehjälp online 🧮📏🎓",
@@ -115,7 +116,7 @@ const translations = {
     contactTrust3: "Åldersanpassat innehåll",
     
     // Footer
-    footerText: "Kodkompis Reem · Byggd med ♥ för nyfikenhet",
+    footerText: "© {year} Kodkompis Reem · Byggd med ♥ för nyfikenhet",
     
     // Theme
     themeToggle: "Byt till mörkt läge",
@@ -163,7 +164,7 @@ const translations = {
     aboutItem1: "Safe and positive learning environment",
     aboutItem2: "Personal follow-up and feedback",
     aboutItem3: "Age-appropriate content",
-    aboutBtn: "Book your lesson",
+    aboutBtn: "Learn more about booking",
     aboutWhyTitle: "Why coding for children?",
     aboutWhy1: "Coding trains logical thinking, creativity and problem-solving – superpowers for the future! 🎯",
     aboutWhy2: "We build games, small apps and robot logic. Children get to create, test and dare to make mistakes.",
@@ -184,6 +185,7 @@ const translations = {
     progIndividual: "Individual:",
     progBtnBook: "Book lesson",
     progBtnDirect: "Book directly",
+    progBtnLearn: "Learn more",
     
     // Math
     mathTitle: "Math help online 🧮📏🎓",
@@ -249,7 +251,7 @@ const translations = {
     contactTrust3: "Age-appropriate content",
     
     // Footer
-    footerText: "Kodkompis Reem · Built with ♥ for curiosity",
+    footerText: "© {year} Kodkompis Reem · Built with ♥ for curiosity",
     
     // Theme
     themeToggle: "Switch to dark mode",
@@ -273,7 +275,7 @@ const translations = {
   ar: {
     // Meta
     title: "رفيق الكود ريم – تعلم البرمجة والرياضيات بطريقة آمنة وممتعة",
-    description: "ريم تُعلم الأطفال والشباب البرمجة عبر الإنترنت – دورات وتدريب وورش عمل للأعمار من 6 إلى 16 عاماً.",
+    description: "ريم تعلّم الأطفال والشباب البرمجة عبر الإنترنت – دورات وتدريب وورش عمل للأعمار من 6 إلى 16 عاماً.",
     
     // Navigation
     navOm: "عن ريم",
@@ -287,7 +289,7 @@ const translations = {
     heroTitle: "البرمجة والرياضيات للأطفال والشباب – آمنة وممتعة وذكية 💡",
     heroLead: "مرحباً! أنا <strong>ريم</strong> وأدرس لأصبح <strong>مهندسة مدنية في تكنولوجيا الوسائط والذكاء الاصطناعي</strong>. أحب مساعدة الأطفال على اكتشاف البرمجة – مثل تعلم التحدث مع الروبوتات الودودة.",
     heroMathTitle: "تعلم الرياضيات عبر الإنترنت – بسهولة ومرونة",
-    heroMathSub: "من المدرسة الابتدائية إلى الجامعة – ريم تُشرح حتى تفهم.",
+    heroMathSub: "من المدرسة الابتدائية إلى الجامعة – ريم تشرح حتى تفهم.",
     heroBtnBook: "احجز درس",
     heroBtnCourses: "شاهد جميع الدورات",
     
@@ -297,7 +299,7 @@ const translations = {
     aboutItem1: "بيئة تعليمية آمنة وإيجابية",
     aboutItem2: "متابعة شخصية وتغذية راجعة",
     aboutItem3: "محتوى مناسب للعمر",
-    aboutBtn: "احجز درس",
+    aboutBtn: "اعرف المزيد عن الحجز",
     aboutWhyTitle: "لماذا البرمجة للأطفال؟",
     aboutWhy1: "البرمجة تدرب التفكير المنطقي والإبداع وحل المشكلات – قوى خارقة للمستقبل! 🎯",
     aboutWhy2: "نبني ألعاباً وتطبيقات صغيرة ومنطق الروبوتات. الأطفال يحصلون على فرصة للإنشاء والاختبار والجرأة على ارتكاب الأخطاء.",
@@ -318,6 +320,7 @@ const translations = {
     progIndividual: "فردي:",
     progBtnBook: "احجز درس",
     progBtnDirect: "احجز مباشرة",
+    progBtnLearn: "اعرف المزيد",
     
     // Math
     mathTitle: "مساعدة الرياضيات عبر الإنترنت 🧮📏🎓",
@@ -383,7 +386,7 @@ const translations = {
     contactTrust3: "محتوى مناسب للعمر",
     
     // Footer
-    footerText: "رفيق الكود ريم · مبني بـ ♥ للفضول",
+    footerText: "© {year} رفيق الكود ريم · مبني بـ ♥ للفضول",
     
     // Theme
     themeToggle: "التبديل إلى الوضع الداكن",
