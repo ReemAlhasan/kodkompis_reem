@@ -47,7 +47,7 @@
     </div>
 
     <!-- Dark mode toggle -->
-    <button id="themeToggle" class="theme-toggle btn ghost" data-i18n-aria="themeToggle">
+    <button id="themeToggle" class="theme-toggle btn ghost" data-i18n-aria="themeToggle" title="Byt tema">
       <span class="theme-icon" aria-hidden="true">🌙</span>
     </button>
 
@@ -106,7 +106,7 @@
             <li data-i18n="aboutItem3">Åldersanpassat innehåll</li>
           </ul>
           <div class="cta-wrapper">
-            <a class="btn primary" href="https://calendar.app.google/hcGm2jFduV7YPKEc6" target="_blank" rel="noopener" data-i18n="aboutBtn">Boka din lektion</a>
+            <a class="btn ghost" href="#booking" data-i18n="aboutBtn">Läs mer om bokning</a>
           </div>
         </div>
         <div>
@@ -134,7 +134,7 @@
               <!-- <li>Grupp (6–8 barn): <strong>45 min – 150 kr/elev</strong></li> -->
               <li><span data-i18n="progPrivate">Privatlektion:</span> <strong>60 min – 149 kr</strong></li>
             </ul>
-            <a class="btn primary" href="https://calendar.app.google/hcGm2jFduV7YPKEc6" target="_blank" rel="noopener" data-i18n="progBtnBook">Boka lektion</a>
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
 
           <!-- 9–12 -->
@@ -146,7 +146,7 @@
               <!-- <li>Grupp (8–10 barn): <strong>60 min – 200 kr/elev</strong></li> -->
               <li><span data-i18n="progPrivate">Privatlektion:</span> <strong>60 min – 175 kr</strong></li>
             </ul>
-            <a class="btn primary" href="https://calendar.app.google/hcGm2jFduV7YPKEc6" target="_blank" rel="noopener" data-i18n="progBtnBook">Boka lektion</a>
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
 
           <!-- 13–16 -->
@@ -158,7 +158,7 @@
               <li data-i18n="progFormat">Format: online via Google Meet</li>
               <li><span data-i18n="progPrivate">Privatlektion:</span> <strong>60 min – 199 kr</strong></li>
             </ul>
-            <a class="btn primary" href="https://calendar.app.google/hcGm2jFduV7YPKEc6" target="_blank" rel="noopener" data-i18n="progBtnBook">Boka lektion</a>
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
 
           <!-- Coaching -->
@@ -169,7 +169,7 @@
               <li data-i18n="progFormat">Format: online via Google Meet</li>
               <li><span data-i18n="progIndividual">Individuell:</span> <strong>30 min – 200 kr</strong></li>
             </ul>
-            <a class="btn primary" href="https://calendar.app.google/hcGm2jFduV7YPKEc6" target="_blank" rel="noopener" data-i18n="progBtnDirect">Boka direkt</a>
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
         </div>
       </div>
@@ -191,7 +191,7 @@
               <!-- <li>Grupp (3–4 elever): <strong>60 min – 200 kr/elev</strong></li> -->
               <li><span data-i18n="progPrivate">Privatlektion:</span> <strong>60 min – 149 kr</strong></li>
             </ul>
-            <a class="btn primary" href="https://calendar.app.google/hcGm2jFduV7YPKEc6" target="_blank" rel="noopener" data-i18n="progBtnBook">Boka lektion</a>
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
 
           <!-- Mellan/Högstadiet -->
@@ -203,7 +203,7 @@
               <!-- <li>Grupp (3–4 elever): <strong>60 min – 200 kr/elev</strong></li> -->
               <li><span data-i18n="progPrivate">Privatlektion:</span> <strong>60 min – 175 kr</strong></li>
             </ul>
-            <a class="btn primary" href="https://calendar.app.google/hcGm2jFduV7YPKEc6" target="_blank" rel="noopener" data-i18n="progBtnBook">Boka lektion</a>
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
 
           <!-- Gymnasiet -->
@@ -214,7 +214,7 @@
               <li data-i18n="progFormat">Format: online via Google Meet</li>
               <li><span data-i18n="progIndividual">Individuell:</span> <strong>60 min – 199 kr</strong></li>
             </ul>
-            <a class="btn primary" href="https://calendar.app.google/hcGm2jFduV7YPKEc6" target="_blank" rel="noopener" data-i18n="progBtnBook">Boka lektion</a>
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
         </div>
       </div>
@@ -528,6 +528,43 @@
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
         document.body.classList.toggle('no-scroll', open);
       });
+    })();
+  </script>
+
+  <script>
+    // Floating CTA - show after scrolling
+    (function() {
+      const floatingCTA = document.querySelector('.floating-cta');
+      if (!floatingCTA) return;
+      
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      
+      function updateCTA() {
+        const scrollY = window.scrollY;
+        const heroHeight = document.querySelector('.hero')?.offsetHeight || 400;
+        
+        // Show CTA after scrolling past hero section
+        if (scrollY > heroHeight * 0.5) {
+          floatingCTA.classList.add('visible');
+        } else {
+          floatingCTA.classList.remove('visible');
+        }
+        
+        lastScrollY = scrollY;
+        ticking = false;
+      }
+      
+      function requestTick() {
+        if (!ticking) {
+          requestAnimationFrame(updateCTA);
+          ticking = true;
+        }
+      }
+      
+      window.addEventListener('scroll', requestTick, { passive: true });
+      // Check on load
+      updateCTA();
     })();
   </script>
 
