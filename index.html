@@ -9,26 +9,45 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-<<<<<<< HEAD
-=======
   <script src="translations.js"></script>
   <script src="i18n.js"></script>
+  <style>
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Smooth scroll offset for fixed header */
+    section[id] {
+      scroll-margin-top: 100px;
+    }
+  </style>
   <!-- 
     Logo note: The logo image is stored in assets/ folder.
     For production, consider hosting it on a CDN or GitHub Pages for better performance.
     For Google Forms integration, the logo must be accessible via URL.
   -->
->>>>>>> fixes
 </head>
 <body>
   <header class="site-header">
     <a class="logo" href="#top" aria-label="Start – Kodkompis Reem">
-      <span class="logo-mark" aria-hidden="true">🤖</span>
-      <span class="logo-text">Kodkompis Reem</span>
+      <img src="assets/Modern_playful_Kodkompis_Reem_logo_with_friendly_robot_and_coding_math_elements.png" 
+           alt="Kodkompis Reem" 
+           class="logo-img" 
+           width="300" 
+           height="70" />
+      <span class="logo-text" aria-hidden="true">Kodkompis Reem</span>
     </a>
 
+    <!-- Language Switcher -->
+    <div class="lang-switcher" id="langSwitcher" role="group" aria-label="Välj språk">
+      <button data-lang="sv" class="lang-btn" aria-pressed="true" title="Svenska">SV</button>
+      <button data-lang="en" class="lang-btn" aria-pressed="false" title="English">EN</button>
+      <button data-lang="ar" class="lang-btn" aria-pressed="false" title="العربية">AR</button>
+    </div>
+
     <!-- Dark mode toggle -->
-    <button id="themeToggle" class="theme-toggle btn ghost" aria-label="Byt till mörkt läge">
+    <button id="themeToggle" class="theme-toggle btn ghost" data-i18n-aria="themeToggle" title="Byt tema">
       <span class="theme-icon" aria-hidden="true">🌙</span>
     </button>
 
@@ -41,20 +60,12 @@
 
     <!-- Meny -->
     <nav id="primary-nav" class="nav" aria-label="Huvudmeny">
-<<<<<<< HEAD
-      <a href="#om">Om Reem</a>
-      <a href="#tjanster">Programmering</a>
-      <a href="#matte">Mattehjälp</a>
-      <a href="#pussel">Dagens pussel</a>
-      <a class="cta" href="#kontakt">Kontakta</a>
-=======
       <a href="#om" data-i18n="navOm">Om Reem</a>
       <a href="#tjanster" data-i18n="navProgrammering">Programmering</a>
       <a href="#matte" data-i18n="navMatte">Mattehjälp</a>
       <a href="#pussel" data-i18n="navPussel">Dagens pussel</a>
-      <a class="cta" href="#booking" data-i18n="navBoka">Boka lektion</a>
+      <a class="cta" href="https://calendar.app.google/hcGm2jFduV7YPKEc6" target="_blank" rel="noopener" data-i18n="navBoka">Boka lektion</a>
       <a href="#kontakt" data-i18n="navKontakt">Kontakta</a>
->>>>>>> fixes
     </nav>
   </header>
 
@@ -62,20 +73,15 @@
     <!-- HERO -->
     <section class="hero" role="region" aria-labelledby="hero-title">
       <div class="hero-inner">
-        <h1 id="hero-title">Programmering och matematik för barn och unga – tryggt, kul och smart 💡</h1>
-        <p class="lead">Hej! Jag heter <strong>Reem</strong> och jag studerar <strong>till Civilingenjör i Medieteknik och AI</strong>. Jag älskar att hjälpa barn att upptäcka kodning – som att lära sig prata med snälla robotar.</p>
+        <h1 id="hero-title" data-i18n="heroTitle">Programmering och matematik för barn och unga – tryggt, kul och smart 💡</h1>
+        <p class="lead" data-i18n="heroLead">Hej! Jag heter <strong>Reem</strong> och jag studerar <strong>till Civilingenjör i Medieteknik och AI</strong>. Jag älskar att hjälpa barn att upptäcka kodning – som att lära sig prata med snälla robotar.</p>
         <div class="hero-math">
-          <h2 class="hero-math-title">Lär dig matte online – enkelt och flexibelt </h2>
-          <p class="hero-math-sub">Från grundskola till universitet – Reem förklarar tills du förstår.</p>
+          <h2 class="hero-math-title" data-i18n="heroMathTitle">Lär dig matte online – enkelt och flexibelt </h2>
+          <p class="hero-math-sub" data-i18n="heroMathSub">Från grundskola till universitet – Reem förklarar tills du förstår.</p>
         </div>
         <div class="hero-actions">
-<<<<<<< HEAD
-          <a class="btn primary" href="#tjanster">Se kurser</a>
-          <a class="btn ghost" href="#kontakt">Boka samtal för förälder</a>
-=======
-          <a class="btn primary" href="#booking" data-i18n="heroBtnBook">Boka lektion</a>
+          <a class="btn primary" href="https://calendar.app.google/hcGm2jFduV7YPKEc6" target="_blank" rel="noopener" data-i18n="heroBtnBook">Boka lektion</a>
           <a class="btn ghost" href="#tjanster" data-i18n="heroBtnCourses">Se alla kurser</a>
->>>>>>> fixes
         </div>
         <figure class="hero-ill">
           <img src="https://cdn.jsdelivr.net/npm/@tabler/icons/icons/brand-python.svg" alt="Python Icon" width="24" height="24" />
@@ -89,22 +95,25 @@
     <section id="om" class="section" aria-labelledby="om-title">
       <div class="container grid-2">
         <div>
-          <h2 id="om-title">Vem är Reem?</h2>
-          <p>
+          <h2 id="om-title" data-i18n="aboutTitle">Vem är Reem?</h2>
+          <p data-i18n="aboutText">
             Jag är en nyfiken och lugn coach som tror att <em>alla</em> kan lära sig programmera.
-            Jag pluggar <strong> till Civilingenjör i Medieteknik och AI </strong> och använder lekfulla övningar, små projekt och tydliga förklaringar.
+            Jag studerar <strong>till Civilingenjör i Medieteknik och AI</strong> vid Linköpings universitet och använder lekfulla övningar, små projekt och tydliga förklaringar.
           </p>
           <ul class="check">
-            <li>Trygg och positiv lärmiljö</li>
-            <li>Personlig uppföljning och feedback</li>
-            <li>Åldersanpassat innehåll (6–16 år)</li>
+            <li data-i18n="aboutItem1">Trygg och positiv lärmiljö</li>
+            <li data-i18n="aboutItem2">Personlig uppföljning och feedback</li>
+            <li data-i18n="aboutItem3">Åldersanpassat innehåll</li>
           </ul>
+          <div class="cta-wrapper">
+            <a class="btn ghost" href="#booking" data-i18n="aboutBtn">Läs mer om bokning</a>
+          </div>
         </div>
         <div>
           <div class="card soft">
-            <h3>Varför kodning för barn?</h3>
-            <p>Kodning tränar logiskt tänkande, kreativitet och problemlösning – superkrafter för framtiden! 🎯</p>
-            <p>Vi bygger spel, små appar och robotlogik. Barnen får skapa, testa och våga göra fel.</p>
+            <h3 data-i18n="aboutWhyTitle">Varför kodning för barn?</h3>
+            <p data-i18n="aboutWhy1">Kodning tränar logiskt tänkande, kreativitet och problemlösning – superkrafter för framtiden! 🎯</p>
+            <p data-i18n="aboutWhy2">Vi bygger spel, små appar och robotlogik. Barnen får skapa, testa och våga göra fel.</p>
           </div>
         </div>
       </div>
@@ -113,129 +122,101 @@
     <!-- TJÄNSTER (PROGRAMMERING) -->
     <section id="tjanster" class="section" aria-labelledby="tjanster-title">
       <div class="container">
-        <h2 id="tjanster-title">Programmering för barn & föräldrar</h2>
+        <h2 id="tjanster-title" data-i18n="progTitle">Programmering för barn & föräldrar</h2>
+        <p data-i18n="progIntro">Välj den åldersgrupp som passar ditt barn bäst.</p>
         <div class="cards">
           <!-- 6–8 -->
           <article class="card">
-            <h3>🧩 Onlinekurs (6–8 år)</h3>
-            <p><strong>Fokus:</strong> lekfull introduktion till datorns tänk med visuella block (t.ex. Scratch Jr). Vi skapar små berättelser och spel.</p>
+            <h3 data-i18n="prog68Title">🧩 Onlinekurs (6–8 år)</h3>
+            <p><strong>Fokus:</strong> <span data-i18n="prog68Focus">lekfull introduktion till datorns tänk med visuella block (t.ex. Scratch Jr). Vi skapar små berättelser och spel.</span></p>
             <ul class="meta">
-              <li>Format: online via Google Meet</li>
+              <li data-i18n="progFormat">Format: online via Google Meet</li>
               <!-- <li>Grupp (6–8 barn): <strong>45 min – 150 kr/elev</strong></li> -->
-              <li>Privatlektion: <strong>60 min – 149 kr</strong></li>
+              <li><span data-i18n="progPrivate">Privatlektion:</span> <strong>60 min – 149 kr</strong></li>
             </ul>
-<<<<<<< HEAD
-            <a class="btn primary" href="#kontakt">Boka gratis prova-på (30 min)</a>
-=======
->>>>>>> fixes
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
 
           <!-- 9–12 -->
           <article class="card">
-            <h3>🎮 Onlinekurs (9–12 år)</h3>
-            <p><strong>Fokus:</strong> Scratch & första stegen i <em>Python</em>. Vi bygger spel, tränar logik och provar riktig kod.</p>
+            <h3 data-i18n="prog912Title">🎮 Onlinekurs (9–12 år)</h3>
+            <p><strong>Fokus:</strong> <span data-i18n="prog912Focus">Scratch & första stegen i <em>Python</em>. Vi bygger spel, tränar logik och provar riktig kod.</span></p>
             <ul class="meta">
-              <li>Format: online via Google Meet</li>
+              <li data-i18n="progFormat">Format: online via Google Meet</li>
               <!-- <li>Grupp (8–10 barn): <strong>60 min – 200 kr/elev</strong></li> -->
-              <li>Privatlektion: <strong>60 min – 175 kr</strong></li>
+              <li><span data-i18n="progPrivate">Privatlektion:</span> <strong>60 min – 175 kr</strong></li>
             </ul>
-<<<<<<< HEAD
-            <a class="btn primary" href="#kontakt">Boka gratis prova-på (30 min)</a>
-=======
->>>>>>> fixes
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
 
           <!-- 13–16 -->
           <article class="card">
-            <h3>💻 Onlinekurs (13–16 år)</h3>
-            <p><strong>Fokus:</strong> <em>Python & webbutveckling</em> med problemlösning, enkel AI och projekt till portfölj.</p>
+            <h3 data-i18n="prog1316Title">💻 Onlinekurs (13–16 år)</h3>
+            <p><strong>Fokus:</strong> <span data-i18n="prog1316Focus"><em>Python & webbutveckling</em> med problemlösning, enkel AI och projekt till portfölj.</span></p>
             <ul class="meta">
               <!-- <li>Grupp (8–12 barn): <strong>75 min – 250 kr/elev</strong></li> -->
-              <li>Format: online via Google Meet</li>
-              <li>Privatlektion: <strong>60 min – 199 kr</strong></li>
+              <li data-i18n="progFormat">Format: online via Google Meet</li>
+              <li><span data-i18n="progPrivate">Privatlektion:</span> <strong>60 min – 199 kr</strong></li>
             </ul>
-<<<<<<< HEAD
-            <a class="btn primary" href="#kontakt">Boka gratis prova-på (30 min)</a>
-=======
->>>>>>> fixes
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
 
           <!-- Coaching -->
           <article class="card">
-            <h3>🎯 Coaching 1:1</h3>
-            <p><strong>Fokus:</strong> personlig handledning för läxor, tävlingsförberedelser eller egna projekt.</p>
+            <h3 data-i18n="progCoachingTitle">🎯 Coaching 1:1</h3>
+            <p><strong>Fokus:</strong> <span data-i18n="progCoachingFocus">personlig handledning för läxor, tävlingsförberedelser eller egna projekt.</span></p>
             <ul class="meta">
-              <li>Format: online via Google Meet</li>
-              <li>Individuell: <strong>30 min – 200 kr</strong></li>
+              <li data-i18n="progFormat">Format: online via Google Meet</li>
+              <li><span data-i18n="progIndividual">Individuell:</span> <strong>30 min – 200 kr</strong></li>
             </ul>
-<<<<<<< HEAD
-            <a class="btn primary" href="#kontakt">Boka din online-lektion idag</a>
-=======
->>>>>>> fixes
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
         </div>
-        <p style="text-align: center; margin-top: 32px;">
-          <a href="#booking" class="btn ghost" data-i18n="heroBtnBook">Boka lektion</a>
-        </p>
       </div>
     </section>
 
     <!-- MATTE -->
     <section id="matte" class="section" aria-labelledby="matte-title">
       <div class="container">
-        <h2 id="matte-title">Mattehjälp online 🧮📏🎓</h2>
-        <p>Alla lektioner sker online (Google Meet). Inga fysiska möten – flexibelt och tryggt.</p>
+        <h2 id="matte-title" data-i18n="mathTitle">Mattehjälp online 🧮📏🎓</h2>
+        <p data-i18n="mathIntro">Alla lektioner sker online (Google Meet). Inga fysiska möten – flexibelt och tryggt.</p>
 
         <div class="cards">
           <!-- Lågstadiet -->
           <article class="card">
-            <h3>🧮 Lågstadiet (åk 1–3)</h3>
-            <p><strong>Fokus:</strong> räkneförståelse, matematiskt språk, lekfullt lärande.</p>
+            <h3 data-i18n="mathLowTitle">🧮 Lågstadiet (åk 1–3)</h3>
+            <p><strong>Fokus:</strong> <span data-i18n="mathLowFocus">räkneförståelse, matematiskt språk, lekfullt lärande.</span></p>
             <ul class="meta">
-              <li>Format: online via Google Meet</li>
+              <li data-i18n="progFormat">Format: online via Google Meet</li>
               <!-- <li>Grupp (3–4 elever): <strong>60 min – 200 kr/elev</strong></li> -->
-              <li>Privatlektion: <strong>60 min – 149 kr</strong></li>
+              <li><span data-i18n="progPrivate">Privatlektion:</span> <strong>60 min – 149 kr</strong></li>
             </ul>
-<<<<<<< HEAD
-            <a class="btn primary" href="#kontakt">Boka gratis prova-på (30 min)</a>
-=======
->>>>>>> fixes
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
 
           <!-- Mellan/Högstadiet -->
           <article class="card">
-            <h3>🧮 Mellan- & högstadiet (åk 4–9)</h3>
-            <p><strong>Fokus:</strong> förstå grunderna, bygga självförtroende, logiskt tänkande.</p>
+            <h3 data-i18n="mathMidTitle">🧮 Mellan- & högstadiet (åk 4–9)</h3>
+            <p><strong>Fokus:</strong> <span data-i18n="mathMidFocus">förstå grunderna, bygga självförtroende, logiskt tänkande.</span></p>
             <ul class="meta">
-              <li>Format: online via Google Meet</li>
+              <li data-i18n="progFormat">Format: online via Google Meet</li>
               <!-- <li>Grupp (3–4 elever): <strong>60 min – 200 kr/elev</strong></li> -->
-              <li>Privatlektion: <strong>60 min – 175 kr</strong></li>
+              <li><span data-i18n="progPrivate">Privatlektion:</span> <strong>60 min – 175 kr</strong></li>
             </ul>
-<<<<<<< HEAD
-            <a class="btn primary" href="#kontakt">Boka gratis prova-på (30 min)</a>
-=======
->>>>>>> fixes
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
 
           <!-- Gymnasiet -->
           <article class="card">
-            <h3>📏 Gymnasiematte (Matte 1–4)</h3>
-            <p><strong>Fokus:</strong> kursstöd och nationella prov</p>
+            <h3 data-i18n="mathHighTitle">📏 Gymnasiematte (Matte 1–4)</h3>
+            <p><strong>Fokus:</strong> <span data-i18n="mathHighFocus">kursstöd och nationella prov</span></p>
             <ul class="meta">
-              <li>Format: online via Google Meet</li>
-              <li>Individuell: <strong>60 min – 199 kr</strong></li>
+              <li data-i18n="progFormat">Format: online via Google Meet</li>
+              <li><span data-i18n="progIndividual">Individuell:</span> <strong>60 min – 199 kr</strong></li>
             </ul>
-<<<<<<< HEAD
-            <a class="btn primary" href="#kontakt">Boka gratis prova-på (30 min)</a>
-          </article>
-
-
-=======
+            <a class="btn ghost" href="#booking" data-i18n="progBtnLearn">Läs mer</a>
           </article>
         </div>
-        <p style="text-align: center; margin-top: 32px;">
-          <a href="#booking" class="btn ghost" data-i18n="heroBtnBook">Boka lektion</a>
-        </p>
       </div>
     </section>
     <!-- BOOKING-SEKTION -->
@@ -248,31 +229,29 @@
           <!-- Google Calendar Appointment Scheduling -->
           <div class="calendar-booking-wrapper">
             <div class="calendar-booking-content">
-              <h3 data-i18n="bookingSelectTitle">Välj datum och tid</h3>
-              <p data-i18n="bookingSelectText">Klicka på knappen nedan för att öppna bokningskalendern där du kan se alla lediga tider och boka direkt.</p>
+              <h3>Välj datum och tid</h3>
+              <p>Klicka på knappen nedan för att öppna bokningskalendern där du kan se alla lediga tider och boka direkt.</p>
               <a href="https://calendar.app.google/hcGm2jFduV7YPKEc6" 
                  class="btn primary booking-btn-large"
                  target="_blank"
-                 rel="noopener"
-                 data-i18n="bookingBtn">
+                 rel="noopener">
                 🗓️ Öppna bokningskalender
               </a>
-              <p class="booking-note" data-i18n="bookingNote">Bokningen öppnas i ett nytt fönster. Efter bokning får du en bekräftelse via e-post.</p>
+              <p class="booking-note">Bokningen öppnas i ett nytt fönster. Efter bokning får du en bekräftelse via e-post.</p>
             </div>
           </div>
           
           <!-- Quick Info -->
           <div class="booking-info-cards">
             <div class="card">
-              <h3 data-i18n="bookingFlexTitle">⏰ Flexibla tider</h3>
-              <p data-i18n="bookingFlexText">Boka när det passar dig. Alla lektioner sker online via Google Meet – tryggt och bekvämt.</p>
+              <h3>⏰ Flexibla tider</h3>
+              <p>Boka när det passar dig. Alla lektioner sker online via Google Meet – tryggt och bekvämt.</p>
             </div>
             <div class="card">
-              <h3 data-i18n="bookingDirectTitle">✅ Direktbokning</h3>
-              <p data-i18n="bookingDirectText">Se lediga tider direkt i kalendern och boka med ett klick. Du får omedelbar bekräftelse via e-post.</p>
+              <h3>✅ Direktbokning</h3>
+              <p>Se lediga tider direkt i kalendern och boka med ett klick. Du får omedelbar bekräftelse via e-post.</p>
             </div>
           </div>
->>>>>>> fixes
         </div>
       </div>
     </section>
@@ -280,27 +259,28 @@
     <!-- DAGENS PUSSEL -->
     <section id="pussel" class="section" aria-labelledby="pussel-title">
       <div class="container">
-        <h2 id="pussel-title">Dagens kodpussel 🧩</h2>
-        <p>Välj ålder och lös ett kort pussel. Svara direkt här och avslöja facit när du är klar!</p>
+        <h2 id="pussel-title" data-i18n="puzzleTitle">Dagens kodpussel 🧩</h2>
+        <p data-i18n="puzzleIntro">Välj ålder och lös ett kort pussel. Svara direkt här och avslöja facit när du är klar!</p>
 
         <div class="puzzle-ui">
-          <label for="age" data-i18n="puzzleAge">Ålder</label>
-          <select id="age" name="age" aria-label="Välj åldersgrupp" aria-required="true">
-            <option value="6-8" data-i18n="puzzleAge68">6–8 år</option>
-            <option value="9-12" data-i18n="puzzleAge912">9–12 år</option>
-            <option value="13-16" data-i18n="puzzleAge1316">13–16 år</option>
+          <label for="age">Ålder</label>
+          <select id="age" name="age" aria-label="Välj åldersgrupp">
+            <option value="6-8">6–8 år</option>
+            <option value="9-12">9–12 år</option>
+            <option value="13-16">13–16 år</option>
           </select>
-          <button id="loadPuzzle" class="btn" type="button" data-i18n="puzzleBtnLoad" aria-label="Ladda dagens pussel">Visa dagens pussel</button>
+
+        <button id="loadPuzzle" class="btn">Visa dagens pussel</button>
         </div>
 
         <article class="puzzle-card" aria-live="polite">
           <h3 id="puzzle-title">—</h3>
-          <p id="puzzle-text" data-i18n="puzzleDefault">Tryck på "Visa dagens pussel".</p>
-          <textarea id="puzzle-answer" placeholder="Skriv ditt svar här…" aria-label="Ditt svar" data-i18n-placeholder="puzzlePlaceholder" disabled></textarea>
+          <p id="puzzle-text">Tryck på "Visa dagens pussel".</p>
+          <textarea id="puzzle-answer" placeholder="Skriv ditt svar här…" aria-label="Ditt svar" disabled></textarea>
           <div class="puzzle-actions">
-            <button id="checkAnswer" class="btn" type="button" data-i18n="puzzleBtnCheck" disabled>Kolla svar</button>
-            <button id="showHint" class="btn ghost" type="button" data-i18n="puzzleBtnHint" disabled>Ledtråd</button>
-            <button id="reveal" class="btn ghost" type="button" data-i18n="puzzleBtnReveal" disabled>Visa facit</button>
+            <button id="checkAnswer" class="btn" disabled>Kolla svar</button>
+            <button id="showHint" class="btn ghost" disabled>Ledtråd</button>
+            <button id="reveal" class="btn ghost" disabled>Visa facit</button>
           </div>
           <p id="puzzle-feedback" class="feedback" role="status" aria-live="assertive"></p>
         </article>
@@ -311,8 +291,8 @@
     <section id="kontakt" class="section" aria-labelledby="kontakt-title">
       <div class="container grid-2">
         <div>
-          <h2 id="kontakt-title">Kontakta Reem</h2>
-          <p>Har du frågor eller vill du boka en plats? Fyll i formuläret så återkommer jag inom 24 timmar.</p>
+          <h2 id="kontakt-title" data-i18n="contactTitle">Kontakta Reem</h2>
+          <p data-i18n="contactIntro">Har du frågor eller vill du boka en plats? Fyll i formuläret så återkommer jag inom 24 timmar. Du kan också boka direkt via kalendern ovan.</p>
 
           <!-- Direkt till Google Apps Script (ersätter Formspree) -->
           <form id="contactForm" class="form" action="https://script.google.com/macros/s/AKfycbyFK62JErVwKmvus6m72PyVXJHpQs7Sp-rE9ogj_IWocmY6kQB4HQpZpmwlhh0eWCUEjA/exec" method="POST" novalidate>
@@ -321,42 +301,42 @@
 
             <div class="field">
               <label for="topic">Ämne</label>
-              <select id="topic" name="topic" required aria-required="true">
+              <select id="topic" name="topic" required>
                 <option value="">Välj ämne…</option>
-                <option value="Programmering">Programmering</option>
-                <option value="Mattehjälp">Mattehjälp</option>
-                <option value="Övrigt">Övrigt</option>
+                <option>Programmering</option>
+                <option>Mattehjälp</option>
+                <option>Övrigt</option>
               </select>
             </div>
 
             <div class="field">
               <label for="parentName">Förälders namn</label>
-              <input id="parentName" name="name" type="text" required autocomplete="name" aria-required="true" />
+              <input id="parentName" name="name" type="text" required autocomplete="name" />
             </div>
 
             <div class="field">
               <label for="email">E-post</label>
-              <input id="email" name="email" type="email" required autocomplete="email" aria-required="true" />
+              <input id="email" name="email" type="email" required autocomplete="email" />
             </div>
 
             <div class="field">
               <label for="phone">Mobilnummer</label>
-              <input id="phone" name="phone" type="tel" required autocomplete="tel" aria-required="true" />
+              <input id="phone" name="phone" type="tel" required autocomplete="tel" />
             </div>
 
             <div class="field">
               <label for="childAge">Barnets ålder</label>
-              <input id="childAge" name="childAge" type="number" min="3" max="25" required aria-required="true" />
+              <input id="childAge" name="childAge" type="number" min="3" max="25" required />
             </div>
 
             <div class="field">
               <label for="message">Meddelande</label>
-              <textarea id="message" name="message" rows="4" placeholder="Berätta gärna vad ni är intresserade av…" required aria-required="true"></textarea>
+              <textarea id="message" name="message" rows="4" placeholder="Berätta gärna vad ni är intresserade av…" required></textarea>
             </div>
 
-            <div class="field checkbox">
-              <input type="checkbox" id="consent" name="consent" value="Godkänner" required aria-required="true" />
-              <label for="consent">
+            <div class="field">
+              <label class="checkbox">
+                <input type="checkbox" name="consent" value="Godkänner" required />
                 Jag samtycker till att mina uppgifter används för att Reem ska kunna kontakta mig.
               </label>
             </div>
@@ -367,50 +347,50 @@
 
           <p class="contact-meta">E-post: <a href="mailto:kodkompisreem@gmail.com">KodKompisReem@gmail.com</a></p>
         </div>
-<<<<<<< HEAD
-        <aside class="card soft">
-          <h3>Trygghet & Integritet</h3>
-          <ul class="check">
-            <li>Ingen kameraobligatorisk närvaro för barn</li>
-            <li>Inspelning endast med förälders godkännande</li>
-            <li>Tydliga trivselregler i varje grupp</li>
-          </ul>
-=======
         <aside>
           <div class="card soft">
-            <h3 data-i18n="contactSafetyTitle">Trygghet & Integritet</h3>
+            <h3>Trygghet & Integritet</h3>
             <ul class="check">
-              <li data-i18n="contactSafety1">Ingen kameraobligatorisk närvaro för barn</li>
-              <li data-i18n="contactSafety2">Inspelning endast med förälders godkännande</li>
-              <li data-i18n="contactSafety3">Tydliga trivselregler i varje grupp</li>
+              <li>Ingen kameraobligatorisk närvaro för barn</li>
+              <li>Inspelning endast med förälders godkännande</li>
+              <li>Tydliga trivselregler i varje grupp</li>
             </ul>
           </div>
           <div class="card soft trust-card">
-            <h3 data-i18n="contactTrustTitle">Varför välja Reem?</h3>
+            <h3>Varför välja Reem?</h3>
             <ul class="check">
-              <li data-i18n="contactTrust1">Civilingenjörsstudent i Medieteknik & AI</li>
-              <li data-i18n="contactTrust2">Personlig uppföljning och feedback</li>
-              <li data-i18n="contactTrust3">Åldersanpassat innehåll</li>
+              <li>Civilingenjörsstudent i Medieteknik & AI</li>
+              <li>Personlig uppföljning och feedback</li>
+              <li>Åldersanpassat innehåll</li>
             </ul>
           </div>
->>>>>>> fixes
         </aside>
       </div>
     </section>
   </main>
 
+  <!-- Floating CTA Button -->
+  <a href="https://calendar.app.google/hcGm2jFduV7YPKEc6" class="floating-cta" data-i18n-aria="navBoka" target="_blank" rel="noopener">
+    <span data-i18n="floatingCTA">📅 Boka nu</span>
+  </a>
+
   <footer class="site-footer">
     <div class="container">
-      <p>© <span id="year"></span> Kodkompis Reem · Byggd med ♥ för nyfikenhet</p>
+      <p>© <span id="year"></span> <span data-i18n="footerText">Kodkompis Reem · Byggd med ♥ för nyfikenhet</span></p>
     </div>
   </footer>
 
   <!-- Konfigurera endpoint för dagens pussel (Google Apps Script Web App) -->
   <script>
     window.PUZZLES_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzcmL2XsBY5nPyvnpxpYwgB8sTPtNDGx6TcXTF3IBytegmlloHjRkMaASVl2V1FWHMYlA/exec';
+    
+    // ⚠️ SETUP REQUIRED: Replace with your Google Apps Script web app URL after deploying chatbot-api.gs
+    // Get the URL from: Deploy > Deploy as web app > Web app URL
+    window.CHATBOT_API_ENDPOINT = 'https://script.google.com/macros/s/AKfycby-7D7qKYI_Vclik2SwYsvgs8zpRAzh9eGPSLXquodbWB3P7aU2F6r5uGc78uWQoEM36Q/exec';
   </script>
 
   <script src="pussel.js"></script>
+  <script src="chatbot.js"></script>
   
   <script>
     (function () {
@@ -424,7 +404,7 @@
         e.preventDefault();
   
         if (!form.checkValidity()) {
-          note.textContent = 'Kolla så att alla fält är ifyllda korrekt.';
+          note.textContent = window.i18n ? window.i18n.t('formInvalid') : 'Kolla så att alla fält är ifyllda korrekt.';
           form.reportValidity();
           return;
         }
@@ -432,60 +412,31 @@
         // Honeypot (bot-skydd)
         const hp = form.querySelector('input[name="hp"]')?.value || '';
         if (hp.trim() !== '') {
-          note.textContent = 'Tack! Ditt meddelande är skickat.'; // tyst OK
+          note.textContent = window.i18n ? window.i18n.t('formSuccess') : 'Tack! Ditt meddelande är skickat.'; // tyst OK
           form.reset();
           return;
         }
   
-<<<<<<< HEAD
-        note.textContent = 'Skickar…';
+          note.textContent = window.i18n ? window.i18n.t('formSending') : 'Skickar…';
   
-=======
-        note.textContent = window.i18n ? window.i18n.t('formSending') : 'Skickar…';
-        
-        // Disable submit button during submission
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalSubmitText = submitBtn ? submitBtn.textContent : '';
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.textContent = window.i18n ? window.i18n.t('formSending') : 'Skickar…';
-        }
-
->>>>>>> fixes
         try {
-          const response = await fetch(form.action, {
+          await fetch(form.action, {
             method: 'POST',
             mode: 'no-cors',          // 🔑 no CORS preflight
             body: new FormData(form)  // 🔑 FormData (no headers!)
           });
-          
-          // In no-cors mode, we can't read the response, so we always show success
-          // The server will handle validation and email sending
   
           // Response is opaque in no-cors, so we optimistically show success.
-          note.textContent = 'Tack! Ditt meddelande är skickat. Jag återkommer inom 24 timmar.';
+          note.textContent = window.i18n ? window.i18n.t('formSuccess') : 'Tack! Ditt meddelande är skickat. Jag återkommer inom 24 timmar.';
           form.reset();
         } catch (err) {
           console.error('Kontaktform undantag:', err);
-<<<<<<< HEAD
-          note.textContent = 'Nätverksfel. Kontrollera din uppkoppling eller mejla kodkompisreem@gmail.com';
-=======
           note.textContent = window.i18n ? window.i18n.t('formError') : 'Nätverksfel. Kontrollera din uppkoppling eller mejla kodkompisreem@gmail.com';
-        } finally {
-          // Re-enable submit button
-          if (submitBtn && originalSubmitText) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalSubmitText;
-          }
->>>>>>> fixes
         }
       });
     })();
   
-    const yearEl = document.getElementById('year');
-    if (yearEl) {
-      yearEl.textContent = new Date().getFullYear();
-    }
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
   <!-- Theme Management -->
@@ -518,8 +469,10 @@
       function updateThemeIcon(theme) {
         if (!themeIcon) return;
         themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-        themeToggle.setAttribute('aria-label', 
-          theme === 'dark' ? 'Byt till ljust läge' : 'Byt till mörkt läge');
+        // Use i18n for aria-label translation
+        const labelKey = theme === 'dark' ? 'themeToggleLight' : 'themeToggle';
+        const label = window.i18n ? window.i18n.t(labelKey) : (theme === 'dark' ? 'Byt till ljust läge' : 'Byt till mörkt läge');
+        themeToggle.setAttribute('aria-label', label);
       }
       
       // Toggle theme
@@ -538,6 +491,14 @@
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
           if (!localStorage.getItem(STORAGE_KEY)) {
             setTheme(e.matches ? 'dark' : 'light');
+          }
+        });
+        
+        // Listen for language changes to update theme toggle aria-label
+        document.addEventListener('languageChanged', () => {
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          if (currentTheme) {
+            updateThemeIcon(currentTheme);
           }
         });
         
@@ -562,31 +523,53 @@
       const toggle = document.getElementById('navToggle');
       const nav = document.getElementById('primary-nav');
       if (!toggle || !nav) return;
-      
-      function closeMenu() {
-        nav.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('no-scroll');
-      }
-      
       toggle.addEventListener('click', () => {
         const open = nav.classList.toggle('open');
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
         document.body.classList.toggle('no-scroll', open);
       });
+    })();
+  </script>
+
+  <script>
+    // Floating CTA - show after scrolling
+    (function() {
+      const floatingCTA = document.querySelector('.floating-cta');
+      if (!floatingCTA) return;
       
-      // Close menu when clicking navigation links (mobile)
-      const navLinks = nav.querySelectorAll('a');
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          if (window.innerWidth <= 760) {
-            closeMenu();
-          }
-        });
-      });
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      
+      function updateCTA() {
+        const scrollY = window.scrollY;
+        const heroHeight = document.querySelector('.hero')?.offsetHeight || 400;
+        
+        // Show CTA after scrolling past hero section
+        if (scrollY > heroHeight * 0.5) {
+          floatingCTA.classList.add('visible');
+        } else {
+          floatingCTA.classList.remove('visible');
+        }
+        
+        lastScrollY = scrollY;
+        ticking = false;
+      }
+      
+      function requestTick() {
+        if (!ticking) {
+          requestAnimationFrame(updateCTA);
+          ticking = true;
+        }
+      }
+      
+      window.addEventListener('scroll', requestTick, { passive: true });
+      // Check on load
+      updateCTA();
     })();
   </script>
 
 </body>
 </html>
+
+
 

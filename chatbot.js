@@ -246,9 +246,7 @@ DIN ROLL:
     input.disabled = true;
     
     const sendBtn = document.getElementById('chatbotSend');
-    if (sendBtn) {
-      sendBtn.disabled = true;
-    }
+    sendBtn.disabled = true;
 
     // Show typing indicator
     const typingDiv = showTypingIndicator();
@@ -270,13 +268,9 @@ DIN ROLL:
       };
       addMessage(errorMsg[currentLang] || errorMsg['sv'], true);
     } finally {
-      if (input) {
-        input.disabled = false;
-        input.focus();
-      }
-      if (sendBtn) {
-        sendBtn.disabled = false;
-      }
+      input.disabled = false;
+      sendBtn.disabled = false;
+      input.focus();
     }
   }
 
@@ -294,7 +288,7 @@ DIN ROLL:
     const chatbot = createChatbot();
     const toggle = document.getElementById('chatbotToggle');
     const closeBtn = document.getElementById('chatbotClose');
-    const chatbotWindow = document.getElementById('chatbotWindow');
+    const window = document.getElementById('chatbotWindow');
     const input = document.getElementById('chatbotInput');
     const sendBtn = document.getElementById('chatbotSend');
 
@@ -303,7 +297,7 @@ DIN ROLL:
     // Toggle chatbot
     function toggleChatbot() {
       isOpen = !isOpen;
-      chatbotWindow.classList.toggle('chatbot-window-open', isOpen);
+      window.classList.toggle('chatbot-window-open', isOpen);
       toggle.classList.toggle('chatbot-toggle-hidden', isOpen);
       if (isOpen) {
         input.focus();
