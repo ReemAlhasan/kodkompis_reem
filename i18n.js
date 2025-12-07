@@ -66,6 +66,12 @@
   function t(key, params = {}) {
     const translation = translations[currentLang]?.[key] || translations[DEFAULT_LANG]?.[key] || key;
     
+    // Ensure translation is a string
+    if (typeof translation !== 'string') {
+      console.warn(`Translation for key "${key}" is not a string:`, translation);
+      return String(translation || key);
+    }
+    
     // Replace placeholders
     return translation.replace(/\{(\w+)\}/g, (match, param) => {
       return params[param] !== undefined ? params[param] : match;
@@ -90,6 +96,10 @@
         }
       } else if (element.tagName === 'OPTION') {
         element.textContent = translation;
+      } else if (element.tagName === 'LABEL') {
+        element.textContent = translation;
+      } else if (element.tagName === 'BUTTON') {
+        element.textContent = translation;
       } else {
         // Check if it's HTML content
         if (translation.includes('<')) {
@@ -98,6 +108,13 @@
           element.textContent = translation;
         }
       }
+    });
+    
+    // Handle data-i18n-placeholder attributes
+    const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+    placeholderElements.forEach(element => {
+      const key = element.getAttribute('data-i18n-placeholder');
+      element.placeholder = t(key);
     });
     
     // Update aria-labels
@@ -110,12 +127,7 @@
     // Update form validation messages (if any)
     updateFormMessages();
     
-    // Update footer year
-    const footerText = document.querySelector('[data-i18n="footerText"]');
-    if (footerText) {
-      const year = new Date().getFullYear();
-      footerText.textContent = t('footerText', { year });
-    }
+    // Update footer year (handled separately in main script)
   }
 
   // Update form validation and messages

@@ -321,6 +321,12 @@ select:focus-visible {
 .container { max-width: 1100px; margin: 0 auto; }
 .grid-2 { display: grid; gap: 24px; grid-template-columns: 1fr 1fr; align-items: start; }
 
+/* Responsive sections */
+@media (max-width: 760px) {
+  .section { padding: 40px 16px; }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
 /* Section intro text - applies to first paragraph after h2 in sections */
 .section > .container > h2 + p {
   text-align: center;
@@ -431,6 +437,11 @@ select:focus-visible {
 /* Form */
 .form { display: grid; gap: 12px; }
 .field { display: grid; gap: 6px; }
+label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+}
 input, textarea, select { 
   font: inherit; 
   padding: 10px; 
@@ -438,6 +449,31 @@ input, textarea, select {
   border: 1px solid var(--border-strong);
   background: var(--surface);
   color: var(--text);
+  width: 100%;
+}
+
+/* Checkbox field styling */
+.field.checkbox,
+.checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.checkbox input[type="checkbox"] {
+  width: auto;
+  min-width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: var(--brand);
+}
+
+.checkbox label {
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 1.5;
 }
 
 /* Honeypot field - hidden from users but visible to bots */
@@ -498,7 +534,12 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
   animation: spin 1s linear infinite;
 }
 
-.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn:disabled { 
+  opacity: 0.6; 
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
 
 /* ===== Header & Nav – mobilfix ===== */
 .nav-toggle {
@@ -560,8 +601,20 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
 /* ===== Hero – knappar & spacing på mobil ===== */
 @media (max-width: 760px) {
   .hero { padding-top: 28px; padding-bottom: 36px; }
+  .hero-inner { 
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
   .hero-actions { gap: 8px; }
   .hero-actions .btn { width: 100%; }
+  .hero-ill {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-ill img {
+    width: 56px;
+    height: 56px;
+  }
 }
 
 /* Ikonraden i heron – låt den brytas snyggt */
@@ -674,6 +727,25 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); }
 }
 .trust-card {
   margin-top: 20px;
+}
+
+/* Booking Section - Responsive */
+@media (max-width: 760px) {
+  .calendar-booking-content {
+    padding: 40px 20px;
+  }
+  .calendar-booking-content h3 {
+    font-size: 24px;
+  }
+  .booking-btn-large {
+    font-size: 16px;
+    padding: 16px 32px;
+    width: 100%;
+    max-width: 100%;
+  }
+  .booking-info-cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Floating CTA Button */
