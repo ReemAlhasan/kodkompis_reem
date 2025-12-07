@@ -6,7 +6,13 @@
  * - Stöder både answer_hash (SHA-256) och äldre klartext answer (bakåtkompatibelt)
  */
 (function () {
-  const $ = (id) => document.getElementById(id);
+  const $ = (id) => {
+    const el = document.getElementById(id);
+    if (!el) {
+      console.warn(`Element with id "${id}" not found`);
+    }
+    return el;
+  };
 
   // ---------- JSONP helper (med timeout & cache-buster) ----------
   function jsonp(url, params = {}, timeoutMs = 6000) {
@@ -195,13 +201,20 @@
   }
 
   function bankFor(group) {
-    if (remote && Array.isArray(remote[group]) && remote[group].length) return remote[group];
+    if (remote && remote[group] && Array.isArray(remote[group]) && remote[group].length) {
+      return remote[group];
+    }
     return localPools[group] || [];
   }
 
   // ---------- Enhanced loadPuzzle function ----------
   async function loadPuzzle() {
-    const group = $('age').value;
+    const ageSelect = $('age');
+    if (!ageSelect) {
+      console.error('Age select element not found');
+      return;
+    }
+    const group = ageSelect.value;
     
     // Show loading state immediately
     setLoadingState(true);
@@ -222,25 +235,38 @@
       const p = list[Math.min(Math.max(idx, 0), list.length - 1)];
 
       // Update UI with puzzle content
-      $('puzzle-title').textContent = p.title || 'Dagens pussel';
-      $('puzzle-text').textContent = p.text || '';
-      $('puzzle-answer').value = '';
-      $('puzzle-feedback').textContent = '';
+      const puzzleTitle = $('puzzle-title');
+      const puzzleText = $('puzzle-text');
+      const puzzleAnswer = $('puzzle-answer');
+      const puzzleFeedback = $('puzzle-feedback');
+      
+      if (puzzleTitle) puzzleTitle.textContent = p.title || 'Dagens pussel';
+      if (puzzleText) puzzleText.textContent = p.text || '';
+      if (puzzleAnswer) puzzleAnswer.value = '';
+      if (puzzleFeedback) puzzleFeedback.textContent = '';
 
       // Enable all interactive elements
       setLoadingState(false);
-      $('checkAnswer').disabled = false;
-      $('showHint').disabled = false;
-      $('reveal').disabled = false;
-      $('puzzle-answer').disabled = false;
-
-      // Re-bind event handlers
-      $('checkAnswer').onclick = () => { void checkAnswerWithEither(p); };
-      $('showHint').onclick = () => showHint(p);
-      $('reveal').onclick = () => revealAnswer(p);
+      const checkBtn = $('checkAnswer');
+      const hintBtn = $('showHint');
+      const revealBtn = $('reveal');
       
-      // Focus the answer input for better UX
-      $('puzzle-answer').focus();
+      if (checkBtn) {
+        checkBtn.disabled = false;
+        checkBtn.onclick = () => { void checkAnswerWithEither(p); };
+      }
+      if (hintBtn) {
+        hintBtn.disabled = false;
+        hintBtn.onclick = () => showHint(p);
+      }
+      if (revealBtn) {
+        revealBtn.disabled = false;
+        revealBtn.onclick = () => revealAnswer(p);
+      }
+      if (puzzleAnswer) {
+        puzzleAnswer.disabled = false;
+        puzzleAnswer.focus();
+      }
 
     } catch (error) {
       console.error('Puzzle loading error:', error);
@@ -253,21 +279,38 @@
           const idx = pickIndex(list.length, `${seedDate}|${group}`);
           const p = list[Math.min(Math.max(idx, 0), list.length - 1)];
           
-          $('puzzle-title').textContent = p.title || 'Dagens pussel (Offline)';
-          $('puzzle-text').textContent = p.text || '';
-          $('puzzle-answer').value = '';
+          const puzzleTitleOffline = $('puzzle-title');
+          const puzzleTextOffline = $('puzzle-text');
+          const puzzleAnswerOffline = $('puzzle-answer');
+          const puzzleFeedbackOffline = $('puzzle-feedback');
+          
+          if (puzzleTitleOffline) puzzleTitleOffline.textContent = p.title || 'Dagens pussel (Offline)';
+          if (puzzleTextOffline) puzzleTextOffline.textContent = p.text || '';
+          if (puzzleAnswerOffline) puzzleAnswerOffline.value = '';
           
           setLoadingState(false);
-          $('checkAnswer').disabled = false;
-          $('showHint').disabled = false;
-          $('reveal').disabled = false;
-          $('puzzle-answer').disabled = false;
+          const checkBtnOffline = $('checkAnswer');
+          const hintBtnOffline = $('showHint');
+          const revealBtnOffline = $('reveal');
           
-          $('checkAnswer').onclick = () => { void checkAnswerWithEither(p); };
-          $('showHint').onclick = () => showHint(p);
-          $('reveal').onclick = () => revealAnswer(p);
-          
-          $('puzzle-feedback').textContent = 'Använder offline-pussel.';
+          if (checkBtnOffline) {
+            checkBtnOffline.disabled = false;
+            checkBtnOffline.onclick = () => { void checkAnswerWithEither(p); };
+          }
+          if (hintBtnOffline) {
+            hintBtnOffline.disabled = false;
+            hintBtnOffline.onclick = () => showHint(p);
+          }
+          if (revealBtnOffline) {
+            revealBtnOffline.disabled = false;
+            revealBtnOffline.onclick = () => revealAnswer(p);
+          }
+          if (puzzleAnswerOffline) {
+            puzzleAnswerOffline.disabled = false;
+          }
+          if (puzzleFeedbackOffline) {
+            puzzleFeedbackOffline.textContent = 'Använder offline-pussel.';
+          }
         } else {
           setErrorState('Kunde inte ladda pussel från servern och inga offline-pussel finns.');
         }
@@ -279,38 +322,54 @@
 
   // ---------- UI & interaktion ----------
   async function checkAnswerWithEither(p) {
-    const userRaw = $('puzzle-answer').value;
+    const answerInput = $('puzzle-answer');
+    if (!answerInput) return;
+    
+    const userRaw = answerInput.value;
     const userNorm = normalize(userRaw);
 
+    const feedbackEl = $('puzzle-feedback');
+    if (!feedbackEl) return;
+    
     if (p.answer_hash) {
       if (!crypto?.subtle) {
-        $('puzzle-feedback').textContent = 'Din webbläsare saknar säker kontroll (Web Crypto). Prova senaste Chrome/Edge/Firefox/Safari.';
+        feedbackEl.textContent = 'Din webbläsare saknar säker kontroll (Web Crypto). Prova senaste Chrome/Edge/Firefox/Safari.';
         return;
       }
       const userHash = await sha256HexBrowser(userNorm);
       const ok = userHash === String(p.answer_hash).toLowerCase();
-      $('puzzle-feedback').textContent = ok ? '💫 Rätt! Grymt jobbat.' : 'Nästan! Testa igen eller ta en ledtråd.';
+      feedbackEl.textContent = ok ? '💫 Rätt! Grymt jobbat.' : 'Nästan! Testa igen eller ta en ledtråd.';
     } else if (p.answer) {
       const ok = userNorm === normalize(p.answer);
-      $('puzzle-feedback').textContent = ok ? '💫 Rätt! Grymt jobbat.' : 'Nästan! Testa igen eller ta en ledtråd.';
+      feedbackEl.textContent = ok ? '💫 Rätt! Grymt jobbat.' : 'Nästan! Testa igen eller ta en ledtråd.';
     } else {
-      $('puzzle-feedback').textContent = 'Ingen verifieringsdata tillgänglig.';
+      feedbackEl.textContent = 'Ingen verifieringsdata tillgänglig.';
     }
   }
 
   function showHint(p) {
-    $('puzzle-feedback').textContent = `Ledtråd: ${p.hint || '—'}`;
-  }
-
-  function revealAnswer(p) {
-    if (p.answer) {
-      $('puzzle-feedback').textContent = `Facit: ${p.answer}`;
-    } else if (p.answer_hash) {
-      $('puzzle-feedback').textContent = 'Facit är dolt (säker läge). Fråga din handledare! 🙈';
-    } else {
-      $('puzzle-feedback').textContent = '—';
+    const feedbackEl = $('puzzle-feedback');
+    if (feedbackEl) {
+      feedbackEl.textContent = `Ledtråd: ${p.hint || '—'}`;
     }
   }
 
-  $('loadPuzzle').addEventListener('click', loadPuzzle);
+  function revealAnswer(p) {
+    const feedbackEl = $('puzzle-feedback');
+    if (!feedbackEl) return;
+    
+    if (p.answer) {
+      feedbackEl.textContent = `Facit: ${p.answer}`;
+    } else if (p.answer_hash) {
+      feedbackEl.textContent = 'Facit är dolt (säker läge). Fråga din handledare! 🙈';
+    } else {
+      feedbackEl.textContent = '—';
+    }
+  }
+
+  // Initialize puzzle loader
+  const loadPuzzleBtn = $('loadPuzzle');
+  if (loadPuzzleBtn) {
+    loadPuzzleBtn.addEventListener('click', loadPuzzle);
+  }
 })();
