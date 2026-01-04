@@ -1,12 +1,9 @@
-
-                                                                                                            // Translations for Kodkompis Reem website
+// Translations for Kodkompis Reem website
 // Swedish (sv), English (en), Arabic (ar)
 
 const translations = {
   sv: {
     // Meta
-    title: "Kodkompis Reem – Lär dig programmering och matematik på ett tryggt och lekfullt sätt",
-    description: "Reem undervisar barn och unga i programmering online – kurser, coaching och workshops för åldrarna 6–16 år.",
     
     // Navigation
     navOm: "Om Reem",
@@ -15,6 +12,7 @@ const translations = {
     navPussel: "Dagens pussel",
     navBoka: "Boka lektion",
     navKontakt: "Kontakta",
+    navBetala: "Betala (Swish)",
     
     // Hero
     heroTitle: "Programmering och matematik för barn och unga – tryggt, kul och smart 💡",
@@ -49,8 +47,6 @@ const translations = {
     progFormat: "Format: online via Google Meet",
     progPrivate: "Privatlektion:",
     progIndividual: "Individuell:",
-    progBtnBook: "Boka lektion",
-    progBtnDirect: "Boka direkt",
     progBtnLearn: "Läs mer",
     
     // Math
@@ -63,70 +59,25 @@ const translations = {
     mathHighTitle: "📏 Gymnasiematte (Matte 1–4)",
     mathHighFocus: "kursstöd och nationella prov",
     
-    // Booking
+    // Booking (trimmed unused keys)
     bookingTitle: "📅 Boka en lektion",
     bookingIntro: "Välj ett ledigt datum och tid som passar dig. Alla lektioner sker online via Google Meet.",
-    bookingSelectTitle: "Välj datum och tid",
-    bookingSelectText: "Klicka på knappen nedan för att öppna bokningskalendern där du kan se alla lediga tider och boka direkt.",
-    bookingBtn: "🗓️ Öppna bokningskalender",
-    bookingNote: "Bokningen öppnas i ett nytt fönster. Efter bokning får du en bekräftelse via e-post.",
-    bookingFlexTitle: "⏰ Flexibla tider",
-    bookingFlexText: "Boka när det passar dig. Alla lektioner sker online via Google Meet – tryggt och bekvämt.",
-    bookingDirectTitle: "✅ Direktbokning",
-    bookingDirectText: "Se lediga tider direkt i kalendern och boka med ett klick. Du får omedelbar bekräftelse via e-post.",
     
-    // Puzzle
+    // Puzzle (trimmed unused keys)
     puzzleTitle: "Dagens kodpussel 🧩",
     puzzleIntro: "Välj ålder och lös ett kort pussel. Svara direkt här och avslöja facit när du är klar!",
-    puzzleAge: "Ålder",
-    puzzleAgeLabel: "Välj åldersgrupp",
-    puzzleAge68: "6–8 år",
-    puzzleAge912: "9–12 år",
-    puzzleAge1316: "13–16 år",
-    puzzleBtnLoad: "Visa dagens pussel",
-    puzzlePlaceholder: "Skriv ditt svar här…",
-    puzzleAnswerLabel: "Ditt svar",
-    puzzleBtnCheck: "Kolla svar",
-    puzzleBtnHint: "Ledtråd",
-    puzzleBtnReveal: "Visa facit",
-    puzzleDefault: "Tryck på \"Visa dagens pussel\".",
     
-    // Contact
+    // Contact (trimmed unused keys)
     contactTitle: "Kontakta Reem",
     contactIntro: "Har du frågor eller vill du boka en plats? Fyll i formuläret så återkommer jag inom 24 timmar. Du kan också boka direkt via kalendern ovan.",
-    contactTopic: "Ämne",
-    contactTopicSelect: "Välj ämne…",
-    contactTopicProg: "Programmering",
-    contactTopicMath: "Mattehjälp",
-    contactTopicOther: "Övrigt",
-    contactParentName: "Förälders namn",
-    contactEmail: "E-post",
-    contactPhone: "Mobilnummer",
-    contactChildAge: "Barnets ålder",
-    contactMessage: "Meddelande",
-    contactMessagePlaceholder: "Berätta gärna vad ni är intresserade av…",
-    contactConsent: "Jag samtycker till att mina uppgifter används för att Reem ska kunna kontakta mig.",
-    contactBtn: "Skicka",
-    contactSafetyTitle: "Trygghet & Integritet",
-    contactSafety1: "Ingen kameraobligatorisk närvaro för barn",
-    contactSafety2: "Inspelning endast med förälders godkännande",
-    contactSafety3: "Tydliga trivselregler i varje grupp",
-    contactTrustTitle: "Varför välja Reem?",
-    contactTrust1: "Civilingenjörsstudent i Medieteknik & AI",
-    contactTrust2: "Personlig uppföljning och feedback",
-    contactTrust3: "Åldersanpassat innehåll",
     
     // Footer
     footerText: "© {year} Kodkompis Reem · Byggd med ♥ för nyfikenhet",
     
     // Theme
     themeToggle: "Byt till mörkt läge",
-    themeToggleLight: "Byt till ljust läge",
     
-    // Language
-    langSwedish: "Svenska",
-    langEnglish: "English",
-    langArabic: "العربية",
+    // Language (trimmed unused keys)
     
     // Floating CTA
     floatingCTA: "📅 Boka nu",
@@ -136,12 +87,24 @@ const translations = {
     formSuccess: "Tack! Ditt meddelande är skickat. Jag återkommer inom 24 timmar.",
     formError: "Nätverksfel. Kontrollera din uppkoppling eller mejla kodkompisreem@gmail.com",
     formInvalid: "Kolla så att alla fält är ifyllda korrekt.",
+    
+    // Payments
+    payTitle: "Betala med Swish",
+    paySwishNumberLabel: "Swish-nummer att betala till:",
+    payCopyBtn: "Kopiera Swish-nummer",
+    payCopiedFeedback: "Swish-numret kopierat till urklipp.",
+    payCopyFail: "Kunde inte kopiera automatiskt. Markera och kopiera manuellt.",
+    payInstructionNote: "Ange gärna elevens namn och bokningsdatum i meddelandet så jag vet vem betalningen gäller.",
+    payBackToBooking: "Tillbaka till bokning",
+    payEmailContact: "Frågor via mejl",
+    payReferenceLabel: "Referens / meddelande",
+    payReferencePlaceholder: "Skriv elevens namn och/eller bokningsdatum",
+    payQrAlt: "Swish QR-kod",
+    payDownloadQr: "Ladda ner QR-kod",
   },
   
   en: {
     // Meta
-    title: "Kodkompis Reem – Learn programming and mathematics in a safe and fun way",
-    description: "Reem teaches children and young people programming online – courses, coaching and workshops for ages 6–16.",
     
     // Navigation
     navOm: "About Reem",
@@ -150,6 +113,7 @@ const translations = {
     navPussel: "Daily Puzzle",
     navBoka: "Book Lesson",
     navKontakt: "Contact",
+    navBetala: "Pay (Swish)",
     
     // Hero
     heroTitle: "Programming and mathematics for children and young people – safe, fun and smart 💡",
@@ -184,8 +148,6 @@ const translations = {
     progFormat: "Format: online via Google Meet",
     progPrivate: "Private lesson:",
     progIndividual: "Individual:",
-    progBtnBook: "Book lesson",
-    progBtnDirect: "Book directly",
     progBtnLearn: "Learn more",
     
     // Math
@@ -198,70 +160,26 @@ const translations = {
     mathHighTitle: "📏 High school math (Math 1–4)",
     mathHighFocus: "course support and national exams",
     
-    // Booking
+    // Booking (trimmed unused keys)
     bookingTitle: "📅 Book a lesson",
     bookingIntro: "Choose a date and time that works for you. All lessons take place online via Google Meet.",
-    bookingSelectTitle: "Choose date and time",
-    bookingSelectText: "Click the button below to open the booking calendar where you can see all available times and book directly.",
-    bookingBtn: "🗓️ Open booking calendar",
-    bookingNote: "The booking opens in a new window. After booking you will receive a confirmation via email.",
-    bookingFlexTitle: "⏰ Flexible times",
-    bookingFlexText: "Book when it suits you. All lessons take place online via Google Meet – safe and comfortable.",
-    bookingDirectTitle: "✅ Direct booking",
-    bookingDirectText: "See available times directly in the calendar and book with one click. You get immediate confirmation via email.",
     
-    // Puzzle
+    // Puzzle (trimmed unused keys)
     puzzleTitle: "Today's code puzzle 🧩",
     puzzleIntro: "Choose age and solve a short puzzle. Answer directly here and reveal the answer when you're done!",
-    puzzleAge: "Age",
-    puzzleAgeLabel: "Choose age group",
-    puzzleAge68: "6–8 years",
-    puzzleAge912: "9–12 years",
-    puzzleAge1316: "13–16 years",
-    puzzleBtnLoad: "Show today's puzzle",
-    puzzlePlaceholder: "Write your answer here…",
-    puzzleAnswerLabel: "Your answer",
-    puzzleBtnCheck: "Check answer",
-    puzzleBtnHint: "Hint",
-    puzzleBtnReveal: "Show answer",
-    puzzleDefault: "Click \"Show today's puzzle\".",
     
-    // Contact
+    // Contact (trimmed unused keys)
     contactTitle: "Contact Reem",
     contactIntro: "Do you have questions or want to book a spot? Fill in the form and I'll get back to you within 24 hours. You can also book directly via the calendar above.",
-    contactTopic: "Subject",
-    contactTopicSelect: "Choose subject…",
-    contactTopicProg: "Programming",
-    contactTopicMath: "Math help",
-    contactTopicOther: "Other",
-    contactParentName: "Parent's name",
-    contactEmail: "Email",
-    contactPhone: "Phone number",
-    contactChildAge: "Child's age",
-    contactMessage: "Message",
-    contactMessagePlaceholder: "Please tell us what you're interested in…",
-    contactConsent: "I consent to my information being used so that Reem can contact me.",
-    contactBtn: "Send",
-    contactSafetyTitle: "Safety & Privacy",
-    contactSafety1: "No mandatory camera presence for children",
-    contactSafety2: "Recording only with parent's consent",
-    contactSafety3: "Clear well-being rules in each group",
-    contactTrustTitle: "Why choose Reem?",
-    contactTrust1: "Civil Engineering student in Media Technology & AI",
-    contactTrust2: "Personal follow-up and feedback",
-    contactTrust3: "Age-appropriate content",
     
     // Footer
     footerText: "© {year} Kodkompis Reem · Built with ♥ for curiosity",
     
     // Theme
     themeToggle: "Switch to dark mode",
-    themeToggleLight: "Switch to light mode",
     
-    // Language
-    langSwedish: "Svenska",
+    // Language (trimmed unused keys)
     langEnglish: "English",
-    langArabic: "العربية",
     
     // Floating CTA
     floatingCTA: "📅 Book now",
@@ -271,12 +189,24 @@ const translations = {
     formSuccess: "Thank you! Your message has been sent. I'll get back to you within 24 hours.",
     formError: "Network error. Check your connection or email kodkompisreem@gmail.com",
     formInvalid: "Please make sure all fields are filled in correctly.",
+    
+    // Payments
+    payTitle: "Pay with Swish",
+    paySwishNumberLabel: "Swish number to pay to:",
+    payCopyBtn: "Copy Swish number",
+    payCopiedFeedback: "Swish number copied to clipboard.",
+    payCopyFail: "Could not copy automatically. Please select and copy manually.",
+    payInstructionNote: "Please include the student's name and booking date in the message so I know who the payment is for.",
+    payBackToBooking: "Back to booking",
+    payEmailContact: "Questions via email",
+    payReferenceLabel: "Reference / message",
+    payReferencePlaceholder: "Enter student's name and/or booking date",
+    payQrAlt: "Swish QR code",
+    payDownloadQr: "Download QR code",
   },
   
   ar: {
     // Meta
-    title: "رفيق الكود ريم – تعلم البرمجة والرياضيات بطريقة آمنة وممتعة",
-    description: "ريم تعلّم الأطفال والشباب البرمجة عبر الإنترنت – دورات وتدريب وورش عمل للأعمار من 6 إلى 16 عاماً.",
     
     // Navigation
     navOm: "عن ريم",
@@ -285,6 +215,7 @@ const translations = {
     navPussel: "لغز اليوم",
     navBoka: "احجز درس",
     navKontakt: "اتصل",
+    navBetala: "ادفع (Swish)",
     
     // Hero
     heroTitle: "البرمجة والرياضيات للأطفال والشباب – آمنة وممتعة وذكية 💡",
@@ -389,12 +320,25 @@ const translations = {
     // Footer
     footerText: "© {year} رفيق الكود ريم · مبني بـ ♥ للفضول",
     
+    // Payments
+    payTitle: "الدفع عبر Swish",
+    paySwishNumberLabel: "رقم Swish للدفع:",
+    payCopyBtn: "نسخ رقم Swish",
+    payCopiedFeedback: "تم نسخ رقم Swish إلى الحافظة.",
+    payCopyFail: "تعذر النسخ تلقائياً. الرجاء التحديد والنسخ يدوياً.",
+    payInstructionNote: "يرجى إضافة اسم الطالب وتاريخ الحجز في الرسالة حتى أعرف لمن تخص الدفعة.",
+    payBackToBooking: "العودة إلى الحجز",
+    payEmailContact: "الأسئلة عبر البريد الإلكتروني",
+    payReferenceLabel: "المرجع / الرسالة",
+    payReferencePlaceholder: "اكتب اسم الطالب و/أو تاريخ الحجز",
+    payQrAlt: "رمز QR لـ Swish",
+    payDownloadQr: "تنزيل QR",
+    
     // Theme
     themeToggle: "التبديل إلى الوضع الداكن",
     themeToggleLight: "التبديل إلى الوضع الفاتح",
     
     // Language
-    langSwedish: "Svenska",
     langEnglish: "English",
     langArabic: "العربية",
     
