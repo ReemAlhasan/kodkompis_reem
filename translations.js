@@ -1,7 +1,7 @@
 // Translations for Kodkompis Reem website
 // Swedish (sv), English (en), Arabic (ar)
 
-const translations = {
+var translations = {
   sv: {
     // Meta
     
@@ -357,6 +357,9 @@ const translations = {
 };
 
 // Export for use in other scripts
+// Expose to browser global (used by i18n.js)
+window.translations = translations;
+
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = translations;
 }
