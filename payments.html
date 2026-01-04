@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Betala med Swish – Kodkompis Reem</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
+</head>
+<body>
+  <main class="payments-container container">
+    <section class="payment-card">
+      <h1 data-i18n="payTitle">Betala med Swish</h1>
+      <p class="swish-instructions" data-i18n="paySwishNumberLabel">Swish-nummeret att betala till:</p>
+
+      <div class="qr-wrapper" style="margin:18px 0; display:flex; flex-direction:column; align-items:center; gap:10px;">
+        <!-- Visa först den mindre lokala bilden för bättre passform; nedladdning länkar till den stora filen -->
+        <img src="assets/swish-QR-small.png" alt="" id="swishQr" class="swish-qr" />
+        <div style="display:flex; gap:8px;">
+          <a class="btn" id="downloadQrBtn" href="assets/swish-QR-large.png" download="swish-QR-large.png" data-i18n="payDownloadQr">Ladda ner QR</a>
+        </div>
+      </div>
+
+      <div class="swish-number" id="swishNumber">+46704468315</div>
+
+      <label for="reference" class="swish-ref-label" data-i18n="payReferenceLabel">Referens / meddelande</label>
+      <input id="reference" name="reference" type="text" class="swish-ref" data-i18n="payReferencePlaceholder" />
+
+      <button class="btn primary copy-btn" id="copyBtn" data-i18n="payCopyBtn" data-i18n-aria="payCopyBtn">Kopiera Swish-nummer</button>
+      <button class="btn primary" id="openSwishBtn" data-i18n="payOpenSwish">Öppna Swish</button>
+
+      <p class="swish-instructions" data-i18n="payInstructionNote">Ange gärna elevens namn och bokningsdatum i meddelandet så jag vet vem betalningen gäller.</p>
+
+      <div style="margin-top:20px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+        <a class="btn ghost" href="index.html#booking" data-i18n="payBackToBooking">Tillbaka till bokning</a>
+        <a class="btn" href="mailto:kodkompisreem@gmail.com" data-i18n="payEmailContact">Frågor via mejl</a>
+      </div>
+
+      <p id="copyFeedback" style="margin-top:12px;color:var(--brand-2);font-weight:600;min-height:20px"></p>
+    </section>
+  </main>
+
+  <script src="payments.js"></script>
+</body>
+</html>
