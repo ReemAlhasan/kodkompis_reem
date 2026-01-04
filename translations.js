@@ -13,6 +13,7 @@ const translations = {
     navMatte: "Mattehjälp",
     navPussel: "Dagens pussel",
     navBoka: "Boka lektion",
+    navBetala: "Betala (Swish)",
     navKontakt: "Kontakta",
     
     // Hero
@@ -135,6 +136,21 @@ const translations = {
     formSuccess: "Tack! Ditt meddelande är skickat. Jag återkommer inom 24 timmar.",
     formError: "Nätverksfel. Kontrollera din uppkoppling eller mejla kodkompisreem@gmail.com",
     formInvalid: "Kolla så att alla fält är ifyllda korrekt.",
+    
+    // Payments
+    payTitle: "Betala med Swish",
+    paySwishNumberLabel: "Swish-nummeret att betala till:",
+    payCopyBtn: "Kopiera Swish-nummer",
+    payCopiedFeedback: "Swish-numret kopierat till urklipp.",
+    payCopyFail: "Kunde inte kopiera automatiskt. Markera och kopiera manuellt.",
+    payInstructionNote: "Ange gärna elevens namn och bokningsdatum i meddelandet så jag vet vem betalningen gäller.",
+    payBackToBooking: "Tillbaka till bokning",
+    payEmailContact: "Frågor via mejl",
+    payReferenceLabel: "Referens / meddelande",
+    payReferencePlaceholder: "Skriv elevens namn och/eller bokningsdatum",
+    payQrAlt: "Swish QR-kod",
+    payGenerateQr: "Generera QR",
+    payDownloadQr: "Ladda ner QR",
   },
   
   en: {
@@ -148,6 +164,7 @@ const translations = {
     navMatte: "Math Help",
     navPussel: "Daily Puzzle",
     navBoka: "Book Lesson",
+    navBetala: "Pay (Swish)",
     navKontakt: "Contact",
     
     // Hero
@@ -270,6 +287,21 @@ const translations = {
     formSuccess: "Thank you! Your message has been sent. I'll get back to you within 24 hours.",
     formError: "Network error. Check your connection or email kodkompisreem@gmail.com",
     formInvalid: "Please make sure all fields are filled in correctly.",
+    
+    // Payments
+    payTitle: "Pay with Swish",
+    paySwishNumberLabel: "Swish number to pay to:",
+    payCopyBtn: "Copy Swish number",
+    payCopiedFeedback: "Swish number copied to clipboard.",
+    payCopyFail: "Could not copy automatically. Please select and copy manually.",
+    payInstructionNote: "Please include the student's name and booking date in the message so I know who the payment is for.",
+    payBackToBooking: "Back to booking",
+    payEmailContact: "Questions via email",
+    payReferenceLabel: "Reference / message",
+    payReferencePlaceholder: "Enter student's name and/or booking date",
+    payQrAlt: "Swish QR code",
+    payGenerateQr: "Generate QR",
+    payDownloadQr: "Download QR",
   },
   
   ar: {
@@ -283,6 +315,7 @@ const translations = {
     navMatte: "مساعدة الرياضيات",
     navPussel: "لغز اليوم",
     navBoka: "احجز درس",
+    navBetala: "ادفع (Swish)",
     navKontakt: "اتصل",
     
     // Hero
@@ -405,6 +438,21 @@ const translations = {
     formSuccess: "شكراً! تم إرسال رسالتك. سأعود إليك خلال 24 ساعة.",
     formError: "خطأ في الشبكة. تحقق من اتصالك أو راسل kodkompisreem@gmail.com",
     formInvalid: "يرجى التأكد من ملء جميع الحقول بشكل صحيح.",
+    
+    // Payments
+    payTitle: "الدفع عبر Swish",
+    paySwishNumberLabel: "رقم Swish للدفع:",
+    payCopyBtn: "نسخ رقم Swish",
+    payCopiedFeedback: "تم نسخ رقم Swish إلى الحافظة.",
+    payCopyFail: "تعذر النسخ تلقائياً. الرجاء التحديد والنسخ يدوياً.",
+    payInstructionNote: "يرجى إضافة اسم الطالب وتاريخ الحجز في الرسالة حتى أعرف لمن تخص الدفعة.",
+    payBackToBooking: "العودة إلى الحجز",
+    payEmailContact: "الأسئلة عبر البريد الإلكتروني",
+    payReferenceLabel: "المرجع / الرسالة",
+    payReferencePlaceholder: "اكتب اسم الطالب و/أو تاريخ الحجز",
+    payQrAlt: "رمز QR لـ Swish",
+    payGenerateQr: "إنشاء QR",
+    payDownloadQr: "تنزيل QR",
   }
 };
 
