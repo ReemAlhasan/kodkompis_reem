@@ -82,18 +82,54 @@ document.addEventListener('DOMContentLoaded', () => {
         feedback.textContent = window.i18n ? window.i18n.t('payCopyFail') : 'Kunde inte kopiera automatiskt. Markera och kopiera manuellt.';
       }
 
-      // Try to open the Swish app via URI scheme. If that fails, open the QR image in a new tab as fallback.
-      // Note: behavior depends on device and installed apps.
+      // Try to open the Swish app with number+message using several deep-link attempts.
+      // Keep the clipboard copy as primary fallback; deep links may not be supported on all platforms.
+      const number = swishEl.textContent.trim();
+      const msg = reference || '';
+
+      // Candidates to try (in order):
+      const candidates = [];
+
+      // 1) Android intent URI (may work on many Android devices)
       try {
-        // Attempt to open swish scheme (mobile will handle it if installed)
-        window.location.href = 'swish://';
-        // After a short delay, open QR as fallback
+        const intentUri = `intent://payment?phone=${encodeURIComponent(number)}&message=${encodeURIComponent(msg)}#Intent;package=se.bankgirot.swish;scheme=swish;end`;
+        candidates.push(intentUri);
+      } catch (e) {}
+
+      // 2) swish:// scheme with query params (some implementations may support this)
+      try {
+        const swishUri = `swish://payment?phone=${encodeURIComponent(number)}&message=${encodeURIComponent(msg)}`;
+        candidates.push(swishUri);
+      } catch (e) {}
+
+      // 3) Fallback: open the large QR image in a new tab so user can scan or use share
+      const qrFallback = downloadQrBtn.href || 'assets/swish-QR-large.png';
+      candidates.push(qrFallback);
+
+      // Try candidates sequentially; if one navigates away the script stops. Use a small delay before opening fallback.
+      (function tryOpen(list, idx) {
+        if (idx >= list.length) return;
+        const target = list[idx];
+        if (target.startsWith('http')) {
+          // open fallback in new tab
+          window.open(target, '_blank');
+          return;
+        }
+        // For URI schemes and intent URIs, attempt to navigate
+        let opened = false;
+        try {
+          window.location.href = target;
+          opened = true;
+        } catch (e) {
+          opened = false;
+        }
+
+        // If navigation didn't occur, try next after short delay
         setTimeout(() => {
-          window.open(downloadQrBtn.href || 'assets/swish-QR-large.png', '_blank');
+          // If the app handled the intent the page may be hidden or unloaded; otherwise try next
+          tryOpen(list, idx + 1);
         }, 800);
-      } catch (err) {
-        window.open(downloadQrBtn.href || 'assets/swish-QR-large.png', '_blank');
-      }
+      })(candidates, 0);
     });
   }
 
