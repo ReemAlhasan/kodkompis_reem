@@ -68,6 +68,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Open Swish: copy number+reference and attempt to open Swish app; fallback to opening the QR image
+  const openSwishBtn = document.getElementById('openSwishBtn');
+  if (openSwishBtn) {
+    openSwishBtn.addEventListener('click', async () => {
+      const reference = (document.getElementById('reference')?.value || '').trim();
+      const txt = swishEl.textContent.trim() + (reference ? '\nMeddelande: ' + reference : '');
+      const ok = await copyText(txt);
+
+      if (ok) {
+        feedback.textContent = window.i18n ? window.i18n.t('payCopiedFeedback') : 'Swish-numret kopierat till urklipp.';
+      } else {
+        feedback.textContent = window.i18n ? window.i18n.t('payCopyFail') : 'Kunde inte kopiera automatiskt. Markera och kopiera manuellt.';
+      }
+
+      // Try to open the Swish app via URI scheme. If that fails, open the QR image in a new tab as fallback.
+      // Note: behavior depends on device and installed apps.
+      try {
+        // Attempt to open swish scheme (mobile will handle it if installed)
+        window.location.href = 'swish://';
+        // After a short delay, open QR as fallback
+        setTimeout(() => {
+          window.open(downloadQrBtn.href || 'assets/swish-QR-large.png', '_blank');
+        }, 800);
+      } catch (err) {
+        window.open(downloadQrBtn.href || 'assets/swish-QR-large.png', '_blank');
+      }
+    });
+  }
+
   // Initialize texts and update when language changes
   updateTexts();
   updateImageAlt();

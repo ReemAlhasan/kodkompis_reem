@@ -101,6 +101,7 @@ const translations = {
     payReferencePlaceholder: "Skriv elevens namn och/eller bokningsdatum",
     payQrAlt: "Swish QR-kod",
     payDownloadQr: "Ladda ner QR-kod",
+    payOpenSwish: "Öppna Swish",
   },
   
   en: {
@@ -203,6 +204,7 @@ const translations = {
     payReferencePlaceholder: "Enter student's name and/or booking date",
     payQrAlt: "Swish QR code",
     payDownloadQr: "Download QR code",
+    payOpenSwish: "Open Swish",
   },
   
   ar: {
@@ -333,6 +335,7 @@ const translations = {
     payReferencePlaceholder: "اكتب اسم الطالب و/أو تاريخ الحجز",
     payQrAlt: "رمز QR لـ Swish",
     payDownloadQr: "تنزيل QR",
+    payOpenSwish: "افتح Swish",
     
     // Theme
     themeToggle: "التبديل إلى الوضع الداكن",
