@@ -614,7 +614,7 @@ select:focus-visible {
   font-size: var(--font-size-xl);
   line-height: 1.3;
 }
-.card p {
+.card > p {
   flex-grow: 1;
   margin-bottom: var(--space-3);
 }
@@ -2614,4 +2614,213 @@ section[id] {
   .math-reactor-shell--full {
     min-height: 320px;
   }
+}
+
+
+/* --- April 2026 fixes: subpages + theme-aware mini labs --- */
+:root {
+  --lab-frame-bg: radial-gradient(circle at 18% 4%, rgba(106,92,255,.10), transparent 34%), radial-gradient(circle at 82% 100%, rgba(0,194,168,.09), transparent 42%), linear-gradient(180deg, #f7f9ff, #edf3ff);
+  --lab-frame-border: rgba(58, 79, 122, 0.14);
+  --lab-frame-shadow: 0 22px 48px rgba(45, 62, 103, 0.12), inset 0 1px 0 rgba(255,255,255,.65);
+  --lab-panel-bg: linear-gradient(180deg, rgba(255,255,255,.92), rgba(245,248,255,.84));
+  --lab-panel-border: rgba(58, 79, 122, 0.12);
+  --lab-surface-bg: rgba(255,255,255,.78);
+  --lab-surface-strong: rgba(246,248,255,.92);
+  --lab-board-shell-bg: radial-gradient(circle at 50% 0%, rgba(0,194,168,.12), transparent 38%), linear-gradient(180deg, rgba(231,238,255,.98), rgba(220,231,255,.98));
+  --lab-board-bg: linear-gradient(180deg, rgba(255,255,255,.74), rgba(241,246,255,.88)), repeating-linear-gradient(90deg, rgba(58,79,122,.06) 0, rgba(58,79,122,.06) 1px, transparent 1px, transparent calc(20% - 1px)), repeating-linear-gradient(180deg, rgba(58,79,122,.05) 0, rgba(58,79,122,.05) 1px, transparent 1px, transparent calc(20% - 1px));
+  --lab-chip-bg: rgba(255,255,255,.72);
+  --lab-chip-border: rgba(58,79,122,.14);
+  --lab-console-bg: rgba(255,255,255,.68);
+  --lab-console-strong-bg: rgba(246,248,255,.92);
+  --lab-feedback-bg: rgba(255,255,255,.78);
+  --lab-dot: rgba(58,79,122,.22);
+  --lab-btn-bg: linear-gradient(145deg, rgba(255,255,255,.92), rgba(233,240,255,.86));
+  --lab-btn-border: rgba(58,79,122,.14);
+  --lab-btn-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 10px 20px rgba(45,62,103,.12);
+  --lab-progress-track: rgba(58,79,122,.12);
+  --lab-core-bg: linear-gradient(180deg, rgba(255,255,255,.82), rgba(240,245,255,.78));
+}
+
+[data-theme="dark"],
+:root:not([data-theme="light"]) {
+  --lab-frame-bg: radial-gradient(circle at 20% 0%, rgba(106,92,255,.16), transparent 36%), radial-gradient(circle at 80% 100%, rgba(0,214,179,.12), transparent 42%), linear-gradient(180deg, rgba(8,12,25,.98), rgba(11,16,31,.96));
+  --lab-frame-border: rgba(255,255,255,.08);
+  --lab-frame-shadow: 0 26px 60px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.04);
+  --lab-panel-bg: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  --lab-panel-border: rgba(255,255,255,.08);
+  --lab-surface-bg: rgba(7,10,22,.42);
+  --lab-surface-strong: rgba(7,13,29,.64);
+  --lab-board-shell-bg: radial-gradient(circle at 50% 0%, rgba(0,214,179,.14), transparent 38%), linear-gradient(180deg, rgba(3,11,30,.95), rgba(9,16,38,.95));
+  --lab-board-bg: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)), repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0, rgba(255,255,255,.03) 1px, transparent 1px, transparent calc(20% - 1px)), repeating-linear-gradient(180deg, rgba(255,255,255,.02) 0, rgba(255,255,255,.02) 1px, transparent 1px, transparent calc(20% - 1px));
+  --lab-chip-bg: rgba(255,255,255,.04);
+  --lab-chip-border: rgba(255,255,255,.10);
+  --lab-console-bg: rgba(255,255,255,.03);
+  --lab-console-strong-bg: rgba(7,13,29,.64);
+  --lab-feedback-bg: rgba(7,13,29,.64);
+  --lab-dot: rgba(255,255,255,.2);
+  --lab-btn-bg: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  --lab-btn-border: rgba(255,255,255,.08);
+  --lab-btn-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 10px 24px rgba(0,0,0,.16);
+  --lab-progress-track: rgba(255,255,255,.08);
+  --lab-core-bg: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+}
+
+.lab-window-dots span { background: var(--lab-dot); }
+.lab-frame {
+  border-color: var(--lab-frame-border);
+  background: var(--lab-frame-bg);
+  box-shadow: var(--lab-frame-shadow);
+}
+.playfield-panel,
+.control-console,
+.math-reactor-shell,
+.math-console,
+.console-card,
+.math-display-card,
+.lab-stage-chip,
+.lab-pill,
+.lab-mini-stat,
+.sequence-header,
+.math-reactor-core,
+.lab-stars-panel,
+.lab-feedback,
+.math-history,
+.command-sequence--panel,
+.math-display-card,
+.math-history-card {
+  border-color: var(--lab-panel-border);
+}
+.playfield-panel,
+.control-console,
+.math-reactor-shell,
+.math-console,
+.console-card,
+.math-display-card,
+.lab-stage-chip,
+.lab-pill,
+.lab-mini-stat,
+.sequence-header,
+.math-reactor-core,
+.lab-stars-panel,
+.math-display-card {
+  background: var(--lab-panel-bg);
+}
+.command-sequence--panel,
+.math-history,
+.lab-feedback {
+  background: var(--lab-surface-strong);
+}
+.code-board-shell {
+  background: var(--lab-board-shell-bg);
+  border-color: color-mix(in srgb, var(--brand) 28%, var(--lab-frame-border));
+}
+.code-board { background: var(--lab-board-bg); }
+.cmd-btn,
+.op-btn {
+  background: var(--lab-btn-bg);
+  border-color: var(--lab-btn-border);
+  box-shadow: var(--lab-btn-shadow);
+  color: var(--text);
+}
+.cmd-pad-core {
+  background: radial-gradient(circle, color-mix(in srgb, var(--brand-2) 18%, transparent), color-mix(in srgb, var(--brand) 18%, transparent));
+  color: var(--text);
+}
+.math-progress { background: var(--lab-progress-track); }
+.math-reactor-core { background: var(--lab-core-bg); }
+.math-reactor-shell--full {
+  min-height: 300px;
+  background: radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--brand-2) 15%, transparent), transparent 25%), radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--brand) 15%, transparent), transparent 48%), var(--lab-panel-bg);
+}
+.math-main-grid {
+  grid-template-columns: minmax(0, 1.08fr) minmax(280px, .92fr);
+  align-items: stretch;
+}
+.math-console,
+.control-console { height: 100%; }
+.lab-mission-inline p,
+.math-core-hint,
+#codeChallengeHint,
+#mathChallengeHint {
+  flex-grow: 0;
+}
+#mathEquationDisplay {
+  max-width: 18ch;
+  margin-inline: auto;
+}
+.page-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+.page-link-card {
+  justify-content: space-between;
+  min-height: 100%;
+}
+.page-link-card .btn { align-self: flex-start; }
+.subpage-hero {
+  padding-top: calc(var(--space-8) + 24px);
+  padding-bottom: var(--space-6);
+}
+.subpage-hero .card {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 10%, var(--card)) 0%, color-mix(in srgb, var(--brand-2) 8%, var(--card)) 100%);
+}
+.page-intro-actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+}
+.nav a[aria-current="page"] {
+  background: rgba(106,92,255,.12);
+  border-color: rgba(106,92,255,.25);
+}
+.summer-dates {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+.summer-date-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--brand) 8%, var(--card));
+  color: var(--text);
+  font-weight: 600;
+}
+.summer-course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+.summer-course-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--brand) 7%, var(--card));
+  color: var(--text);
+  font-size: .92rem;
+}
+@media (max-width: 1080px) {
+  .math-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .page-intro-actions { flex-direction: column; }
+  .page-intro-actions .btn,
+  .page-link-card .btn { width: 100%; }
+  .math-display-grid--compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .math-reactor-shell--full { min-height: 0; }
 }

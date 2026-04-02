@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="sv" data-page-title="metaTitleHome" data-page-description="metaDescriptionHome">
+<html lang="sv">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kodkompis Reem – Programmering och matematik online</title>
-  <meta name="description" content="Programmering och matematik för barn, unga och vuxna – nu uppdelat på tydligare sidor med sommarkurser, mini-labb och bokning." />
+  <title>Om Reem – Kodkompis Reem</title>
+  <meta name="description" content="Om Reem, trygg undervisning och vanliga frågor om upplägg och nivå." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -60,8 +60,8 @@
 
     <!-- Meny -->
     <nav id="primary-nav" class="nav" aria-label="Huvudmeny">
-      <a href="index.html" data-i18n="navHome" aria-current="page">Hem</a>
-      <a href="about.html" data-i18n="navOm">Om Reem</a>
+      <a href="index.html" data-i18n="navHome">Hem</a>
+      <a href="about.html" aria-current="page" data-i18n="navOm">Om Reem</a>
       <a href="programming.html" data-i18n="navProgrammering">Programmering</a>
       <a href="math.html" data-i18n="navMatte">Mattehjälp</a>
       <a href="labs.html" data-i18n="navPussel">Prova live</a>
@@ -72,125 +72,17 @@
   </header>
 
   <main id="top">
-<section class="hero" role="region" aria-labelledby="hero-title">
-      <div class="hero-inner">
-        <h1 id="hero-title" data-i18n="heroTitle">Programmering och matematik för barn, unga och vuxna – tryggt, kreativt och tydligt 💡</h1>
-        <p class="lead" data-i18n="heroLead">Hej! Jag heter <strong>Reem</strong> och jag studerar <strong>till Civilingenjör i Medieteknik och AI</strong>. Jag hjälper barn, ungdomar och vuxna att förstå programmering och matematik på ett lugnt, kreativt och tydligt sätt.</p>
-        <div class="hero-math">
-          <h2 class="hero-math-title" data-i18n="heroMathTitle">Lär dig matte online – enkelt och flexibelt </h2>
-          <p class="hero-math-sub" data-i18n="heroMathSub">Från grundskola till universitet – Reem förklarar tills du förstår.</p>
-        </div>
-        <div class="hero-actions">
-          <a class="btn primary" href="booking.html#booking" data-i18n="heroBtnBook">Boka lektion</a>
-          <a class="btn ghost" href="programming.html#summer-courses" data-i18n="heroBtnCourses">Se sommarkurser</a>
-        </div>
-        <figure class="hero-ill">
-          <img src="https://cdn.jsdelivr.net/npm/@tabler/icons/icons/brand-python.svg" alt="Python Icon" width="24" height="24" />
-          <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/c-plus-plus-programming-language-icon.svg" alt="C++ icon" width="24" height="24" />
-          <img src="https://cdn.jsdelivr.net/npm/@tabler/icons/icons/robot.svg" alt="Robot Icon" width="24" height="24" />
-        </figure>
-      </div>
-    </section>
-<section id="summer-courses" class="section summer-section" aria-labelledby="summer-title">
-      <div class="container">
-        <span class="eyebrow">Sommar 2026</span>
-        <h2 id="summer-title">Sommarkurser med tydlig roadmap och direkt anmälan</h2>
-        <p>För barn finns spår i Scratch och Python. För vuxna finns en praktisk Python-kurs från grunden. Alla kurser består av 12 livelektioner online.</p>
-        <div class="summer-dates"><span class="summer-date-chip" data-i18n="summerStartLabel">Kursstart</span><span data-i18n="summerStartDate">Från 6 juli 2026</span></div>
-        <div id="summerCoursesGrid" class="cards summer-courses-grid" aria-live="polite"></div>
-        <p class="summer-footnote">Barnkurserna kostar cirka 175 kr per lektion och vuxenkursen cirka 200 kr per lektion. Platserna kan bokas direkt eller anmälas via formuläret.</p>
-      </div>
-    </section>
-<section id="start" class="section start-section" aria-labelledby="start-title">
-      <div class="container">
-        <h2 id="start-title" data-i18n="startTitle">Hitta rätt spår på 30 sekunder</h2>
-        <p data-i18n="startIntro">Svara på tre snabba frågor så får du en rekommendation för vilket upplägg som passar bäst just nu.</p>
 
-        <div class="start-grid">
-          <div class="card quiz-card">
-            <h3 data-i18n="quizTitle">Vilket upplägg passar bäst?</h3>
-            <div class="quiz-fields">
-              <div class="field">
-                <label for="quizAge" data-i18n="quizAgeLabel">Ålder</label>
-                <select id="quizAge">
-                  <option value="6-8" data-i18n="puzzleAge68">6–8 år</option>
-                  <option value="9-12" data-i18n="puzzleAge912">9–12 år</option>
-                  <option value="13-16" data-i18n="puzzleAge1316">13–16 år</option>
-                  <option value="adult" data-i18n="quizAgeAdult">17+ / vuxenstöd</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="quizFocus" data-i18n="quizFocusLabel">Vad vill ni ha hjälp med?</label>
-                <select id="quizFocus">
-                  <option value="code" data-i18n="quizFocusCode">Programmering</option>
-                  <option value="math" data-i18n="quizFocusMath">Matte</option>
-                  <option value="mixed" data-i18n="quizFocusMixed">Både och / osäker</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="quizGoal" data-i18n="quizGoalLabel">Vad är målet just nu?</label>
-                <select id="quizGoal">
-                  <option value="confidence" data-i18n="quizGoalConfidence">Bygga självförtroende</option>
-                  <option value="projects" data-i18n="quizGoalProjects">Bygga spel och projekt</option>
-                  <option value="support" data-i18n="quizGoalSupport">Skolstöd / struktur</option>
-                </select>
-              </div>
-            </div>
-            <div class="quiz-actions">
-              <button id="quizRecommend" class="btn primary" type="button" data-i18n="quizBtn">Visa min rekommendation</button>
-              <a class="btn ghost" href="booking.html#booking" data-i18n="quizBook">Gå direkt till bokning</a>
-            </div>
+    <section class="section subpage-hero" aria-labelledby="subpage-title">
+      <div class="container">
+        <div class="card">
+          <span class="eyebrow">Kodkompis Reem</span>
+          <h1 id="subpage-title" data-i18n="subpageAboutTitle">Om Reem, tryggheten och vanliga frågor</h1>
+          <p data-i18n="subpageAboutLead">Här finns bakgrunden, arbetssättet och svar på det som ofta avgör om man vill boka.</p>
+          <div class="page-intro-actions">
+            <a class="btn ghost" href="index.html" data-i18n="subpageBackHome">Till startsidan</a>
+            <a class="btn primary" href="booking.html#booking" data-i18n="navBoka">Boka lektion</a>
           </div>
-
-          <article id="quizResult" class="card quiz-result is-empty" aria-live="polite">
-            <span class="eyebrow" data-i18n="quizResultEyebrow">Rekommenderat spår</span>
-            <h3 id="quizResultTitle" data-i18n="quizDefaultTitle">Välj tre svar för att få en rekommendation</h3>
-            <p id="quizResultText" data-i18n="quizDefaultText">Du får ett förslag på bästa startpunkt, vad eleven får träna på och vilket nästa steg som passar bäst.</p>
-            <ul id="quizResultList" class="check compact"></ul>
-            <div class="quiz-actions">
-              <a class="btn primary" href="booking.html#booking" data-i18n="quizResultBook">Boka rekommenderat upplägg</a>
-              <a class="btn ghost" href="booking.html#kontakt" data-i18n="quizResultContact">Fråga först</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="browse" class="section" aria-labelledby="browse-title">
-      <div class="container">
-        <h2 id="browse-title" data-i18n="pageBrowseTitle">Utforska sida för sida</h2>
-        <p data-i18n="pageBrowseIntro">Allt innehåll finns kvar, men nu uppdelat i tydligare sidor så att besökaren slipper lång scroll – särskilt i mobilen.</p>
-        <div class="page-links-grid">
-          <article class="card page-link-card">
-            <span class="eyebrow">01</span>
-            <h3 data-i18n="pageBrowseAboutTitle">Om Reem & frågor</h3>
-            <p data-i18n="pageBrowseAboutText">Läs om Reem, arbetssättet och vanliga frågor från föräldrar och elever.</p>
-            <a class="btn ghost" href="about.html" data-i18n="pageBrowseBtn">Öppna sida</a>
-          </article>
-          <article class="card page-link-card">
-            <span class="eyebrow">02</span>
-            <h3 data-i18n="pageBrowseProgrammingTitle">Programmering & sommarkurser</h3>
-            <p data-i18n="pageBrowseProgrammingText">Se sommarkurser, åldersspår och programmeringsupplägg på en egen sida.</p>
-            <a class="btn ghost" href="programming.html" data-i18n="pageBrowseBtn">Öppna sida</a>
-          </article>
-          <article class="card page-link-card">
-            <span class="eyebrow">03</span>
-            <h3 data-i18n="pageBrowseMathTitle">Mattehjälp</h3>
-            <p data-i18n="pageBrowseMathText">Gå direkt till mattehjälpen utan att behöva scrolla genom resten av sidan.</p>
-            <a class="btn ghost" href="math.html" data-i18n="pageBrowseBtn">Öppna sida</a>
-          </article>
-          <article class="card page-link-card">
-            <span class="eyebrow">04</span>
-            <h3 data-i18n="pageBrowseLabsTitle">Mini-labb live</h3>
-            <p data-i18n="pageBrowseLabsText">Öppna de interaktiva fönstren på en egen sida med bättre fokus.</p>
-            <a class="btn ghost" href="labs.html" data-i18n="pageBrowseBtn">Öppna sida</a>
-          </article>
-          <article class="card page-link-card">
-            <span class="eyebrow">05</span>
-            <h3 data-i18n="pageBrowseBookingTitle">Bokning & kontakt</h3>
-            <p data-i18n="pageBrowseBookingText">Kalender, kontaktformulär och nästa steg ligger nu samlat på en sida.</p>
-            <a class="btn ghost" href="booking.html" data-i18n="pageBrowseBtn">Öppna sida</a>
-          </article>
         </div>
       </div>
     </section>
@@ -218,6 +110,35 @@
             <p data-i18n="aboutWhy1">Kodning tränar logiskt tänkande, kreativitet och problemlösning – superkrafter för framtiden! 🎯</p>
             <p data-i18n="aboutWhy2">Vi bygger spel, små appar och robotlogik. Barnen får skapa, testa och våga göra fel.</p>
           </div>
+        </div>
+      </div>
+    </section>
+<section id="faq" class="section" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 id="faq-title" data-i18n="faqTitle">Vanliga frågor från föräldrar och elever</h2>
+        <p data-i18n="faqIntro">Här är svar på det som brukar avgöra om man bokar direkt eller vill fundera lite till.</p>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary data-i18n="faqQ1">Passar det här även helt nybörjare?</summary>
+            <p data-i18n="faqA1">Ja. Upplägget anpassas efter startnivå, tempo och ålder. Målet är att eleven ska känna tidiga framsteg, inte press.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faqQ2">Hur fungerar onlinelektionerna i praktiken?</summary>
+            <p data-i18n="faqA2">Lektionerna sker via Google Meet. Eleven får tydlig guidning, skärmdelning vid behov och konkreta nästa steg efter lektionen.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faqQ3">Hur vet jag vad mitt barn behöver börja med?</summary>
+            <p data-i18n="faqA3">Använd rekommendationsguiden ovan eller boka en första lektion så anpassas innehåll och nivå direkt efter elevens mål.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faqQ4">Kan man få hjälp med skolmatte eller specifika kursmoment?</summary>
+            <p data-i18n="faqA4">Ja. Mattehjälpen kan fokusera på läxor, prov, nationella prov eller områden som eleven fastnat på.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faqQ5">Vad gör Kodkompis Reem annorlunda?</summary>
+            <p data-i18n="faqA5">Kombinationen av trygg ton, tydlig struktur och kreativa projekt gör att eleven inte bara löser uppgifter utan faktiskt förstår och vågar fortsätta.</p>
+          </details>
         </div>
       </div>
     </section>
