@@ -399,6 +399,7 @@
   <script>
     window.BOOKING_EMBED_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1D7QFLmMnSTLvrbONnyTRTobxOdbEzDhsoy6MaF2e0MoCnRoppAxcz9-0uxheUBskpJbySrTN2?gv=true';
     window.PUZZLES_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzcmL2XsBY5nPyvnpxpYwgB8sTPtNDGx6TcXTF3IBytegmlloHjRkMaASVl2V1FWHMYlA/exec';
+    window.CONTACT_FORM_JSON_MODE = true;
     
     // ⚠️ SETUP REQUIRED: Replace with your Google Apps Script web app URL after deploying chatbot-api.gs
     // Get the URL from: Deploy > Deploy as web app > Web app URL
@@ -435,6 +436,34 @@
           submitBtn.disabled = submitting;
         }
       }
+
+      async function submitAsJson() {
+        const formData = new FormData(form);
+        const body = new URLSearchParams();
+
+        formData.forEach((value, key) => {
+          body.append(key, value);
+        });
+
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        return response.json();
+      }
+
+      async function submitNoCorsFallback() {
+        await fetch(form.action, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: new FormData(form)
+        });
+      }
   
       form.addEventListener('submit', async (e) => {
         // Allow pure HTML fallback if fetch is missing
@@ -459,13 +488,25 @@
         setSubmitting(true);
   
         try {
-          await fetch(form.action, {
-            method: 'POST',
-            mode: 'no-cors',          // 🔑 no CORS preflight
-            body: new FormData(form)  // 🔑 FormData (no headers!)
-          });
-  
-          // Response is opaque in no-cors, so we can only confirm that the request was sent.
+          if (window.CONTACT_FORM_JSON_MODE) {
+            try {
+              const result = await submitAsJson();
+              if (result && result.ok) {
+                note.textContent = window.i18n ? window.i18n.t('formSuccess') : 'Tack! Ditt meddelande är skickat. Jag återkommer inom 24 timmar.';
+                form.reset();
+              } else if (result && result.error === 'validation_failed') {
+                note.textContent = window.i18n ? window.i18n.t('formInvalid') : 'Kolla så att alla fält är ifyllda korrekt.';
+                form.reportValidity();
+              } else {
+                note.textContent = window.i18n ? window.i18n.t('formError') : 'Nätverksfel. Kontrollera din uppkoppling eller mejla kodkompisreem@gmail.com';
+              }
+              return;
+            } catch (jsonErr) {
+              console.warn('JSON contact submission failed, using no-cors fallback:', jsonErr);
+            }
+          }
+
+          await submitNoCorsFallback();
           note.textContent = window.i18n ? window.i18n.t('formQueued') : 'Din förfrågan har skickats vidare. Om du inte får svar inom 24 timmar, mejla kodkompisreem@gmail.com.';
           form.reset();
         } catch (err) {
