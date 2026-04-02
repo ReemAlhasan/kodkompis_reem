@@ -1,6 +1,6 @@
 # Kodkompis Reem
 
-Kodkompis Reem is a playful, safe website for teaching programming and mathematics to children and young people (ages 6–25). The site offers online courses, coaching, and interactive puzzles, all designed to foster creativity, logical thinking, and confidence with technology.
+Kodkompis Reem is a playful, safe website for teaching programming and mathematics to children and young people. The site offers online courses, coaching, an embedded Google Calendar booking flow, payment instructions, and interactive puzzles.
 
 ## Features
 
@@ -12,7 +12,9 @@ Kodkompis Reem is a playful, safe website for teaching programming and mathemati
   - Programming courses for ages 6–16  
   - Math help from elementary to university level
 - **Contact Form:**  
-  - AJAX-powered, spam-protected form (Formspree integration)
+  - Spam-protected form posting to a Google Apps Script endpoint
+- **Payments:**  
+  - Dedicated Swish payment page with QR code, copy-to-clipboard, and an optional payment reference
 - **Accessibility:**  
   - Semantic HTML, ARIA labels, keyboard navigation
 - **Mobile Navigation:**  
@@ -35,11 +37,19 @@ Kodkompis Reem is a playful, safe website for teaching programming and mathemati
 4. **Contact:**  
    - Fill in the contact form to get in touch or book a course.
 
+5. **Booking:**  
+   - Scroll to the booking section and use the embedded Google Calendar scheduler directly on the page.
+
 ## File Overview
 
 - [`index.html`](index.html): Main website structure and content
 - [`style.css`](style.css): All styles and responsive layout
 - [`pussel.js`](pussel.js): Logic for daily puzzles (fetching, answer checking, hints)
+- [`payments.html`](payments.html): Swish payment page
+- [`payments.js`](payments.js): Swish page interactions
+- [`translations.js`](translations.js): Translation strings for Swedish, English, and Arabic
+- [`i18n.js`](i18n.js): Client-side language switching
+- [`apps-script/`](apps-script): Local source copies for the related Google Apps Script projects
 - [`LICENSE`](LICENSE): MIT License
 
 ## Customization
@@ -48,8 +58,12 @@ Kodkompis Reem is a playful, safe website for teaching programming and mathemati
   - By default, puzzles are fetched from a Google Apps Script endpoint.
   - If the endpoint is unavailable, local puzzles are used (see `pussel.js`).
 
+- **Booking:**  
+  - The page embeds a Google Calendar appointment schedule in an iframe.
+  - Update the booking URL in `index.html` if your schedule link changes.
+
 - **Contact Form:**  
-  - Uses Formspree for submissions.  
+  - Uses a Google Apps Script endpoint for submissions.  
   - Update the `action` attribute in the form if you want to use your own endpoint.
 
 ## License

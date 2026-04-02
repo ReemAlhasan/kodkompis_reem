@@ -64,7 +64,7 @@
       <a href="#tjanster" data-i18n="navProgrammering">Programmering</a>
       <a href="#matte" data-i18n="navMatte">Mattehjälp</a>
       <a href="#pussel" data-i18n="navPussel">Dagens pussel</a>
-      <a class="cta" href="https://calendar.app.google/hcGm2jFduV7YPKEc6" target="_blank" rel="noopener" data-i18n="navBoka">Boka lektion</a>
+      <a class="cta" href="#booking" data-i18n="navBoka">Boka lektion</a>
       <a class="cta" href="payments.html" data-i18n="navBetala">Betala (Swish)</a>
       <a href="#kontakt" data-i18n="navKontakt">Kontakta</a>
     </nav>
@@ -81,7 +81,7 @@
           <p class="hero-math-sub" data-i18n="heroMathSub">Från grundskola till universitet – Reem förklarar tills du förstår.</p>
         </div>
         <div class="hero-actions">
-          <a class="btn primary" href="https://calendar.app.google/hcGm2jFduV7YPKEc6" target="_blank" rel="noopener" data-i18n="heroBtnBook">Boka lektion</a>
+          <a class="btn primary" href="#booking" data-i18n="heroBtnBook">Boka lektion</a>
           <a class="btn ghost" href="#tjanster" data-i18n="heroBtnCourses">Se alla kurser</a>
         </div>
         <figure class="hero-ill">
@@ -230,27 +230,41 @@
           <!-- Google Calendar Appointment Scheduling -->
           <div class="calendar-booking-wrapper">
             <div class="calendar-booking-content">
-              <h3>Välj datum och tid</h3>
-              <p>Klicka på knappen nedan för att öppna bokningskalendern där du kan se alla lediga tider och boka direkt.</p>
-              <a href="https://calendar.app.google/hcGm2jFduV7YPKEc6" 
-                 class="btn primary booking-btn-large"
-                 target="_blank"
-                 rel="noopener">
-                🗓️ Öppna bokningskalender
-              </a>
-              <p class="booking-note">Bokningen öppnas i ett nytt fönster. Efter bokning får du en bekräftelse via e-post.</p>
+              <h3 data-i18n="bookingSelectTitle">Välj datum och tid</h3>
+              <p data-i18n="bookingSelectText">Välj tid direkt i den inbäddade kalendern nedan. Bokningen sker utan att du lämnar sidan.</p>
+              <div class="booking-embed">
+                <iframe
+                  id="bookingFrame"
+                  class="booking-embed-frame"
+                  src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1D7QFLmMnSTLvrbONnyTRTobxOdbEzDhsoy6MaF2e0MoCnRoppAxcz9-0uxheUBskpJbySrTN2?gv=true"
+                  title="Kodkompis Reem bokningskalender"
+                  loading="lazy"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  frameborder="0"></iframe>
+              </div>
+              <div class="booking-actions">
+                <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1D7QFLmMnSTLvrbONnyTRTobxOdbEzDhsoy6MaF2e0MoCnRoppAxcz9-0uxheUBskpJbySrTN2?gv=true"
+                   class="btn ghost"
+                   data-booking-external-link
+                   data-i18n="bookingBtn"
+                   target="_blank"
+                   rel="noopener">
+                  🗓️ Öppna bokningskalender
+                </a>
+              </div>
+              <p class="booking-note" data-i18n="bookingNote">Om kalendern inte visas kan du öppna bokningen i en ny flik.</p>
             </div>
           </div>
           
           <!-- Quick Info -->
           <div class="booking-info-cards">
             <div class="card">
-              <h3>⏰ Flexibla tider</h3>
-              <p>Boka när det passar dig. Alla lektioner sker online via Google Meet – tryggt och bekvämt.</p>
+              <h3 data-i18n="bookingFlexTitle">⏰ Flexibla tider</h3>
+              <p data-i18n="bookingFlexText">Boka när det passar dig. Alla lektioner sker online via Google Meet – tryggt och bekvämt.</p>
             </div>
             <div class="card">
-              <h3>✅ Direktbokning</h3>
-              <p>Se lediga tider direkt i kalendern och boka med ett klick. Du får omedelbar bekräftelse via e-post.</p>
+              <h3 data-i18n="bookingDirectTitle">✅ Direktbokning</h3>
+              <p data-i18n="bookingDirectText">Se lediga tider direkt i kalendern och boka med ett klick. Du får omedelbar bekräftelse via e-post.</p>
             </div>
           </div>
         </div>
@@ -264,24 +278,24 @@
         <p data-i18n="puzzleIntro">Välj ålder och lös ett kort pussel. Svara direkt här och avslöja facit när du är klar!</p>
 
         <div class="puzzle-ui">
-          <label for="age">Ålder</label>
-          <select id="age" name="age" aria-label="Välj åldersgrupp">
-            <option value="6-8">6–8 år</option>
-            <option value="9-12">9–12 år</option>
-            <option value="13-16">13–16 år</option>
+          <label for="age" data-i18n="puzzleAge">Ålder</label>
+          <select id="age" name="age" data-i18n-aria="puzzleAgeLabel" aria-label="Välj åldersgrupp">
+            <option value="6-8" data-i18n="puzzleAge68">6–8 år</option>
+            <option value="9-12" data-i18n="puzzleAge912">9–12 år</option>
+            <option value="13-16" data-i18n="puzzleAge1316">13–16 år</option>
           </select>
 
-        <button id="loadPuzzle" class="btn">Visa dagens pussel</button>
+        <button id="loadPuzzle" class="btn" data-i18n="puzzleBtnLoad">Visa dagens pussel</button>
         </div>
 
         <article class="puzzle-card" aria-live="polite">
           <h3 id="puzzle-title">—</h3>
-          <p id="puzzle-text">Tryck på "Visa dagens pussel".</p>
-          <textarea id="puzzle-answer" placeholder="Skriv ditt svar här…" aria-label="Ditt svar" disabled></textarea>
+          <p id="puzzle-text" data-i18n="puzzleDefault">Tryck på "Visa dagens pussel".</p>
+          <textarea id="puzzle-answer" data-i18n="puzzlePlaceholder" placeholder="Skriv ditt svar här…" data-i18n-aria="puzzleAnswerLabel" aria-label="Ditt svar" disabled></textarea>
           <div class="puzzle-actions">
-            <button id="checkAnswer" class="btn" disabled>Kolla svar</button>
-            <button id="showHint" class="btn ghost" disabled>Ledtråd</button>
-            <button id="reveal" class="btn ghost" disabled>Visa facit</button>
+            <button id="checkAnswer" class="btn" data-i18n="puzzleBtnCheck" disabled>Kolla svar</button>
+            <button id="showHint" class="btn ghost" data-i18n="puzzleBtnHint" disabled>Ledtråd</button>
+            <button id="reveal" class="btn ghost" data-i18n="puzzleBtnReveal" disabled>Visa facit</button>
           </div>
           <p id="puzzle-feedback" class="feedback" role="status" aria-live="assertive"></p>
         </article>
@@ -301,48 +315,48 @@
             <input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <div class="field">
-              <label for="topic">Ämne</label>
+              <label for="topic" data-i18n="contactTopic">Ämne</label>
               <select id="topic" name="topic" required>
-                <option value="">Välj ämne…</option>
-                <option>Programmering</option>
-                <option>Mattehjälp</option>
-                <option>Övrigt</option>
+                <option value="" data-i18n="contactTopicSelect">Välj ämne…</option>
+                <option data-i18n="contactTopicProg">Programmering</option>
+                <option data-i18n="contactTopicMath">Mattehjälp</option>
+                <option data-i18n="contactTopicOther">Övrigt</option>
               </select>
             </div>
 
             <div class="field">
-              <label for="parentName">Förälders namn</label>
+              <label for="parentName" data-i18n="contactParentName">Förälders namn</label>
               <input id="parentName" name="name" type="text" required autocomplete="name" />
             </div>
 
             <div class="field">
-              <label for="email">E-post</label>
+              <label for="email" data-i18n="contactEmail">E-post</label>
               <input id="email" name="email" type="email" required autocomplete="email" />
             </div>
 
             <div class="field">
-              <label for="phone">Mobilnummer</label>
-              <input id="phone" name="phone" type="tel" required autocomplete="tel" />
+              <label for="phone" data-i18n="contactPhone">Mobilnummer</label>
+              <input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" pattern="^[+()\d\s-]{6,20}$" />
             </div>
 
             <div class="field">
-              <label for="childAge">Barnets ålder</label>
+              <label for="childAge" data-i18n="contactChildAge">Barnets ålder</label>
               <input id="childAge" name="childAge" type="number" min="3" max="25" required />
             </div>
 
             <div class="field">
-              <label for="message">Meddelande</label>
-              <textarea id="message" name="message" rows="4" placeholder="Berätta gärna vad ni är intresserade av…" required></textarea>
+              <label for="message" data-i18n="contactMessage">Meddelande</label>
+              <textarea id="message" name="message" rows="4" data-i18n="contactMessagePlaceholder" placeholder="Berätta gärna vad ni är intresserade av…" required></textarea>
             </div>
 
             <div class="field">
               <label class="checkbox">
                 <input type="checkbox" name="consent" value="Godkänner" required />
-                Jag samtycker till att mina uppgifter används för att Reem ska kunna kontakta mig.
+                <span data-i18n="contactConsent">Jag samtycker till att mina uppgifter används för att Reem ska kunna kontakta mig.</span>
               </label>
             </div>
 
-            <button class="btn primary" type="submit">Skicka</button>
+            <button class="btn primary" type="submit" data-i18n="contactBtn">Skicka</button>
             <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
           </form>
 
@@ -350,19 +364,19 @@
         </div>
         <aside>
           <div class="card soft">
-            <h3>Trygghet & Integritet</h3>
+            <h3 data-i18n="contactSafetyTitle">Trygghet & Integritet</h3>
             <ul class="check">
-              <li>Ingen kameraobligatorisk närvaro för barn</li>
-              <li>Inspelning endast med förälders godkännande</li>
-              <li>Tydliga trivselregler i varje grupp</li>
+              <li data-i18n="contactSafety1">Ingen kameraobligatorisk närvaro för barn</li>
+              <li data-i18n="contactSafety2">Inspelning endast med förälders godkännande</li>
+              <li data-i18n="contactSafety3">Tydliga trivselregler i varje grupp</li>
             </ul>
           </div>
           <div class="card soft trust-card">
-            <h3>Varför välja Reem?</h3>
+            <h3 data-i18n="contactTrustTitle">Varför välja Reem?</h3>
             <ul class="check">
-              <li>Civilingenjörsstudent i Medieteknik & AI</li>
-              <li>Personlig uppföljning och feedback</li>
-              <li>Åldersanpassat innehåll</li>
+              <li data-i18n="contactTrust1">Civilingenjörsstudent i Medieteknik & AI</li>
+              <li data-i18n="contactTrust2">Personlig uppföljning och feedback</li>
+              <li data-i18n="contactTrust3">Åldersanpassat innehåll</li>
             </ul>
           </div>
         </aside>
@@ -371,7 +385,7 @@
   </main>
 
   <!-- Floating CTA Button -->
-  <a href="https://calendar.app.google/hcGm2jFduV7YPKEc6" class="floating-cta" data-i18n-aria="navBoka" target="_blank" rel="noopener">
+  <a href="#booking" class="floating-cta" data-i18n-aria="navBoka">
     <span data-i18n="floatingCTA">📅 Boka nu</span>
   </a>
 
@@ -383,6 +397,7 @@
 
   <!-- Konfigurera endpoint för dagens pussel (Google Apps Script Web App) -->
   <script>
+    window.BOOKING_EMBED_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1D7QFLmMnSTLvrbONnyTRTobxOdbEzDhsoy6MaF2e0MoCnRoppAxcz9-0uxheUBskpJbySrTN2?gv=true';
     window.PUZZLES_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzcmL2XsBY5nPyvnpxpYwgB8sTPtNDGx6TcXTF3IBytegmlloHjRkMaASVl2V1FWHMYlA/exec';
     
     // ⚠️ SETUP REQUIRED: Replace with your Google Apps Script web app URL after deploying chatbot-api.gs
@@ -394,10 +409,32 @@
   <script src="chatbot.js"></script>
   
   <script>
+    (function() {
+      if (!window.BOOKING_EMBED_URL) return;
+
+      const bookingFrame = document.getElementById('bookingFrame');
+      if (bookingFrame) {
+        bookingFrame.src = window.BOOKING_EMBED_URL;
+      }
+
+      document.querySelectorAll('[data-booking-external-link]').forEach((link) => {
+        link.href = window.BOOKING_EMBED_URL;
+      });
+    })();
+  </script>
+
+  <script>
     (function () {
       const form = document.getElementById('contactForm');
       const note = document.getElementById('formNote');
+      const submitBtn = form?.querySelector('button[type="submit"]');
       if (!form) return;
+
+      function setSubmitting(submitting) {
+        if (submitBtn) {
+          submitBtn.disabled = submitting;
+        }
+      }
   
       form.addEventListener('submit', async (e) => {
         // Allow pure HTML fallback if fetch is missing
@@ -413,12 +450,13 @@
         // Honeypot (bot-skydd)
         const hp = form.querySelector('input[name="hp"]')?.value || '';
         if (hp.trim() !== '') {
-          note.textContent = window.i18n ? window.i18n.t('formSuccess') : 'Tack! Ditt meddelande är skickat.'; // tyst OK
+          note.textContent = window.i18n ? window.i18n.t('formQueued') : 'Tack! Din förfrågan har skickats vidare.';
           form.reset();
           return;
         }
   
-          note.textContent = window.i18n ? window.i18n.t('formSending') : 'Skickar…';
+        note.textContent = window.i18n ? window.i18n.t('formSending') : 'Skickar…';
+        setSubmitting(true);
   
         try {
           await fetch(form.action, {
@@ -427,12 +465,14 @@
             body: new FormData(form)  // 🔑 FormData (no headers!)
           });
   
-          // Response is opaque in no-cors, so we optimistically show success.
-          note.textContent = window.i18n ? window.i18n.t('formSuccess') : 'Tack! Ditt meddelande är skickat. Jag återkommer inom 24 timmar.';
+          // Response is opaque in no-cors, so we can only confirm that the request was sent.
+          note.textContent = window.i18n ? window.i18n.t('formQueued') : 'Din förfrågan har skickats vidare. Om du inte får svar inom 24 timmar, mejla kodkompisreem@gmail.com.';
           form.reset();
         } catch (err) {
           console.error('Kontaktform undantag:', err);
           note.textContent = window.i18n ? window.i18n.t('formError') : 'Nätverksfel. Kontrollera din uppkoppling eller mejla kodkompisreem@gmail.com';
+        } finally {
+          setSubmitting(false);
         }
       });
     })();

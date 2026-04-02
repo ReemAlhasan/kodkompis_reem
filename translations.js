@@ -62,20 +62,62 @@ var translations = {
     // Booking (trimmed unused keys)
     bookingTitle: "📅 Boka en lektion",
     bookingIntro: "Välj ett ledigt datum och tid som passar dig. Alla lektioner sker online via Google Meet.",
+    bookingSelectTitle: "Välj datum och tid",
+    bookingSelectText: "Välj tid direkt i den inbäddade kalendern nedan. Bokningen sker utan att du lämnar sidan.",
+    bookingBtn: "🗓️ Öppna bokningen i ny flik",
+    bookingNote: "Om kalendern inte visas kan du öppna bokningen i en ny flik.",
+    bookingFlexTitle: "⏰ Flexibla tider",
+    bookingFlexText: "Boka när det passar dig. Alla lektioner sker online via Google Meet – tryggt och bekvämt.",
+    bookingDirectTitle: "✅ Direktbokning",
+    bookingDirectText: "Se lediga tider direkt i kalendern och boka med ett klick. Du får omedelbar bekräftelse via e-post.",
     
     // Puzzle (trimmed unused keys)
     puzzleTitle: "Dagens kodpussel 🧩",
     puzzleIntro: "Välj ålder och lös ett kort pussel. Svara direkt här och avslöja facit när du är klar!",
+    puzzleAge: "Ålder",
+    puzzleAgeLabel: "Välj åldersgrupp",
+    puzzleAge68: "6–8 år",
+    puzzleAge912: "9–12 år",
+    puzzleAge1316: "13–16 år",
+    puzzleBtnLoad: "Visa dagens pussel",
+    puzzlePlaceholder: "Skriv ditt svar här…",
+    puzzleAnswerLabel: "Ditt svar",
+    puzzleBtnCheck: "Kolla svar",
+    puzzleBtnHint: "Ledtråd",
+    puzzleBtnReveal: "Visa facit",
+    puzzleDefault: "Tryck på \"Visa dagens pussel\".",
     
     // Contact (trimmed unused keys)
     contactTitle: "Kontakta Reem",
     contactIntro: "Har du frågor eller vill du boka en plats? Fyll i formuläret så återkommer jag inom 24 timmar. Du kan också boka direkt via kalendern ovan.",
+    contactTopic: "Ämne",
+    contactTopicSelect: "Välj ämne…",
+    contactTopicProg: "Programmering",
+    contactTopicMath: "Mattehjälp",
+    contactTopicOther: "Övrigt",
+    contactParentName: "Förälders namn",
+    contactEmail: "E-post",
+    contactPhone: "Mobilnummer",
+    contactChildAge: "Barnets ålder",
+    contactMessage: "Meddelande",
+    contactMessagePlaceholder: "Berätta gärna vad ni är intresserade av…",
+    contactConsent: "Jag samtycker till att mina uppgifter används för att Reem ska kunna kontakta mig.",
+    contactBtn: "Skicka",
+    contactSafetyTitle: "Trygghet & Integritet",
+    contactSafety1: "Ingen kameraobligatorisk närvaro för barn",
+    contactSafety2: "Inspelning endast med förälders godkännande",
+    contactSafety3: "Tydliga trivselregler i varje grupp",
+    contactTrustTitle: "Varför välja Reem?",
+    contactTrust1: "Civilingenjörsstudent i Medieteknik & AI",
+    contactTrust2: "Personlig uppföljning och feedback",
+    contactTrust3: "Åldersanpassat innehåll",
     
     // Footer
     footerText: "© {year} Kodkompis Reem · Byggd med ♥ för nyfikenhet",
     
     // Theme
     themeToggle: "Byt till mörkt läge",
+    themeToggleLight: "Byt till ljust läge",
     
     // Language (trimmed unused keys)
     
@@ -85,6 +127,7 @@ var translations = {
     // Form messages
     formSending: "Skickar…",
     formSuccess: "Tack! Ditt meddelande är skickat. Jag återkommer inom 24 timmar.",
+    formQueued: "Din förfrågan har skickats vidare. Om du inte får svar inom 24 timmar, mejla kodkompisreem@gmail.com.",
     formError: "Nätverksfel. Kontrollera din uppkoppling eller mejla kodkompisreem@gmail.com",
     formInvalid: "Kolla så att alla fält är ifyllda korrekt.",
     
@@ -164,20 +207,62 @@ var translations = {
     // Booking (trimmed unused keys)
     bookingTitle: "📅 Book a lesson",
     bookingIntro: "Choose a date and time that works for you. All lessons take place online via Google Meet.",
+    bookingSelectTitle: "Choose date and time",
+    bookingSelectText: "Choose a time directly in the embedded calendar below. Booking happens without leaving the page.",
+    bookingBtn: "🗓️ Open booking in new tab",
+    bookingNote: "If the calendar does not appear, you can open the booking page in a new tab.",
+    bookingFlexTitle: "⏰ Flexible times",
+    bookingFlexText: "Book when it suits you. All lessons take place online via Google Meet – safe and convenient.",
+    bookingDirectTitle: "✅ Instant booking",
+    bookingDirectText: "See available times directly in the calendar and book with one click. You get immediate confirmation by email.",
     
     // Puzzle (trimmed unused keys)
     puzzleTitle: "Today's code puzzle 🧩",
     puzzleIntro: "Choose age and solve a short puzzle. Answer directly here and reveal the answer when you're done!",
+    puzzleAge: "Age",
+    puzzleAgeLabel: "Choose age group",
+    puzzleAge68: "6–8 years",
+    puzzleAge912: "9–12 years",
+    puzzleAge1316: "13–16 years",
+    puzzleBtnLoad: "Show today's puzzle",
+    puzzlePlaceholder: "Write your answer here…",
+    puzzleAnswerLabel: "Your answer",
+    puzzleBtnCheck: "Check answer",
+    puzzleBtnHint: "Hint",
+    puzzleBtnReveal: "Show answer",
+    puzzleDefault: "Click \"Show today's puzzle\".",
     
     // Contact (trimmed unused keys)
     contactTitle: "Contact Reem",
     contactIntro: "Do you have questions or want to book a spot? Fill in the form and I'll get back to you within 24 hours. You can also book directly via the calendar above.",
+    contactTopic: "Subject",
+    contactTopicSelect: "Choose subject…",
+    contactTopicProg: "Programming",
+    contactTopicMath: "Math help",
+    contactTopicOther: "Other",
+    contactParentName: "Parent's name",
+    contactEmail: "Email",
+    contactPhone: "Mobile number",
+    contactChildAge: "Child's age",
+    contactMessage: "Message",
+    contactMessagePlaceholder: "Tell me what you're interested in…",
+    contactConsent: "I consent to my information being used so Reem can contact me.",
+    contactBtn: "Send",
+    contactSafetyTitle: "Safety & Privacy",
+    contactSafety1: "No mandatory camera use for children",
+    contactSafety2: "Recording only with parent approval",
+    contactSafety3: "Clear wellbeing rules in every group",
+    contactTrustTitle: "Why choose Reem?",
+    contactTrust1: "Engineering student in Media Technology & AI",
+    contactTrust2: "Personal follow-up and feedback",
+    contactTrust3: "Age-appropriate content",
     
     // Footer
     footerText: "© {year} Kodkompis Reem · Built with ♥ for curiosity",
     
     // Theme
     themeToggle: "Switch to dark mode",
+    themeToggleLight: "Switch to light mode",
     
     // Language (trimmed unused keys)
     langEnglish: "English",
@@ -188,6 +273,7 @@ var translations = {
     // Form messages
     formSending: "Sending…",
     formSuccess: "Thank you! Your message has been sent. I'll get back to you within 24 hours.",
+    formQueued: "Your enquiry has been sent on. If you do not hear back within 24 hours, email kodkompisreem@gmail.com.",
     formError: "Network error. Check your connection or email kodkompisreem@gmail.com",
     formInvalid: "Please make sure all fields are filled in correctly.",
     
@@ -270,9 +356,9 @@ var translations = {
     bookingTitle: "📅 احجز درس",
     bookingIntro: "اختر تاريخاً ووقتاً يناسبك. جميع الدروس تتم عبر الإنترنت عبر Google Meet.",
     bookingSelectTitle: "اختر التاريخ والوقت",
-    bookingSelectText: "انقر على الزر أدناه لفتح تقويم الحجز حيث يمكنك رؤية جميع الأوقات المتاحة والحجز مباشرة.",
-    bookingBtn: "🗓️ افتح تقويم الحجز",
-    bookingNote: "يفتح الحجز في نافذة جديدة. بعد الحجز ستحصل على تأكيد عبر البريد الإلكتروني.",
+    bookingSelectText: "اختر الوقت مباشرة من التقويم المضمّن أدناه. تتم عملية الحجز دون مغادرة الصفحة.",
+    bookingBtn: "🗓️ افتح الحجز في علامة تبويب جديدة",
+    bookingNote: "إذا لم يظهر التقويم، يمكنك فتح صفحة الحجز في علامة تبويب جديدة.",
     bookingFlexTitle: "⏰ أوقات مرنة",
     bookingFlexText: "احجز عندما يناسبك. جميع الدروس تتم عبر الإنترنت عبر Google Meet – آمن ومريح.",
     bookingDirectTitle: "✅ حجز مباشر",
@@ -351,6 +437,7 @@ var translations = {
     // Form messages
     formSending: "جاري الإرسال…",
     formSuccess: "شكراً! تم إرسال رسالتك. سأعود إليك خلال 24 ساعة.",
+    formQueued: "تم إرسال طلبك. إذا لم يصلك رد خلال 24 ساعة، راسلي kodkompisreem@gmail.com.",
     formError: "خطأ في الشبكة. تحقق من اتصالك أو راسل kodkompisreem@gmail.com",
     formInvalid: "يرجى التأكد من ملء جميع الحقول بشكل صحيح.",
   }

@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function getReference() {
+    return (document.getElementById('reference')?.value || '').trim();
+  }
+
   // Set image alt text via i18n
   function updateImageAlt() {
     if (swishQr && window.i18n && typeof window.i18n.t === 'function') {
@@ -49,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   copyBtn.addEventListener('click', async () => {
-    const reference = (document.getElementById('reference')?.value || '').trim();
+    const reference = getReference();
     const txt = swishEl.textContent.trim() + (reference ? '\nMeddelande: ' + reference : '');
     const ok = await copyText(txt);
     if (ok) {
@@ -72,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const openSwishBtn = document.getElementById('openSwishBtn');
   if (openSwishBtn) {
     openSwishBtn.addEventListener('click', async () => {
-      const reference = (document.getElementById('reference')?.value || '').trim();
+      const reference = getReference();
       const txt = swishEl.textContent.trim() + (reference ? '\nMeddelande: ' + reference : '');
       const ok = await copyText(txt);
 
