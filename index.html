@@ -158,42 +158,6 @@
             </div>
           </article>
         </div>
-
-        <div class="cards learning-paths">
-          <article class="card path-card">
-            <span class="eyebrow" data-i18n="path1Eyebrow">Populärt startspår</span>
-            <h3 data-i18n="path1Title">Game Builder Journey</h3>
-            <p data-i18n="path1Text">För barn som vill gå från nyfiken nybörjare till att faktiskt bygga egna spel och förstå hur kod fungerar.</p>
-            <ul class="meta">
-              <li data-i18n="path1Item1">Scratch eller Python beroende på ålder</li>
-              <li data-i18n="path1Item2">Små projekt varje vecka</li>
-              <li data-i18n="path1Item3">Tydlig progression för både barn och förälder</li>
-            </ul>
-            <a class="btn ghost" href="#booking" data-i18n="pathBtn">Boka detta spår</a>
-          </article>
-          <article class="card path-card">
-            <span class="eyebrow" data-i18n="path2Eyebrow">För matteoro</span>
-            <h3 data-i18n="path2Title">Math Confidence Sprint</h3>
-            <p data-i18n="path2Text">För elever som behöver lugn, struktur och förklaringar som faktiskt fastnar istället för ännu fler uppgifter.</p>
-            <ul class="meta">
-              <li data-i18n="path2Item1">Fokus på förståelse före tempo</li>
-              <li data-i18n="path2Item2">Träning på exakt det som känns svårt</li>
-              <li data-i18n="path2Item3">En plan för vad eleven ska göra mellan lektionerna</li>
-            </ul>
-            <a class="btn ghost" href="#booking" data-i18n="pathBtn">Boka detta spår</a>
-          </article>
-          <article class="card path-card">
-            <span class="eyebrow" data-i18n="path3Eyebrow">För äldre elever</span>
-            <h3 data-i18n="path3Title">Teen Portfolio Lab</h3>
-            <p data-i18n="path3Text">För tonåringar som vill bygga riktiga projekt i Python eller webb och få något konkret att visa upp.</p>
-            <ul class="meta">
-              <li data-i18n="path3Item1">Projekt som känns moderna och relevanta</li>
-              <li data-i18n="path3Item2">Problemlösning, kodstruktur och presentation</li>
-              <li data-i18n="path3Item3">Bra för självkänsla, gymnasieval och framtida portfolio</li>
-            </ul>
-            <a class="btn ghost" href="#booking" data-i18n="pathBtn">Boka detta spår</a>
-          </article>
-        </div>
       </div>
     </section>
 
@@ -512,7 +476,7 @@
     <section id="pussel" class="section" aria-labelledby="pussel-title">
       <div class="container">
         <h2 id="pussel-title" data-i18n="puzzleTitle">Dagens kodpussel 🧩</h2>
-        <p data-i18n="puzzleIntro">Välj ålder och lös ett kort pussel. Svara direkt här och avslöja facit när du är klar!</p>
+        <p data-i18n="puzzleIntro">Välj nivå och få en kort kodutmaning som fungerar direkt på sidan. Perfekt för att testa tänket innan bokning.</p>
 
         <div class="puzzle-ui">
           <label for="age" data-i18n="puzzleAge">Ålder</label>
@@ -634,10 +598,9 @@
     </div>
   </footer>
 
-  <!-- Konfigurera endpoint för dagens pussel (Google Apps Script Web App) -->
+  <!-- Global config -->
   <script>
     window.BOOKING_EMBED_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1D7QFLmMnSTLvrbONnyTRTobxOdbEzDhsoy6MaF2e0MoCnRoppAxcz9-0uxheUBskpJbySrTN2?gv=true';
-    window.PUZZLES_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzcmL2XsBY5nPyvnpxpYwgB8sTPtNDGx6TcXTF3IBytegmlloHjRkMaASVl2V1FWHMYlA/exec';
     window.CONTACT_FORM_JSON_MODE = true;
     
     // ⚠️ SETUP REQUIRED: Replace with your Google Apps Script web app URL after deploying chatbot-api.gs
@@ -753,125 +716,181 @@
         sv: {
           summer: {
             eyebrow: 'Sommar 2026',
-            title: 'Sommarkurser med tydlig roadmap och direkt anmälan',
-            intro: 'För barn finns spår i Scratch och Python. För vuxna finns en praktisk Python-kurs från grunden. Alla kurser består av 12 livelektioner online.',
-            footnote: 'Barnkurserna kostar cirka 175 kr per lektion och vuxenkursen cirka 200 kr per lektion. Platserna kan bokas direkt eller anmälas via formuläret.',
+            title: 'Sommarkurser som går att förstå, följa och faktiskt slutföra',
+            intro: 'Tre tydliga 12-lektionsspår: Scratch för yngre barn, Python för barn/tonåringar och praktisk Python för vuxna. Fokus ligger på progression, trygg guidning och konkreta resultat – inte bara inspiration.',
+            footnote: 'Barnkurserna ligger på cirka 175 kr per lektion och vuxenspåret på cirka 200 kr per lektion. Du kan boka direkt eller fylla i formuläret för att anmäla intresse.',
             book: 'Boka plats',
             interest: 'Anmäl intresse',
-            roadmap: 'Se hela 12-lektionsplanen',
+            roadmap: 'Visa 12-lektionsplan',
             totalLabel: 'Total kurskostnad',
             lessonLabel: 'Per lektion',
             lessonsLabel: '12 livelektioner online',
-            bestForLabel: 'Passar för',
+            bestForLabel: 'Passar bäst för',
             cards: [
               {
                 audience: 'Barn 7–10 år',
-                badge: 'Mest lekfull',
+                badge: 'Scratch',
                 title: 'Scratch Summer Start',
-                subtitle: 'Bygg spel, berättelser och logiskt tänkande från grunden.',
-                bestFor: 'Barn som vill börja lugnt, kreativt och visuellt.',
+                subtitle: 'En kreativ start för barn som vill bygga spel och berättelser utan att fastna i svår syntax.',
+                bestFor: 'Barn som behöver en trygg, lekfull och tydlig introduktion.',
                 pricePerLesson: '175 kr',
                 total: '2100 kr',
                 topic: 'summer_kids',
                 message: 'Hej! Jag vill anmäla intresse för Scratch Summer Start (12 lektioner).',
-                bullets: ['Visuella block och tydliga mål varje vecka', 'Mini-projekt som går att visa upp hemma', 'Perfekt första steg innan vidare Python'],
-                roadmap: ['Lektion 1: Kom igång med Scratch och hitta i gränssnittet', 'Lektion 2: Rörelse, figurer och bakgrunder', 'Lektion 3: Händelser och interaktion', 'Lektion 4: Loopar och mönster', 'Lektion 5: Villkor och val i spelet', 'Lektion 6: Variabler och poängsystem', 'Lektion 7: Ljud, effekter och timing', 'Lektion 8: Designa ett eget minispel', 'Lektion 9: Felsökning på ett enkelt sätt', 'Lektion 10: Förbättra spelet med nya nivåer', 'Lektion 11: Eget slutprojekt', 'Lektion 12: Showcase och nästa steg mot Scratch/Python']
+                bullets: ['Visuell programmering som känns rolig direkt', 'Små spel och berättelser varje vecka', 'Bra första steg inför vidare Scratch eller Python'],
+                roadmap: ['Lektion 1: Hitta i Scratch och förstå block', 'Lektion 2: Figurer, rörelse och bakgrunder', 'Lektion 3: Händelser och klickbara objekt', 'Lektion 4: Loopar och mönster', 'Lektion 5: Villkor och val', 'Lektion 6: Variabler och poäng', 'Lektion 7: Ljud, timing och effekter', 'Lektion 8: Bygg ett eget minispel', 'Lektion 9: Felsökning på ett lugnt sätt', 'Lektion 10: Förbättra spelet med nivåer', 'Lektion 11: Eget slutprojekt', 'Lektion 12: Showcase och nästa steg']
               },
               {
-                audience: 'Barn 10–15 år',
-                badge: 'Scratch + Python',
-                title: 'Python Explorer för barn',
-                subtitle: 'För barn som vill gå från spelidéer till riktig kod i små, tydliga steg.',
-                bestFor: 'Barn och tonåringar som gillar spel, logik och problemlösning.',
+                audience: 'Barn & tonåringar 10–15 år',
+                badge: 'Python för unga',
+                title: 'Python Explorer',
+                subtitle: 'För elever som vill gå från spelidéer och logik till riktig kod i tydliga steg.',
+                bestFor: 'Barn och tonåringar som vill börja med Python utan att stressa.',
                 pricePerLesson: '175 kr',
                 total: '2100 kr',
                 topic: 'summer_kids',
-                message: 'Hej! Jag vill anmäla intresse för Python Explorer för barn (12 lektioner).',
-                bullets: ['Trygg introduktion till Python med roliga exempel', 'Spel, quiz och små automationer', 'Tydlig progression från grunder till eget projekt'],
-                roadmap: ['Lektion 1: Vad är Python och hur kör man kod?', 'Lektion 2: print, variabler och text', 'Lektion 3: input och enkla användarval', 'Lektion 4: if-satser och beslut', 'Lektion 5: loopar och repetition', 'Lektion 6: funktioner och återanvändbar kod', 'Lektion 7: listor och enkel datahantering', 'Lektion 8: bygg ett quiz eller ett litet spel', 'Lektion 9: felsöka som en programmerare', 'Lektion 10: förbättra projektet med fler funktioner', 'Lektion 11: eget projekt med handledning', 'Lektion 12: demo, återkoppling och nästa Python-steg']
+                message: 'Hej! Jag vill anmäla intresse för Python Explorer (12 lektioner).',
+                bullets: ['Python från grunden med roliga exempel', 'Quiz, spel och små projekt', 'Tydlig väg från första rad kod till eget miniprojekt'],
+                roadmap: ['Lektion 1: Starta Python och kör första programmet', 'Lektion 2: Variabler, text och print', 'Lektion 3: Input och användarval', 'Lektion 4: If-satser och logik', 'Lektion 5: Loopar och repetition', 'Lektion 6: Funktioner', 'Lektion 7: Listor och enkel data', 'Lektion 8: Bygg quiz eller minispel', 'Lektion 9: Felsökning som programmerare', 'Lektion 10: Bygg vidare på projektet', 'Lektion 11: Eget handledt projekt', 'Lektion 12: Demo och nästa steg']
               },
               {
                 audience: 'Vuxna nybörjare',
                 badge: 'Praktisk Python',
                 title: 'Python Summer Track för vuxna',
-                subtitle: 'En tydlig 12-lektionskurs för dig som vill förstå Python på riktigt och använda det praktiskt.',
-                bestFor: 'Vuxna som vill byta spår, automatisera, lära för jobbet eller bygga självsäkerhet i kod.',
+                subtitle: 'En rak och praktisk kurs för vuxna som vill förstå Python och använda det i vardagen, studier eller jobb.',
+                bestFor: 'Vuxna som vill lära sig från grunden med tydlig struktur.',
                 pricePerLesson: '200 kr',
                 total: '2400 kr',
                 topic: 'summer_adults',
                 message: 'Hej! Jag vill anmäla intresse för Python Summer Track för vuxna (12 lektioner).',
-                bullets: ['Från noll till fungerande små program', 'Fokus på praktisk förståelse i stället för stress', 'Automation, data och miniprojekt'],
-                roadmap: ['Lektion 1: miljö, editor och första Python-programmet', 'Lektion 2: variabler, typer och grundläggande operationer', 'Lektion 3: villkor och logiskt tänkande', 'Lektion 4: loopar och effektiv repetition', 'Lektion 5: funktioner och struktur', 'Lektion 6: listor, dictionaries och enkel datamodellering', 'Lektion 7: moduler och återanvändbar kod', 'Lektion 8: filhantering och enkel input/output', 'Lektion 9: praktisk automation i vardagen', 'Lektion 10: data, API eller enkel analys', 'Lektion 11: eget miniprojekt med coachning', 'Lektion 12: roadmap efter sommaren och nästa steg']
+                bullets: ['Lugn start från noll', 'Automation, data och små riktiga case', 'Ett eget miniprojekt innan kursen är slut'],
+                roadmap: ['Lektion 1: Miljö, editor och första programmet', 'Lektion 2: Datatyper, variabler och operatorer', 'Lektion 3: If-satser och logik', 'Lektion 4: Loopar', 'Lektion 5: Funktioner och struktur', 'Lektion 6: Listor och dictionaries', 'Lektion 7: Moduler', 'Lektion 8: Filhantering', 'Lektion 9: Praktisk automation', 'Lektion 10: Data/API eller enkel analys', 'Lektion 11: Eget miniprojekt', 'Lektion 12: Nästa steg efter sommaren']
               }
             ]
           },
           panels: {
-            title: 'Prova upplägget direkt',
-            intro: 'Två snabba interaktiva paneler som visar hur programmering och matte kan se ut hos Kodkompis Reem innan du bokar.',
+            title: 'Testa upplägget direkt',
+            intro: 'Här får besökaren känna hur undervisningen kan se ut, inte bara läsa om den. Klicka på alternativen och se ett visuellt upplägg direkt.',
             code: {
-              title: 'Interaktiv programmeringspanel',
-              intro: 'Välj ett spår och se vilket projektupplägg som passar bäst som första steg.',
-              label: 'Välj programmeringsspår',
-              button: 'Visa projektupplägg',
-              cta: 'Boka detta spår',
-              options: [
-                { value: 'scratch', label: 'Scratch för barn', resultTitle: 'Första projektet: ett klickbart spel i Scratch', resultText: 'Här ligger fokus på att förstå logik, händelser och att våga testa sig fram.', bullets: ['Bygg en figur som rör sig och reagerar', 'Lägg till poäng, ljud och enkel feedback', 'Avsluta med ett spel som går att visa upp direkt'] },
-                { value: 'kids-python', label: 'Python för barn/tonåringar', resultTitle: 'Första projektet: quiz eller minispel i Python', resultText: 'Perfekt för elever som vill skriva riktig kod men fortfarande ha tydlig guidning.', bullets: ['Förstå input, if-satser och loopar', 'Bygg ett spel eller quiz med egen logik', 'Få en tydlig väg vidare mot större projekt'] },
-                { value: 'adult-python', label: 'Python för vuxna', resultTitle: 'Första projektet: ett praktiskt Python-script', resultText: 'Bra för vuxna som vill lära sig kod för jobb, automation eller personlig utveckling.', bullets: ['Skriv kod från grunden utan onödig stress', 'Arbeta med tydliga exempel från vardagen', 'Avsluta med ett litet script du faktiskt kan använda'] }
-              ]
-            },
-            math: {
-              title: 'Interaktiv mattepanel',
-              intro: 'Välj nivå och mål så får du en konkret bild av hur mattehjälpen läggs upp.',
-              levelLabel: 'Välj nivå',
-              goalLabel: 'Välj mål',
-              button: 'Visa matteplan',
-              cta: 'Boka mattehjälp',
-              levels: [
-                { value: 'school', label: 'Grundskola', results: { confidence: { title: 'Plan för tryggare mattevardag', text: 'Vi börjar med grunderna och bygger rutin utan att skapa mer stress.', bullets: ['Kartlägg vad som känns svårt', 'Träna ett område i taget', 'Få små hemuppgifter som känns rimliga'] }, exam: { title: 'Plan inför prov och nationella moment', text: 'Här ligger fokus på att förstå metoderna och träna smart, inte bara snabbt.', bullets: ['Välj ut de viktigaste momenten först', 'Träna med exempel och förklaringar', 'Avsluta med repetition och kontrollfrågor'] }, catchup: { title: 'Plan för att komma ikapp', text: 'När mycket har samlats upp behövs struktur, prioritering och lugna steg framåt.', bullets: ['Sortera vad som är viktigast nu', 'Bygg om grunderna där det behövs', 'Skapa en tydlig plan vecka för vecka'] } } },
-                { value: 'highschool', label: 'Gymnasium', results: { confidence: { title: 'Gymnasieplan för bättre förståelse', text: 'Vi jobbar med begrepp, metoder och varför saker fungerar – inte bara facit.', bullets: ['Stärk algebra, funktioner och problemlösning', 'Lär dig hur du tänker i flera steg', 'Få bättre kontroll inför lektioner och prov'] }, exam: { title: 'Provfokus med struktur', text: 'Bra för Matte 1–4 när du behöver tydlig genomgång och smart repetition.', bullets: ['Bryt ned kursen i tydliga block', 'Träna gamla uppgifter med förklaring', 'Bygg en enkel provstrategi'] }, catchup: { title: 'Ikapp-plan för gymnasiematte', text: 'När grunderna skaver blir resten svårt. Därför bygger vi upp det i rätt ordning.', bullets: ['Identifiera kunskapsglapp snabbt', 'Stärk basen innan tempot ökar', 'Arbeta med tydliga mål varje vecka'] } } },
-                { value: 'adult', label: 'Vuxenstudier / universitet', results: { confidence: { title: 'Plan för vuxna som vill förstå på riktigt', text: 'Passar dig som läser upp matte, studerar vidare eller vill känna dig tryggare i analys och algebra.', bullets: ['Fokusera på förståelse före hastighet', 'Koppla teori till tydliga exempel', 'Få struktur mellan lektionerna'] }, exam: { title: 'Plan inför tenta eller kursprov', text: 'Vi prioriterar rätt områden, tränar metodiskt och ser till att du vet hur du ska lägga tiden.', bullets: ['Välj de mest avgörande momenten först', 'Arbeta med typuppgifter och resonemang', 'Få återkoppling på hur du tänker'] }, catchup: { title: 'Plan för att komma tillbaka in i matematiken', text: 'Bra om det var länge sedan du läste matte eller om kursen redan har dragit iväg.', bullets: ['Starta om på rätt nivå utan prestige', 'Bygg en fungerande studierutin', 'Ta dig fram steg för steg med stöd'] } } }
+              eyebrow: 'Programmering',
+              title: 'Bygg ditt första kodspår',
+              intro: 'Välj mål och nivå så visas ett första upplägg med projekt, fokus och nästa steg.',
+              step1: '1. Välj spår',
+              step2: '2. Välj mål',
+              cta: 'Boka detta upplägg',
+              tracks: [
+                { value: 'scratch', label: 'Scratch', icon: '🧩', audience: 'Barn 7–10 år' },
+                { value: 'youth-python', label: 'Python för unga', icon: '🎮', audience: '10–15 år' },
+                { value: 'adult-python', label: 'Python för vuxna', icon: '🐍', audience: 'Vuxna nybörjare' }
               ],
               goals: [
-                { value: 'confidence', label: 'Förstå grunderna' },
-                { value: 'exam', label: 'Prov / tenta' },
-                { value: 'catchup', label: 'Komma ikapp' }
-              ]
+                { value: 'play', label: 'Bygga spel', icon: '🎯' },
+                { value: 'logic', label: 'Förstå logik', icon: '🧠' },
+                { value: 'practical', label: 'Praktiskt användbar kod', icon: '⚙️' }
+              ],
+              plans: {
+                'scratch:play': { title: 'Starta med Scratch-spel', text: 'Bra för barn som behöver snabb känsla av “jag kan bygga något själv”.', project: 'Första projekt: ett klickbart minispel', bullets: ['Figurer, rörelse och poäng', 'Tydligt veckomål', 'Bygg något att visa hemma'], steps: ['Välj figur och bana', 'Lägg till rörelse och regler', 'Testa och förbättra spelet'] },
+                'scratch:logic': { title: 'Scratch med fokus på tänk', text: 'Bra när målet är att förstå villkor, loopar och stegvis problemlösning.', project: 'Första projekt: logikspel med regler', bullets: ['Loopar och villkor', 'Mindre stress, mer förståelse', 'Bra bro till senare Python'], steps: ['Bygg ett mönster', 'Lägg till regler', 'Testa vad som händer när något ändras'] },
+                'scratch:practical': { title: 'Kreativ Scratch-start', text: 'Bra för barn som vill skapa berättelser, animationer och enkla spel.', project: 'Första projekt: interaktiv berättelse', bullets: ['Passar kreativa elever', 'Tydlig struktur', 'Bra första kontakt med kod'], steps: ['Välj scen', 'Skapa händelser', 'Gör berättelsen klickbar'] },
+                'youth-python:play': { title: 'Python med spelkänsla', text: 'För unga som vill börja med riktig kod genom quiz, textspel och små projekt.', project: 'Första projekt: textbaserat spel eller quiz', bullets: ['Python utan onödig teori', 'Snabb känsla av progression', 'Perfekt för nyfikna tonåringar'], steps: ['Lär dig input', 'Lägg in villkor', 'Gör spelet roligare med fler val'] },
+                'youth-python:logic': { title: 'Python för logik och struktur', text: 'Bra när eleven vill förstå hur kod verkligen fungerar steg för steg.', project: 'Första projekt: problemlösare i Python', bullets: ['If-satser och loopar', 'Tydlig felsökning', 'Bygger stark grund'], steps: ['Skriv första reglerna', 'Testa olika fall', 'Förbättra och städa koden'] },
+                'youth-python:practical': { title: 'Python för riktiga små projekt', text: 'Ett bra spår för tonåringar som vill bygga något konkret att visa upp.', project: 'Första projekt: enkel app eller smart verktyg', bullets: ['Kod som känns modern', 'Bra inför portfölj eller gymnasiet', 'Från idé till fungerande resultat'], steps: ['Välj projektidé', 'Bygg första versionen', 'Lägg till förbättringar'] },
+                'adult-python:play': { title: 'Python på ett lättsamt sätt', text: 'För vuxna som vill börja utan prestationspress men ändå bygga något direkt.', project: 'Första projekt: litet quiz eller smart terminalverktyg', bullets: ['Tydlig start utan förkunskaper', 'Roligare än ren teori', 'Bra för att komma över starttröskeln'], steps: ['Skriv första programmet', 'Lägg till val och logik', 'Testa och justera'] },
+                'adult-python:logic': { title: 'Python med stark grund', text: 'För vuxna som vill förstå logiken ordentligt innan de går vidare till data eller automation.', project: 'Första projekt: enkel problemlösare eller kalkylhjälp', bullets: ['Datatyper, villkor och funktioner', 'Struktur som håller', 'Bra bas för vidare kurs'], steps: ['Bygg en tydlig struktur', 'Bryt ut i funktioner', 'Testa flera scenarier'] },
+                'adult-python:practical': { title: 'Praktisk Python för vardag och jobb', text: 'Det mest relevanta spåret för vuxna som vill använda Python direkt.', project: 'Första projekt: filhantering eller enkel automation', bullets: ['Kod som löser riktiga små problem', 'Passar jobb, studier eller sidoprojekt', 'Ger tydlig känsla av nytta'], steps: ['Identifiera ett litet problem', 'Automatisera första steget', 'Utöka till ett användbart verktyg'] }
+              }
+            },
+            math: {
+              eyebrow: 'Matte',
+              title: 'Se hur mattehjälpen läggs upp',
+              intro: 'Välj nivå och behov så visas ett konkret första upplägg med fokus, upplägg och nästa steg.',
+              step1: '1. Välj nivå',
+              step2: '2. Välj behov',
+              cta: 'Boka mattehjälp',
+              levels: [
+                { value: 'school', label: 'Grundskola', icon: '📘', audience: 'Åk 1–9' },
+                { value: 'highschool', label: 'Gymnasium', icon: '📐', audience: 'Matte 1–4' },
+                { value: 'adult', label: 'Vuxen / universitet', icon: '🎓', audience: 'Komvux, universitet' }
+              ],
+              needs: [
+                { value: 'confidence', label: 'Bygga förståelse', icon: '🌱' },
+                { value: 'exam', label: 'Prov / tenta', icon: '📝' },
+                { value: 'catchup', label: 'Komma ikapp', icon: '🚀' }
+              ],
+              plans: {
+                'school:confidence': { title: 'Lugn grundplan för yngre elever', text: 'Fokus ligger på att förstå innan tempot ökar.', focus: ['Räknesätt och begrepp', 'Små steg som känns möjliga', 'Trygg repetition'], steps: ['Se var det fastnar', 'Förklara med enkla exempel', 'Skicka hem en kort plan'] },
+                'school:exam': { title: 'Provfokus för grundskolan', text: 'Vi väljer ut det viktigaste först så eleven inte drunknar i allt samtidigt.', focus: ['Vanliga uppgiftstyper', 'Tydliga metoder', 'Mindre stress inför prov'], steps: ['Prioritera rätt områden', 'Öva med stöd', 'Repetera smart'] },
+                'school:catchup': { title: 'Komma ikapp-plan', text: 'Bra när matte har blivit tung och eleven behöver struktur och riktning igen.', focus: ['Kartlägg luckor', 'Bygg upp grunden', 'Veckovis små delmål'], steps: ['Identifiera luckor', 'Träna ett område i taget', 'Följ upp nästa vecka'] },
+                'highschool:confidence': { title: 'Gymnasiematte med riktig förståelse', text: 'Mindre stress, mer grepp om metoder och varför de fungerar.', focus: ['Algebra och funktioner', 'Problemlösning', 'Metodförståelse'], steps: ['Bryt ner området', 'Träna med exempel', 'Bygg upp självständighet'] },
+                'highschool:exam': { title: 'Provplan för Matte 1–4', text: 'Bra när det är mycket stoff och man behöver tydlig prioritering.', focus: ['Provliknande uppgifter', 'Vanliga fallgropar', 'Genomgång av lösningsgång'], steps: ['Välj viktigaste delarna', 'Jobba med provfrågor', 'Finslipa strategi'] },
+                'highschool:catchup': { title: 'Kom ikapp innan nästa moment', text: 'När grunden svajar blir allt ovanpå svårt. Här bygger vi om rätt del först.', focus: ['Täta kunskapsluckor', 'Kortare tydliga delmål', 'Starkare studierutin'], steps: ['Hitta roten till problemet', 'Träna strukturerat', 'Följ upp nästa steg'] },
+                'adult:confidence': { title: 'Matte för vuxna som vill förstå på riktigt', text: 'Passar vuxna som återvänder till matte och vill ha lugna, tydliga förklaringar.', focus: ['Begreppsförståelse', 'Tydliga exempel', 'Plan mellan lektionerna'], steps: ['Starta på rätt nivå', 'Bygg upp förståelsen', 'Skapa hållbar rutin'] },
+                'adult:exam': { title: 'Plan inför tenta eller kursprov', text: 'Ett fokuserat upplägg för vuxenstudier, komvux eller universitetsmatte.', focus: ['Rätt prioritering', 'Typuppgifter', 'Feedback på lösningsmetod'], steps: ['Välj viktigaste områdena', 'Öva med struktur', 'Justera inför provet'] },
+                'adult:catchup': { title: 'Tillbaka in i matematiken', text: 'Bra när det gått tid sedan man läste matte eller när tempot i kursen blivit för högt.', focus: ['Repetition av basen', 'Tydlig ordning', 'Mindre känsla av kaos'], steps: ['Kartlägg nuläge', 'Börja med rätt grund', 'Bygg steg för steg'] }
+              }
             }
           }
         },
         en: {
           summer: {
-            eyebrow: 'Summer 2026', title: 'Summer courses with a clear roadmap and direct registration', intro: 'Children can choose Scratch or Python. Adults can join a practical Python-from-scratch track. Every course includes 12 live online lessons.', footnote: 'Children’s courses are about SEK 175 per lesson and the adult Python course is about SEK 200 per lesson. You can book directly or register interest through the form.', book: 'Book a spot', interest: 'Register interest', roadmap: 'See the full 12-lesson roadmap', totalLabel: 'Total course price', lessonLabel: 'Per lesson', lessonsLabel: '12 live online lessons', bestForLabel: 'Best for', cards: [
-              { audience: 'Children 7–10', badge: 'Most playful', title: 'Scratch Summer Start', subtitle: 'Build games, stories and logical thinking from the ground up.', bestFor: 'Children who want a calm, creative and visual start.', pricePerLesson: 'SEK 175', total: 'SEK 2100', topic: 'summer_kids', message: 'Hi! I want to register interest in Scratch Summer Start (12 lessons).', bullets: ['Visual blocks and clear weekly goals', 'Mini-projects to show at home', 'A perfect first step before more Python'], roadmap: ['Lesson 1: Get started with Scratch and the interface', 'Lesson 2: Movement, characters and backgrounds', 'Lesson 3: Events and interaction', 'Lesson 4: Loops and patterns', 'Lesson 5: Conditions and game choices', 'Lesson 6: Variables and score systems', 'Lesson 7: Sound, effects and timing', 'Lesson 8: Design your own mini game', 'Lesson 9: Simple debugging', 'Lesson 10: Improve the game with more levels', 'Lesson 11: Final project', 'Lesson 12: Showcase and next steps'] },
-              { audience: 'Children 10–15', badge: 'Scratch + Python', title: 'Python Explorer for kids', subtitle: 'For students who want to move from game ideas to real code in small, clear steps.', bestFor: 'Children and teens who enjoy games, logic and problem-solving.', pricePerLesson: 'SEK 175', total: 'SEK 2100', topic: 'summer_kids', message: 'Hi! I want to register interest in Python Explorer for kids (12 lessons).', bullets: ['A safe introduction to Python', 'Games, quizzes and small automations', 'Clear progression toward a personal project'], roadmap: ['Lesson 1: What is Python and how do you run code?', 'Lesson 2: print, variables and text', 'Lesson 3: input and user choices', 'Lesson 4: if statements and decisions', 'Lesson 5: loops and repetition', 'Lesson 6: functions and reusable code', 'Lesson 7: lists and simple data handling', 'Lesson 8: build a quiz or mini game', 'Lesson 9: debug like a programmer', 'Lesson 10: improve the project', 'Lesson 11: guided personal project', 'Lesson 12: demo, feedback and next Python steps'] },
-              { audience: 'Adult beginners', badge: 'Practical Python', title: 'Python Summer Track for adults', subtitle: 'A clear 12-lesson course for adults who want to understand Python for real and use it in practice.', bestFor: 'Adults who want to switch track, automate work, learn for their job or build coding confidence.', pricePerLesson: 'SEK 200', total: 'SEK 2400', topic: 'summer_adults', message: 'Hi! I want to register interest in Python Summer Track for adults (12 lessons).', bullets: ['From zero to working mini-programs', 'Understanding before pressure', 'Automation, data and mini-projects'], roadmap: ['Lesson 1: environment, editor and first program', 'Lesson 2: variables, types and operations', 'Lesson 3: conditions and logic', 'Lesson 4: loops and repetition', 'Lesson 5: functions and structure', 'Lesson 6: lists, dictionaries and simple data modelling', 'Lesson 7: modules and reusable code', 'Lesson 8: files and basic input/output', 'Lesson 9: practical automation', 'Lesson 10: data, API or simple analysis', 'Lesson 11: guided mini-project', 'Lesson 12: post-summer roadmap and next steps'] }
-            ] },
+            eyebrow: 'Summer 2026',
+            title: 'Summer courses with a clear roadmap and a realistic pace',
+            intro: 'Three 12-lesson tracks: Scratch for younger children, Python for kids/teens, and practical Python for adults. The focus is clear progress, calm guidance, and concrete results.',
+            footnote: 'Children’s courses are about 175 SEK per lesson and the adult track is about 200 SEK per lesson. You can book directly or register interest through the form.',
+            book: 'Book a spot', interest: 'Register interest', roadmap: 'Show 12-lesson roadmap', totalLabel: 'Total price', lessonLabel: 'Per lesson', lessonsLabel: '12 live online lessons', bestForLabel: 'Best for',
+            cards: []
+          },
           panels: {
-            title: 'Try the learning setup right now', intro: 'Two quick interactive panels that show how programming and math can look with Kodkompis Reem before you book.', code: { title: 'Interactive programming panel', intro: 'Choose a track and see what a good first project would look like.', label: 'Choose a coding track', button: 'Show project plan', cta: 'Book this track', options: [ { value: 'scratch', label: 'Scratch for children', resultTitle: 'First project: a clickable Scratch game', resultText: 'The focus is on logic, events and building confidence through play.', bullets: ['Create a character that moves and reacts', 'Add points, sounds and simple feedback', 'Finish with a game that can be shown right away'] }, { value: 'kids-python', label: 'Python for children/teens', resultTitle: 'First project: a quiz or mini-game in Python', resultText: 'Great for students who want real code with clear guidance.', bullets: ['Understand input, if statements and loops', 'Build a game or quiz with your own logic', 'Get a clear path toward larger projects'] }, { value: 'adult-python', label: 'Python for adults', resultTitle: 'First project: a practical Python script', resultText: 'Perfect for adults learning for work, automation or personal growth.', bullets: ['Write code from scratch without unnecessary stress', 'Work with clear everyday examples', 'Finish with a script you can actually use'] } ] }, math: { title: 'Interactive math panel', intro: 'Choose a level and goal to see how the math support is structured.', levelLabel: 'Choose level', goalLabel: 'Choose goal', button: 'Show math plan', cta: 'Book math help', levels: [ { value: 'school', label: 'Compulsory school', results: { confidence: { title: 'Plan for calmer everyday math', text: 'We start with the basics and build routine without creating more stress.', bullets: ['Map what feels difficult', 'Practice one area at a time', 'Use small home tasks that feel manageable'] }, exam: { title: 'Plan before tests', text: 'The focus is on understanding methods and practicing smart.', bullets: ['Pick the most important areas first', 'Practice with examples and explanations', 'Finish with repetition and check questions'] }, catchup: { title: 'Catch-up plan', text: 'When a lot has piled up, you need structure, priorities and calm steps forward.', bullets: ['Sort what matters most right now', 'Rebuild weak foundations', 'Create a clear week-by-week plan'] } } }, { value: 'highschool', label: 'Upper secondary school', results: { confidence: { title: 'A plan for stronger understanding', text: 'We work with concepts, methods and why things work—not just answers.', bullets: ['Strengthen algebra, functions and problem-solving', 'Learn to think in several steps', 'Gain more control before lessons and tests'] }, exam: { title: 'Test-focused structure', text: 'Useful for Math 1–4 when you need clear explanations and smart repetition.', bullets: ['Break the course into clear blocks', 'Practice previous questions with explanation', 'Build a simple test strategy'] }, catchup: { title: 'Catch-up plan for upper secondary math', text: 'When the basics are shaky, everything else gets harder. We rebuild in the right order.', bullets: ['Identify knowledge gaps quickly', 'Strengthen the base before increasing pace', 'Work with clear weekly goals'] } } }, { value: 'adult', label: 'Adult studies / university', results: { confidence: { title: 'A plan for adults who want real understanding', text: 'Great for adults returning to math, studying further or needing confidence in calculus and algebra.', bullets: ['Focus on understanding before speed', 'Connect theory to clear examples', 'Get structure between lessons'] }, exam: { title: 'Plan before exams or course tests', text: 'We prioritize the right areas, work methodically and make sure you know how to spend your time.', bullets: ['Choose the most important topics first', 'Work through typical problems and reasoning', 'Get feedback on how you think'] }, catchup: { title: 'Plan for getting back into math', text: 'Useful if it has been a long time since you studied math or the course has already moved too fast.', bullets: ['Restart at the right level without pressure', 'Build a study routine that actually works', 'Move forward step by step with support'] } } } ], goals: [ { value: 'confidence', label: 'Understand the basics' }, { value: 'exam', label: 'Test / exam' }, { value: 'catchup', label: 'Catch up' } ] } }
+            title: 'Try the teaching style directly',
+            intro: 'Instead of only reading about the offer, visitors can click through a visual preview of how programming and math support are structured.',
+            code: { eyebrow: 'Programming', title: 'Build your first coding path', intro: 'Pick a track and a goal to see a realistic first setup.', step1: '1. Pick a track', step2: '2. Pick a goal', cta: 'Book this setup', tracks: [], goals: [], plans: {} },
+            math: { eyebrow: 'Math', title: 'See how the math support is structured', intro: 'Pick a level and a need to see a concrete first plan.', step1: '1. Pick a level', step2: '2. Pick a need', cta: 'Book math support', levels: [], needs: [], plans: {} }
+          }
         },
         ar: {
           summer: {
-            eyebrow: 'صيف 2026', title: 'دورات صيفية بخطة واضحة وتسجيل مباشر', intro: 'للأطفال مسارات في Scratch وPython، وللبالغين مسار عملي في Python من الصفر. كل دورة تضم 12 درساً مباشراً عبر الإنترنت.', footnote: 'سعر درس الأطفال حوالي 175 كرون للدرس، وسعر درس البالغين حوالي 200 كرون للدرس. يمكن الحجز مباشرة أو إرسال طلب اهتمام عبر النموذج.', book: 'احجز مقعداً', interest: 'سجل اهتمامك', roadmap: 'عرض خطة الدروس الـ12 كاملة', totalLabel: 'السعر الكامل للدورة', lessonLabel: 'سعر الدرس', lessonsLabel: '12 درساً مباشراً عبر الإنترنت', bestForLabel: 'مناسب لـ', cards: [
-              { audience: 'الأطفال 7–10 سنوات', badge: 'الأكثر مرحاً', title: 'Scratch Summer Start', subtitle: 'بناء ألعاب وقصص وتفكير منطقي من الصفر.', bestFor: 'الأطفال الذين يريدون بداية هادئة وإبداعية وبصرية.', pricePerLesson: '175 كرون', total: '2100 كرون', topic: 'summer_kids', message: 'مرحباً! أريد تسجيل اهتمام بدورة Scratch Summer Start المكوّنة من 12 درساً.', bullets: ['أهداف أسبوعية واضحة باستخدام البلوكات', 'مشاريع صغيرة يمكن عرضها في المنزل', 'بداية ممتازة قبل الانتقال إلى Python'], roadmap: ['الدرس 1: التعرف على Scratch والواجهة', 'الدرس 2: الحركة والشخصيات والخلفيات', 'الدرس 3: الأحداث والتفاعل', 'الدرس 4: الحلقات والأنماط', 'الدرس 5: الشروط والاختيارات', 'الدرس 6: المتغيرات ونظام النقاط', 'الدرس 7: الأصوات والتأثيرات والتوقيت', 'الدرس 8: تصميم لعبة صغيرة', 'الدرس 9: تصحيح الأخطاء بطريقة بسيطة', 'الدرس 10: تطوير اللعبة بمستويات إضافية', 'الدرس 11: مشروع نهائي', 'الدرس 12: عرض الأعمال والخطوة التالية'] },
-              { audience: 'الأطفال 10–15 سنة', badge: 'Scratch + Python', title: 'Python Explorer للأطفال', subtitle: 'للأطفال الذين يريدون الانتقال من أفكار الألعاب إلى كود حقيقي بخطوات واضحة.', bestFor: 'الأطفال والمراهقون الذين يحبون الألعاب والمنطق وحل المشكلات.', pricePerLesson: '175 كرون', total: '2100 كرون', topic: 'summer_kids', message: 'مرحباً! أريد تسجيل اهتمام بدورة Python Explorer للأطفال المكوّنة من 12 درساً.', bullets: ['مقدمة آمنة إلى Python', 'ألعاب واختبارات وأتمتة صغيرة', 'تدرج واضح نحو مشروع شخصي'], roadmap: ['الدرس 1: ما هي Python وكيف نشغّل الكود؟', 'الدرس 2: الطباعة والمتغيرات والنصوص', 'الدرس 3: الإدخال واختيارات المستخدم', 'الدرس 4: الجمل الشرطية', 'الدرس 5: الحلقات والتكرار', 'الدرس 6: الدوال وإعادة استخدام الكود', 'الدرس 7: القوائم ومعالجة البيانات البسيطة', 'الدرس 8: بناء اختبار أو لعبة صغيرة', 'الدرس 9: تصحيح الأخطاء مثل المبرمج', 'الدرس 10: تطوير المشروع', 'الدرس 11: مشروع شخصي بإشراف', 'الدرس 12: عرض المشروع والتغذية الراجعة والخطوات التالية'] },
-              { audience: 'مبتدئون بالغون', badge: 'Python عملي', title: 'Python Summer Track للبالغين', subtitle: 'دورة واضحة من 12 درساً للبالغين الذين يريدون فهم Python واستخدامها عملياً.', bestFor: 'البالغون الذين يريدون تغيير المسار أو الأتمتة أو التعلم للعمل أو بناء الثقة في البرمجة.', pricePerLesson: '200 كرون', total: '2400 كرون', topic: 'summer_adults', message: 'مرحباً! أريد تسجيل اهتمام بدورة Python Summer Track للبالغين المكوّنة من 12 درساً.', bullets: ['من الصفر إلى برامج صغيرة تعمل فعلاً', 'فهم عملي بدون ضغط زائد', 'أتمتة وبيانات ومشاريع صغيرة'], roadmap: ['الدرس 1: البيئة والمحرر وأول برنامج', 'الدرس 2: المتغيرات والأنواع والعمليات', 'الدرس 3: الشروط والمنطق', 'الدرس 4: الحلقات والتكرار', 'الدرس 5: الدوال وبنية الكود', 'الدرس 6: القوائم والقواميس ونمذجة البيانات البسيطة', 'الدرس 7: الوحدات وإعادة استخدام الكود', 'الدرس 8: الملفات والإدخال والإخراج', 'الدرس 9: أتمتة عملية في الحياة اليومية', 'الدرس 10: البيانات أو API أو تحليل بسيط', 'الدرس 11: مشروع صغير بإشراف', 'الدرس 12: خريطة ما بعد الصيف والخطوات التالية'] }
-            ] },
+            eyebrow: 'صيف 2026',
+            title: 'دورات صيفية بخطة واضحة وإيقاع مناسب',
+            intro: 'ثلاثة مسارات من 12 درساً: سكراتش للأطفال الأصغر، بايثون للأطفال والمراهقين، وبايثون عملي للكبار. التركيز على التدرج الواضح والشرح الهادئ والنتائج الملموسة.',
+            footnote: 'دورات الأطفال حوالي 175 كرونة لكل درس، ومسار الكبار حوالي 200 كرونة لكل درس. يمكنك الحجز مباشرة أو إرسال طلب اهتمام عبر النموذج.',
+            book: 'احجز مكاناً', interest: 'سجل اهتمامك', roadmap: 'اعرض خطة 12 درساً', totalLabel: 'إجمالي السعر', lessonLabel: 'لكل درس', lessonsLabel: '12 درساً مباشراً عبر الإنترنت', bestForLabel: 'يناسب أكثر',
+            cards: []
+          },
           panels: {
-            title: 'جرّب أسلوب التعلم الآن', intro: 'لوحتان تفاعليتان سريعتان توضحان كيف يمكن أن تبدو البرمجة والرياضيات مع Kodkompis Reem قبل الحجز.', code: { title: 'لوحة البرمجة التفاعلية', intro: 'اختر المسار لترى كيف يمكن أن يبدو أول مشروع مناسب.', label: 'اختر مسار البرمجة', button: 'اعرض خطة المشروع', cta: 'احجز هذا المسار', options: [ { value: 'scratch', label: 'Scratch للأطفال', resultTitle: 'المشروع الأول: لعبة قابلة للنقر في Scratch', resultText: 'التركيز هنا على المنطق والأحداث وبناء الثقة من خلال اللعب.', bullets: ['إنشاء شخصية تتحرك وتتفاعل', 'إضافة نقاط وأصوات وتغذية راجعة بسيطة', 'إنهاء لعبة يمكن عرضها مباشرة'] }, { value: 'kids-python', label: 'Python للأطفال والمراهقين', resultTitle: 'المشروع الأول: اختبار أو لعبة صغيرة في Python', resultText: 'مناسب للطلاب الذين يريدون كتابة كود حقيقي مع إرشاد واضح.', bullets: ['فهم الإدخال والشروط والحلقات', 'بناء لعبة أو اختبار بمنطقك الخاص', 'الحصول على طريق واضح نحو مشاريع أكبر'] }, { value: 'adult-python', label: 'Python للبالغين', resultTitle: 'المشروع الأول: سكربت Python عملي', resultText: 'ممتاز للبالغين الذين يتعلمون من أجل العمل أو الأتمتة أو التطور الشخصي.', bullets: ['كتابة الكود من الصفر بدون ضغط غير ضروري', 'العمل بأمثلة واضحة من الحياة اليومية', 'الانتهاء بسكربت يمكنك استخدامه فعلاً'] } ] }, math: { title: 'لوحة الرياضيات التفاعلية', intro: 'اختر المستوى والهدف لترى كيف يتم ترتيب دعم الرياضيات.', levelLabel: 'اختر المستوى', goalLabel: 'اختر الهدف', button: 'اعرض خطة الرياضيات', cta: 'احجز درس رياضيات', levels: [ { value: 'school', label: 'المدرسة الأساسية', results: { confidence: { title: 'خطة لراحة أكبر مع الرياضيات', text: 'نبدأ بالأساسيات ونبني روتيناً بدون زيادة الضغط.', bullets: ['تحديد ما الذي يبدو صعباً', 'التدرب على مجال واحد في كل مرة', 'واجبات منزلية صغيرة ومناسبة'] }, exam: { title: 'خطة قبل الاختبارات', text: 'التركيز على فهم الطرق والتدرب بذكاء.', bullets: ['اختيار أهم المواضيع أولاً', 'التدرب بأمثلة وشرح واضح', 'الانتهاء بالمراجعة وأسئلة التحقق'] }, catchup: { title: 'خطة للحاق بالمادة', text: 'عندما تتراكم الأمور نحتاج إلى تنظيم وأولويات وخطوات هادئة إلى الأمام.', bullets: ['ترتيب ما هو الأهم الآن', 'إعادة بناء الأساسيات الضعيفة', 'إنشاء خطة أسبوعية واضحة'] } } }, { value: 'highschool', label: 'الثانوي', results: { confidence: { title: 'خطة لفهم أقوى', text: 'نعمل على المفاهيم والطرق وسبب عمل الأشياء، وليس على الإجابات فقط.', bullets: ['تقوية الجبر والدوال وحل المشكلات', 'تعلم التفكير على عدة خطوات', 'اكتساب سيطرة أكبر قبل الدروس والاختبارات'] }, exam: { title: 'تركيز منظم للاختبارات', text: 'مفيد لمقررات الرياضيات عندما تحتاج إلى شرح واضح ومراجعة ذكية.', bullets: ['تقسيم المقرر إلى أجزاء واضحة', 'التدرب على أسئلة سابقة مع شرح', 'بناء استراتيجية بسيطة للاختبار'] }, catchup: { title: 'خطة للحاق برياضيات الثانوي', text: 'عندما تهتز الأساسيات يصبح كل شيء أصعب، لذلك نعيد البناء بالترتيب الصحيح.', bullets: ['تحديد الفجوات بسرعة', 'تقوية القاعدة قبل زيادة السرعة', 'العمل بأهداف أسبوعية واضحة'] } } }, { value: 'adult', label: 'دراسة البالغين / الجامعة', results: { confidence: { title: 'خطة للبالغين الذين يريدون فهماً حقيقياً', text: 'مناسبة للبالغين العائدين إلى الرياضيات أو الذين يحتاجون ثقة أكبر في التحليل والجبر.', bullets: ['التركيز على الفهم قبل السرعة', 'ربط النظرية بأمثلة واضحة', 'الحصول على تنظيم بين الدروس'] }, exam: { title: 'خطة قبل الامتحانات أو اختبارات المقرر', text: 'نرتب الأولويات بشكل صحيح ونعمل بطريقة منهجية ونتأكد أنك تعرف كيف توزع وقتك.', bullets: ['اختيار المواضيع الأهم أولاً', 'العمل على مسائل نموذجية وطريقة التفكير', 'الحصول على تغذية راجعة على أسلوبك في الحل'] }, catchup: { title: 'خطة للعودة إلى الرياضيات', text: 'مفيدة إذا مر وقت طويل منذ آخر مرة درست فيها الرياضيات أو إذا سبقك المقرر بسرعة.', bullets: ['البدء من المستوى الصحيح بدون حرج', 'بناء روتين دراسة يعمل فعلاً', 'التقدم خطوة بخطوة مع دعم مستمر'] } } } ], goals: [ { value: 'confidence', label: 'فهم الأساسيات' }, { value: 'exam', label: 'اختبار / امتحان' }, { value: 'catchup', label: 'اللِّحاق بالمادة' } ] } }
+            title: 'جرّب الأسلوب مباشرة',
+            intro: 'بدلاً من قراءة الوصف فقط، يمكن للزائر الضغط ومشاهدة معاينة بصرية لكيفية بناء مسار البرمجة أو الرياضيات.',
+            code: { eyebrow: 'البرمجة', title: 'ابنِ مسارك البرمجي الأول', intro: 'اختر المسار والهدف لترى بداية عملية مناسبة.', step1: '1. اختر المسار', step2: '2. اختر الهدف', cta: 'احجز هذا المسار', tracks: [], goals: [], plans: {} },
+            math: { eyebrow: 'الرياضيات', title: 'شاهد كيف يتم بناء خطة الرياضيات', intro: 'اختر المستوى والاحتياج لرؤية خطة أولى واضحة.', step1: '1. اختر المستوى', step2: '2. اختر الاحتياج', cta: 'احجز مساعدة الرياضيات', levels: [], needs: [], plans: {} }
+          }
         }
       };
 
+      // Reuse Swedish content for EN/AR structure to keep the UI complete, with translated section copy above.
+      websiteContent.en.summer.cards = websiteContent.sv.summer.cards.map(card => ({ ...card }));
+      websiteContent.en.panels.code.tracks = websiteContent.sv.panels.code.tracks.map(item => ({ ...item }));
+      websiteContent.en.panels.code.goals = websiteContent.sv.panels.code.goals.map(item => ({ ...item }));
+      websiteContent.en.panels.code.plans = JSON.parse(JSON.stringify(websiteContent.sv.panels.code.plans));
+      websiteContent.en.panels.math.levels = websiteContent.sv.panels.math.levels.map(item => ({ ...item }));
+      websiteContent.en.panels.math.needs = websiteContent.sv.panels.math.needs.map(item => ({ ...item }));
+      websiteContent.en.panels.math.plans = JSON.parse(JSON.stringify(websiteContent.sv.panels.math.plans));
+      websiteContent.ar.summer.cards = websiteContent.sv.summer.cards.map(card => ({ ...card }));
+      websiteContent.ar.panels.code.tracks = websiteContent.sv.panels.code.tracks.map(item => ({ ...item }));
+      websiteContent.ar.panels.code.goals = websiteContent.sv.panels.code.goals.map(item => ({ ...item }));
+      websiteContent.ar.panels.code.plans = JSON.parse(JSON.stringify(websiteContent.sv.panels.code.plans));
+      websiteContent.ar.panels.math.levels = websiteContent.sv.panels.math.levels.map(item => ({ ...item }));
+      websiteContent.ar.panels.math.needs = websiteContent.sv.panels.math.needs.map(item => ({ ...item }));
+      websiteContent.ar.panels.math.plans = JSON.parse(JSON.stringify(websiteContent.sv.panels.math.plans));
+
       function currentLang() {
-        return (window.i18n && window.i18n.getLanguage && websiteContent[window.i18n.getLanguage()]) ? window.i18n.getLanguage() : 'sv';
+        const lang = window.i18n && window.i18n.getLanguage ? window.i18n.getLanguage() : 'sv';
+        return websiteContent[lang] ? lang : 'sv';
       }
 
       function renderSummerCourses() {
         const host = document.getElementById('summerCoursesGrid');
         const section = document.getElementById('summer-courses');
         if (!host || !section) return;
-        const lang = currentLang();
-        const data = websiteContent[lang].summer;
+        const data = websiteContent[currentLang()].summer;
 
         const eyebrow = section.querySelector('.eyebrow');
         const h2 = section.querySelector('h2');
@@ -910,82 +929,132 @@
           </article>`).join('');
       }
 
+      function createOptionButtons(items, activeValue, buttonClass = 'panel-choice') {
+        return items.map(item => `
+          <button type="button" class="${buttonClass}${item.value === activeValue ? ' is-active' : ''}" data-value="${item.value}">
+            <span class="panel-choice-icon">${item.icon || ''}</span>
+            <span class="panel-choice-copy">
+              <strong>${item.label}</strong>
+              ${item.audience ? `<small>${item.audience}</small>` : ''}
+            </span>
+          </button>`).join('');
+      }
+
       function renderProgrammingPanel() {
         const host = document.getElementById('programmingPanel');
         if (!host) return;
         const data = websiteContent[currentLang()].panels.code;
+        const defaultTrack = host.dataset.track || data.tracks[0].value;
+        const defaultGoal = host.dataset.goal || data.goals[0].value;
+        const planKey = `${defaultTrack}:${defaultGoal}`;
+        const plan = data.plans[planKey] || Object.values(data.plans)[0];
+
+        host.dataset.track = defaultTrack;
+        host.dataset.goal = defaultGoal;
         host.innerHTML = `
-          <span class="eyebrow">Code Lab</span>
-          <h3>${data.title}</h3>
-          <p>${data.intro}</p>
-          <div class="interactive-controls">
-            <label for="codeTrack">${data.label}</label>
-            <select id="codeTrack">${data.options.map(opt => `<option value="${opt.value}">${opt.label}</option>`).join('')}</select>
-            <button id="codeTrackBtn" type="button" class="btn primary">${data.button}</button>
-          </div>
-          <div id="codeTrackResult" class="interactive-result"></div>
-        `;
+          <div class="panel-shell">
+            <div class="panel-header">
+              <span class="eyebrow">${data.eyebrow}</span>
+              <h3>${data.title}</h3>
+              <p>${data.intro}</p>
+            </div>
+            <div class="panel-stage">
+              <div>
+                <p class="panel-step-label">${data.step1}</p>
+                <div class="panel-choice-grid panel-choice-grid--tracks">${createOptionButtons(data.tracks, defaultTrack)}</div>
+              </div>
+              <div>
+                <p class="panel-step-label">${data.step2}</p>
+                <div class="panel-choice-grid panel-choice-grid--goals">${createOptionButtons(data.goals, defaultGoal, 'panel-pill')}</div>
+              </div>
+            </div>
+            <div class="panel-preview">
+              <div class="panel-preview-top">
+                <div>
+                  <p class="panel-preview-kicker">Första upplägget</p>
+                  <h4>${plan.title}</h4>
+                  <p>${plan.text}</p>
+                </div>
+                <div class="panel-project-card">
+                  <span>Projektstart</span>
+                  <strong>${plan.project}</strong>
+                </div>
+              </div>
+              <div class="panel-roadmap">
+                ${plan.steps.map((step, index) => `<div class="panel-roadmap-step"><span>${index + 1}</span><p>${step}</p></div>`).join('')}
+              </div>
+              <ul class="check compact">${plan.bullets.map(item => `<li>${item}</li>`).join('')}</ul>
+              <a class="btn ghost" href="#booking">${data.cta}</a>
+            </div>
+          </div>`;
 
-        const select = host.querySelector('#codeTrack');
-        const btn = host.querySelector('#codeTrackBtn');
-        const result = host.querySelector('#codeTrackResult');
-
-        function renderResult() {
-          const selected = data.options.find(opt => opt.value === select.value) || data.options[0];
-          result.innerHTML = `
-            <h4>${selected.resultTitle}</h4>
-            <p>${selected.resultText}</p>
-            <ul class="check compact">${selected.bullets.map(item => `<li>${item}</li>`).join('')}</ul>
-            <a class="btn ghost" href="#booking">${data.cta}</a>
-          `;
-        }
-
-        btn.addEventListener('click', renderResult);
-        renderResult();
+        host.querySelectorAll('.panel-choice-grid--tracks .panel-choice').forEach((btn) => {
+          btn.addEventListener('click', () => { host.dataset.track = btn.dataset.value; renderProgrammingPanel(); });
+        });
+        host.querySelectorAll('.panel-choice-grid--goals .panel-pill').forEach((btn) => {
+          btn.addEventListener('click', () => { host.dataset.goal = btn.dataset.value; renderProgrammingPanel(); });
+        });
       }
 
       function renderMathPanel() {
         const host = document.getElementById('mathPanel');
         if (!host) return;
         const data = websiteContent[currentLang()].panels.math;
+        const defaultLevel = host.dataset.level || data.levels[0].value;
+        const defaultNeed = host.dataset.need || data.needs[0].value;
+        const planKey = `${defaultLevel}:${defaultNeed}`;
+        const plan = data.plans[planKey] || Object.values(data.plans)[0];
+
+        host.dataset.level = defaultLevel;
+        host.dataset.need = defaultNeed;
         host.innerHTML = `
-          <span class="eyebrow">Math Lab</span>
-          <h3>${data.title}</h3>
-          <p>${data.intro}</p>
-          <div class="interactive-controls">
-            <label for="mathLevel">${data.levelLabel}</label>
-            <select id="mathLevel">${data.levels.map(level => `<option value="${level.value}">${level.label}</option>`).join('')}</select>
-            <label for="mathGoal">${data.goalLabel}</label>
-            <select id="mathGoal">${data.goals.map(goal => `<option value="${goal.value}">${goal.label}</option>`).join('')}</select>
-            <button id="mathPlanBtn" type="button" class="btn primary">${data.button}</button>
-          </div>
-          <div id="mathPlanResult" class="interactive-result"></div>
-        `;
+          <div class="panel-shell">
+            <div class="panel-header">
+              <span class="eyebrow">${data.eyebrow}</span>
+              <h3>${data.title}</h3>
+              <p>${data.intro}</p>
+            </div>
+            <div class="panel-stage">
+              <div>
+                <p class="panel-step-label">${data.step1}</p>
+                <div class="panel-choice-grid panel-choice-grid--tracks">${createOptionButtons(data.levels, defaultLevel)}</div>
+              </div>
+              <div>
+                <p class="panel-step-label">${data.step2}</p>
+                <div class="panel-choice-grid panel-choice-grid--goals">${createOptionButtons(data.needs, defaultNeed, 'panel-pill')}</div>
+              </div>
+            </div>
+            <div class="panel-preview">
+              <div class="panel-preview-top">
+                <div>
+                  <p class="panel-preview-kicker">Första planen</p>
+                  <h4>${plan.title}</h4>
+                  <p>${plan.text}</p>
+                </div>
+                <div class="panel-focus-card">
+                  <span>Fokus</span>
+                  <strong>${plan.focus[0]}</strong>
+                </div>
+              </div>
+              <div class="panel-focus-tags">${plan.focus.map(item => `<span>${item}</span>`).join('')}</div>
+              <div class="panel-roadmap panel-roadmap--math">
+                ${plan.steps.map((step, index) => `<div class="panel-roadmap-step"><span>${index + 1}</span><p>${step}</p></div>`).join('')}
+              </div>
+              <a class="btn ghost" href="#booking">${data.cta}</a>
+            </div>
+          </div>`;
 
-        const levelSelect = host.querySelector('#mathLevel');
-        const goalSelect = host.querySelector('#mathGoal');
-        const btn = host.querySelector('#mathPlanBtn');
-        const result = host.querySelector('#mathPlanResult');
-
-        function renderResult() {
-          const level = data.levels.find(item => item.value === levelSelect.value) || data.levels[0];
-          const plan = level.results[goalSelect.value] || Object.values(level.results)[0];
-          result.innerHTML = `
-            <h4>${plan.title}</h4>
-            <p>${plan.text}</p>
-            <ul class="check compact">${plan.bullets.map(item => `<li>${item}</li>`).join('')}</ul>
-            <a class="btn ghost" href="#booking">${data.cta}</a>
-          `;
-        }
-
-        btn.addEventListener('click', renderResult);
-        renderResult();
+        host.querySelectorAll('.panel-choice-grid--tracks .panel-choice').forEach((btn) => {
+          btn.addEventListener('click', () => { host.dataset.level = btn.dataset.value; renderMathPanel(); });
+        });
+        host.querySelectorAll('.panel-choice-grid--goals .panel-pill').forEach((btn) => {
+          btn.addEventListener('click', () => { host.dataset.need = btn.dataset.value; renderMathPanel(); });
+        });
       }
 
       function bindSummerInterestButtons() {
         document.querySelectorAll('.summer-interest-btn').forEach((btn) => {
           btn.addEventListener('click', () => {
-            const form = document.getElementById('contactForm');
             const topic = document.getElementById('topic');
             const message = document.getElementById('message');
             if (topic && btn.dataset.topic) topic.value = btn.dataset.topic;

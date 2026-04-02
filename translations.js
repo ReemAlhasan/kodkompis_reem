@@ -164,19 +164,19 @@ var translations = {
     
     // Puzzle (trimmed unused keys)
     puzzleTitle: "Dagens kodpussel 🧩",
-    puzzleIntro: "Välj ålder och lös ett kort pussel. Svara direkt här och avslöja facit när du är klar!",
+    puzzleIntro: "Välj nivå och få en kort kodutmaning som fungerar direkt på sidan. Perfekt för att testa tänket innan bokning.",
     puzzleAge: "Ålder",
     puzzleAgeLabel: "Välj åldersgrupp",
     puzzleAge68: "6–8 år",
     puzzleAge912: "9–12 år",
     puzzleAge1316: "13–16 år",
-    puzzleBtnLoad: "Visa dagens pussel",
+    puzzleBtnLoad: "Visa kodutmaning",
     puzzlePlaceholder: "Skriv ditt svar här…",
     puzzleAnswerLabel: "Ditt svar",
     puzzleBtnCheck: "Kolla svar",
     puzzleBtnHint: "Ledtråd",
     puzzleBtnReveal: "Visa facit",
-    puzzleDefault: "Tryck på \"Visa dagens pussel\".",
+    puzzleDefault: "Tryck på \"Visa kodutmaning\".",
     
     // Contact (trimmed unused keys)
     contactTitle: "Kontakta Reem",
@@ -416,19 +416,19 @@ var translations = {
     
     // Puzzle (trimmed unused keys)
     puzzleTitle: "Today's code puzzle 🧩",
-    puzzleIntro: "Choose age and solve a short puzzle. Answer directly here and reveal the answer when you're done!",
+    puzzleIntro: "Choose a level and get a short coding challenge that works directly on the page. Great for testing the thinking style before booking.",
     puzzleAge: "Age",
     puzzleAgeLabel: "Choose age group",
     puzzleAge68: "6–8 years",
     puzzleAge912: "9–12 years",
     puzzleAge1316: "13–16 years",
-    puzzleBtnLoad: "Show today's puzzle",
+    puzzleBtnLoad: "Show coding challenge",
     puzzlePlaceholder: "Write your answer here…",
     puzzleAnswerLabel: "Your answer",
     puzzleBtnCheck: "Check answer",
     puzzleBtnHint: "Hint",
     puzzleBtnReveal: "Show answer",
-    puzzleDefault: "Click \"Show today's puzzle\".",
+    puzzleDefault: "Click \"Show coding challenge\".",
     
     // Contact (trimmed unused keys)
     contactTitle: "Contact Reem",
@@ -671,19 +671,19 @@ var translations = {
     
     // Puzzle
     puzzleTitle: "لغز الكود اليومي 🧩",
-    puzzleIntro: "اختر العمر وحل لغزاً قصيراً. أجب مباشرة هنا وكشف الإجابة عندما تنتهي!",
+    puzzleIntro: "اختر المستوى واحصل على تحدٍّ برمجي قصير يعمل مباشرة على الصفحة. مناسب لتجربة الأسلوب قبل الحجز.",
     puzzleAge: "العمر",
     puzzleAgeLabel: "اختر الفئة العمرية",
     puzzleAge68: "6–8 سنوات",
     puzzleAge912: "9–12 سنة",
     puzzleAge1316: "13–16 سنة",
-    puzzleBtnLoad: "اعرض لغز اليوم",
+    puzzleBtnLoad: "اعرض التحدي البرمجي",
     puzzlePlaceholder: "اكتب إجابتك هنا…",
     puzzleAnswerLabel: "إجابتك",
     puzzleBtnCheck: "تحقق من الإجابة",
     puzzleBtnHint: "تلميح",
     puzzleBtnReveal: "اعرض الإجابة",
-    puzzleDefault: "انقر على \"اعرض لغز اليوم\".",
+    puzzleDefault: "انقر على \"اعرض التحدي البرمجي\".",
     
     // Contact
     contactTitle: "اتصل بريم",
