@@ -1557,3 +1557,158 @@ section[id] {
   .payment-card .btn + .btn { margin-top: 8px; }
 }
 
+
+
+/* Summer courses + interactive panels */
+.section-heading {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto var(--space-6);
+}
+
+.summer-section {
+  position: relative;
+}
+
+.summer-courses-grid {
+  align-items: stretch;
+}
+
+.summer-course-card {
+  position: relative;
+  background:
+    linear-gradient(165deg, color-mix(in srgb, var(--brand) 8%, transparent) 0%, transparent 38%),
+    var(--card);
+}
+
+.summer-course-card--featured {
+  border-color: color-mix(in srgb, var(--accent) 60%, var(--brand));
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.summer-course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.summer-badge,
+.summer-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+}
+
+.summer-badge {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: var(--text);
+}
+
+.summer-chip {
+  background: color-mix(in srgb, var(--brand) 16%, transparent);
+  color: var(--brand);
+}
+
+.summer-audience {
+  margin: var(--space-2) 0 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.summer-pricing {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+}
+
+.summer-pricing div {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: var(--space-3);
+}
+
+.summer-pricing span {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.summer-pricing strong {
+  font-size: var(--font-size-xl);
+}
+
+.summer-bestfor {
+  margin-top: 0;
+}
+
+.summer-roadmap {
+  margin-top: var(--space-4);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-4);
+}
+
+.summer-roadmap summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.summer-roadmap ol {
+  margin: var(--space-3) 0 0;
+  padding-left: 1.25rem;
+  color: var(--muted);
+}
+
+.summer-roadmap li + li {
+  margin-top: 8px;
+}
+
+.summer-footnote {
+  margin-top: var(--space-5);
+  text-align: center;
+  color: var(--muted);
+}
+
+.interactive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.interactive-card {
+  min-height: 100%;
+}
+
+.interactive-controls {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.interactive-result {
+  margin-top: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: var(--space-4);
+}
+
+.interactive-result h4 {
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+}
+
+@media (max-width: 900px) {
+  .interactive-grid,
+  .summer-pricing {
+    grid-template-columns: 1fr;
+  }
+}
