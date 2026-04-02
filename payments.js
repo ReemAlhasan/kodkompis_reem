@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const prev = copyBtn.textContent;
       // Use i18n for feedback
       const copiedText = window.i18n ? window.i18n.t('payCopiedFeedback') : 'Swish-numret kopierat till urklipp.';
-      const copiedShort = window.i18n ? window.i18n.t('payCopiedFeedback') : 'Kopierat!';
+      const copiedShort = window.i18n ? window.i18n.t('payCopiedShort') : 'Kopierat!';
       copyBtn.textContent = copiedShort;
       feedback.textContent = copiedText;
       setTimeout(() => {

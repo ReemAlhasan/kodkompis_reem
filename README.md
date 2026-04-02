@@ -5,8 +5,8 @@ Kodkompis Reem is a playful, safe website for teaching programming and mathemati
 ## Features
 
 - **Responsive Design:** Works on desktop, tablet, and mobile.
-- **Interactive Coding & Math Puzzles:**  
-  - Age-adapted daily puzzles with hints and answer checking  
+- **Interactive Coding & Math Mini-Labs:**  
+  - A playful code lab and a math lab that run directly in the browser  
   - No account required
 - **Course & Coaching Information:**  
   - Programming courses for ages 6–16  
@@ -29,10 +29,10 @@ Kodkompis Reem is a playful, safe website for teaching programming and mathemati
    Open `index.html` in your web browser.  
    No build step or server is required.
 
-3. **Daily Puzzle:**  
-   - Go to the "Dagens kodpussel" section.
-   - Select age group and click "Visa dagens pussel".
-   - Enter your answer, check it, get hints, or reveal the solution.
+3. **Mini-Labs:**  
+   - Go to the "Prova live" section.
+   - Try the coding lab and the math lab directly in the browser.
+   - Use them as a demo of the teaching style before booking.
 
 4. **Contact:**  
    - Fill in the contact form to get in touch or book a course.
@@ -44,19 +44,17 @@ Kodkompis Reem is a playful, safe website for teaching programming and mathemati
 
 - [`index.html`](index.html): Main website structure and content
 - [`style.css`](style.css): All styles and responsive layout
-- [`pussel.js`](pussel.js): Logic for daily puzzles (fetching, answer checking, hints)
 - [`payments.html`](payments.html): Swish payment page
 - [`payments.js`](payments.js): Swish page interactions
 - [`translations.js`](translations.js): Translation strings for Swedish, English, and Arabic
 - [`i18n.js`](i18n.js): Client-side language switching
-- [`apps-script/`](apps-script): Local source copies for the related Google Apps Script projects
+- Google Apps Script exports are kept separately from the website bundle
 - [`LICENSE`](LICENSE): MIT License
 
 ## Customization
 
 - **Puzzles:**  
-  - By default, puzzles are fetched from a Google Apps Script endpoint.
-  - If the endpoint is unavailable, local puzzles are used (see `pussel.js`).
+  - The live demo section uses local browser-based mini-lab logic and runs entirely in the browser.
 
 - **Booking:**  
   - The page embeds a Google Calendar appointment schedule in an iframe.

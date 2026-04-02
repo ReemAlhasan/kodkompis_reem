@@ -43,13 +43,15 @@
       document.body.classList.remove('rtl');
     }
     
-    // Update page title and meta description
-    if (translations[lang].title) {
-      document.title = translations[lang].title;
+    // Update page-specific title and meta description when configured on the page root
+    const pageTitleKey = document.documentElement.dataset.pageTitle;
+    const pageDescriptionKey = document.documentElement.dataset.pageDescription;
+    if (pageTitleKey && translations[lang][pageTitleKey]) {
+      document.title = translations[lang][pageTitleKey];
     }
     const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc && translations[lang].description) {
-      metaDesc.setAttribute('content', translations[lang].description);
+    if (metaDesc && pageDescriptionKey && translations[lang][pageDescriptionKey]) {
+      metaDesc.setAttribute('content', translations[lang][pageDescriptionKey]);
     }
     
     // Update all translatable elements
