@@ -6,6 +6,41 @@
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const makeKey = (x, y) => `${x},${y}`;
+  const LAB_PROGRESS_KEY = 'kodkompis-mini-labs-progress';
+  const codeOptimalStepsCache = new Map();
+  const mathOptimalMovesCache = new Map();
+
+  function loadSavedProgress() {
+    try {
+      const raw = window.localStorage.getItem(LAB_PROGRESS_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed === 'object' ? parsed : null;
+    } catch (error) {
+      console.warn('Could not load mini-lab progress:', error);
+      return null;
+    }
+  }
+
+  function saveProgress(progress) {
+    try {
+      window.localStorage.setItem(LAB_PROGRESS_KEY, JSON.stringify(progress));
+    } catch (error) {
+      console.warn('Could not save mini-lab progress:', error);
+    }
+  }
+
+  const savedProgress = loadSavedProgress();
+
+  function readSavedSet(section, key) {
+    const values = savedProgress?.[section]?.[key];
+    return Array.isArray(values) ? new Set(values) : new Set();
+  }
+
+  function readSavedStars(section) {
+    const stars = savedProgress?.[section]?.bestStars;
+    return stars && typeof stars === 'object' ? { ...stars } : {};
+  }
 
   function renderStars(container, count = 0, max = 3) {
     if (!container) return;
@@ -48,25 +83,37 @@
       id: 'spark-trail', titleKey: 'labCodeChallenge1', hintKey: 'labCodeHint1',
       width: 5, height: 5,
       start: { x: 0, y: 4 }, goal: { x: 4, y: 0 },
-      blocks: ['1,4', '1,3', '3,3', '3,2', '2,1'], gems: ['2,4'], teleports: [], maxCommands: 8
+      blocks: ['1,3', '2,3', '3,1'], gems: ['2,4'], teleports: [], maxCommands: 8
     },
     {
       id: 'gem-run', titleKey: 'labCodeChallenge2', hintKey: 'labCodeHint2',
       width: 6, height: 5,
       start: { x: 0, y: 4 }, goal: { x: 5, y: 0 },
-      blocks: ['1,4', '1,2', '2,2', '4,3', '4,2'], gems: ['2,4', '3,1'], teleports: [], maxCommands: 10
+      blocks: ['1,3', '2,3', '4,3', '4,2'], gems: ['2,4', '3,1'], teleports: [], maxCommands: 10
     },
     {
       id: 'teleport-loop', titleKey: 'labCodeChallenge3', hintKey: 'labCodeHint3',
       width: 6, height: 6,
       start: { x: 0, y: 5 }, goal: { x: 5, y: 0 },
-      blocks: ['1,5', '1,4', '3,4', '3,3', '4,2'], gems: ['2,5', '2,1'], teleports: [['0,2', '5,3']], maxCommands: 12
+      blocks: ['1,4', '3,4', '1,1'], gems: ['2,5', '4,1'], teleports: [['2,2', '4,1']], maxCommands: 10
     },
     {
       id: 'crystal-cave', titleKey: 'labCodeChallenge4', hintKey: 'labCodeHint4',
       width: 7, height: 6,
       start: { x: 0, y: 5 }, goal: { x: 6, y: 0 },
-      blocks: ['1,5', '1,4', '2,4', '4,4', '4,3', '4,2', '2,2', '5,1'], gems: ['3,5', '6,3', '2,0'], teleports: [['0,1', '6,5']], maxCommands: 14
+      blocks: ['1,4', '2,4', '4,4', '4,1', '5,1'], gems: ['2,5', '5,4', '6,2'], teleports: [['3,3', '5,2']], maxCommands: 12
+    },
+    {
+      id: 'twin-portals', titleKey: 'labCodeChallenge5', hintKey: 'labCodeHint5',
+      width: 7, height: 7,
+      start: { x: 0, y: 6 }, goal: { x: 6, y: 0 },
+      blocks: ['1,5', '2,5', '4,5', '5,5', '1,2', '2,2', '4,2'], gems: ['2,6', '5,4', '6,1'], teleports: [['3,4', '5,2'], ['0,3', '4,6']], maxCommands: 14
+    },
+    {
+      id: 'boss-grid', titleKey: 'labCodeChallenge6', hintKey: 'labCodeHint6',
+      width: 8, height: 7,
+      start: { x: 0, y: 6 }, goal: { x: 7, y: 0 },
+      blocks: ['1,5', '2,5', '5,5', '1,1', '2,1'], gems: ['3,6', '6,2', '7,2', '4,0'], teleports: [['3,4', '6,2'], ['0,2', '5,6']], maxCommands: 16
     }
   ];
 
@@ -76,9 +123,22 @@
     sequence: [],
     running: false,
     collected: new Set(),
-    completed: new Set(),
-    bestStars: {}
+    completed: readSavedSet('code', 'completed'),
+    bestStars: readSavedStars('code')
   };
+
+  function persistLabProgress() {
+    saveProgress({
+      code: {
+        completed: Array.from(codeState.completed),
+        bestStars: codeState.bestStars
+      },
+      math: {
+        completed: Array.from(mathState.completed),
+        bestStars: mathState.bestStars
+      }
+    });
+  }
 
   function getCodeChallenge() { return codeChallenges[codeState.challengeIndex]; }
   function buildTeleportMap(challenge) {
@@ -234,13 +294,73 @@
     return { x: pos.x + delta.x, y: pos.y + delta.y };
   }
 
+  function applyCodeTileEffects(pos, collected, challenge, teleportMap) {
+    let nextPos = { ...pos };
+    const nextCollected = new Set(collected);
+    const tileKey = makeKey(nextPos.x, nextPos.y);
+    if (challenge.gems.includes(tileKey)) nextCollected.add(tileKey);
+
+    if (teleportMap.has(tileKey)) {
+      const [x, y] = teleportMap.get(tileKey).split(',').map(Number);
+      nextPos = { x, y };
+      const landingKey = makeKey(nextPos.x, nextPos.y);
+      if (challenge.gems.includes(landingKey)) nextCollected.add(landingKey);
+    }
+
+    return { pos: nextPos, collected: nextCollected };
+  }
+
   function isOutside(pos, challenge) {
     return pos.x < 0 || pos.x >= challenge.width || pos.y < 0 || pos.y >= challenge.height;
   }
 
-  function calcStars(stepsUsed, maxCommands) {
-    if (stepsUsed <= Math.ceil(maxCommands * 0.55)) return 3;
-    if (stepsUsed <= Math.ceil(maxCommands * 0.8)) return 2;
+  function getOptimalCodeSteps(challenge) {
+    if (codeOptimalStepsCache.has(challenge.id)) return codeOptimalStepsCache.get(challenge.id);
+
+    const blockSet = new Set(challenge.blocks);
+    const teleportMap = buildTeleportMap(challenge);
+    const targetGems = challenge.gems.slice().sort().join('|');
+    const queue = [{
+      pos: { ...challenge.start },
+      collected: new Set(),
+      steps: 0
+    }];
+    const seen = new Set([`${challenge.start.x},${challenge.start.y}|`]);
+
+    while (queue.length) {
+      const current = queue.shift();
+      const currentGems = Array.from(current.collected).sort().join('|');
+      if (current.pos.x === challenge.goal.x && current.pos.y === challenge.goal.y && currentGems === targetGems) {
+        codeOptimalStepsCache.set(challenge.id, current.steps);
+        return current.steps;
+      }
+
+      Object.keys(dirMap).forEach((command) => {
+        const candidate = nextPosition(current.pos, command);
+        if (isOutside(candidate, challenge)) return;
+        if (blockSet.has(makeKey(candidate.x, candidate.y))) return;
+
+        const nextState = applyCodeTileEffects(candidate, current.collected, challenge, teleportMap);
+        const collectedKey = Array.from(nextState.collected).sort().join('|');
+        const stateKey = `${nextState.pos.x},${nextState.pos.y}|${collectedKey}`;
+        if (seen.has(stateKey)) return;
+        seen.add(stateKey);
+        queue.push({
+          pos: nextState.pos,
+          collected: nextState.collected,
+          steps: current.steps + 1
+        });
+      });
+    }
+
+    codeOptimalStepsCache.set(challenge.id, challenge.maxCommands);
+    return challenge.maxCommands;
+  }
+
+  function calcStars(stepsUsed, challenge) {
+    const optimalSteps = getOptimalCodeSteps(challenge);
+    if (stepsUsed <= optimalSteps) return 3;
+    if (stepsUsed <= optimalSteps + 2) return 2;
     return 1;
   }
 
@@ -292,21 +412,20 @@
         return;
       }
 
-      pos = candidate;
-      if (challenge.gems.includes(candidateKey)) collected.add(candidateKey);
-      if (teleportMap.has(candidateKey)) {
-        const [x, y] = teleportMap.get(candidateKey).split(',').map(Number);
-        pos = { x, y };
-      }
+      const nextState = applyCodeTileEffects(candidate, collected, challenge, teleportMap);
+      pos = nextState.pos;
       codeState.pos = { ...pos };
-      codeState.collected = new Set(collected);
+      codeState.collected = nextState.collected;
+      collected.clear();
+      nextState.collected.forEach((gem) => collected.add(gem));
       renderCodeBoard();
 
       if (pos.x === challenge.goal.x && pos.y === challenge.goal.y) {
         if (collected.size === challenge.gems.length) {
-          const stars = calcStars(codeState.sequence.length, challenge.maxCommands);
+          const stars = calcStars(codeState.sequence.length, challenge);
           codeState.completed.add(challenge.id);
           codeState.bestStars[challenge.id] = Math.max(codeState.bestStars[challenge.id] || 0, stars);
+          persistLabProgress();
           renderCodeTabs();
           renderStars(codeStarsEl, codeState.bestStars[challenge.id]);
           updateCodeMeta();
@@ -329,7 +448,10 @@
   if (runBtn) runBtn.addEventListener('click', runCodeLab);
   if (clearBtn) clearBtn.addEventListener('click', () => {
     codeState.sequence = [];
+    codeState.collected = new Set();
+    codeState.pos = { ...getCodeChallenge().start };
     renderCodeSequence();
+    renderCodeBoard();
     setCodeFeedback(t('labCodeReady'), 'info');
   });
   if (resetBtn) resetBtn.addEventListener('click', () => resetCodeLab(true));
@@ -370,7 +492,9 @@
     { id: 'bridge', titleKey: 'labMathChallenge2', hintKey: 'labMathHint2', start: 3, target: 18, moves: 4, ops: ['+1', '*2', '+5'] },
     { id: 'reactor', titleKey: 'labMathChallenge3', hintKey: 'labMathHint3', start: 24, target: 9, moves: 4, ops: ['/2', '-3', '+1'] },
     { id: 'orbit', titleKey: 'labMathChallenge4', hintKey: 'labMathHint4', start: 2, target: 31, moves: 5, ops: ['*3', '+5', '-1'] },
-    { id: 'boss', titleKey: 'labMathChallenge5', hintKey: 'labMathHint5', start: 4, target: 42, moves: 5, ops: ['*2', '+10', '-1', '+2'] }
+    { id: 'boss', titleKey: 'labMathChallenge5', hintKey: 'labMathHint5', start: 4, target: 42, moves: 5, ops: ['*2', '+10', '-1', '+2'] },
+    { id: 'parity', titleKey: 'labMathChallenge6', hintKey: 'labMathHint6', start: 7, target: 30, moves: 5, ops: ['+1', '*3', '/2'] },
+    { id: 'summit', titleKey: 'labMathChallenge7', hintKey: 'labMathHint7', start: 5, target: 56, moves: 5, ops: ['*2', '-3', '+10', '+5'] }
   ];
 
   const mathState = {
@@ -383,8 +507,8 @@
     locked: false,
     ops: [],
     expression: '0',
-    completed: new Set(),
-    bestStars: {}
+    completed: readSavedSet('math', 'completed'),
+    bestStars: readSavedStars('math')
   };
 
   function getMathChallenge() { return mathChallenges[mathState.challengeIndex]; }
@@ -467,9 +591,44 @@
   }
 
   function calcMathStars(movesLeft, totalMoves) {
+    if (movesLeft < 0) return 1;
     const used = totalMoves - movesLeft;
-    if (used <= Math.ceil(totalMoves * 0.5)) return 3;
-    if (used <= Math.ceil(totalMoves * 0.8)) return 2;
+    return used;
+  }
+
+  function getOptimalMathMoves(challenge) {
+    if (mathOptimalMovesCache.has(challenge.id)) return mathOptimalMovesCache.get(challenge.id);
+
+    const queue = [{ value: challenge.start, movesUsed: 0 }];
+    const seen = new Set([`${challenge.start}|0`]);
+
+    while (queue.length) {
+      const current = queue.shift();
+      if (current.value === challenge.target) {
+        mathOptimalMovesCache.set(challenge.id, current.movesUsed);
+        return current.movesUsed;
+      }
+      if (current.movesUsed >= challenge.moves) continue;
+
+      challenge.ops.forEach((op) => {
+        const nextValue = operationFns[op]?.(current.value);
+        if (nextValue === null || Number.isNaN(nextValue)) return;
+        const nextMoves = current.movesUsed + 1;
+        const stateKey = `${nextValue}|${nextMoves}`;
+        if (seen.has(stateKey)) return;
+        seen.add(stateKey);
+        queue.push({ value: nextValue, movesUsed: nextMoves });
+      });
+    }
+
+    mathOptimalMovesCache.set(challenge.id, challenge.moves);
+    return challenge.moves;
+  }
+
+  function scoreMathStars(movesUsed, challenge) {
+    const optimalMoves = getOptimalMathMoves(challenge);
+    if (movesUsed <= optimalMoves) return 3;
+    if (movesUsed <= optimalMoves + 1) return 2;
     return 1;
   }
 
@@ -496,14 +655,16 @@
 
     if (mathState.current === mathState.target) {
       const challenge = getMathChallenge();
-      const stars = calcMathStars(mathState.movesLeft, challenge.moves);
+      const movesUsed = calcMathStars(mathState.movesLeft, challenge.moves);
+      const stars = scoreMathStars(movesUsed, challenge);
       mathState.completed.add(challenge.id);
       mathState.bestStars[challenge.id] = Math.max(mathState.bestStars[challenge.id] || 0, stars);
+      persistLabProgress();
       finishMath('success', `${t('labMathSuccess')} ${'★'.repeat(stars)}`);
       return;
     }
     if (mathState.movesLeft === 0) {
-      finishMath('warn', t('labMathMiss'));
+      finishMath('warn', t('labMathFail', { target: mathState.target }));
       return;
     }
     setMathFeedback(t('labMathKeepGoing'), 'info');
