@@ -128,7 +128,7 @@
         </div>
       </div>
     </section>
-<section id="faq" class="section" aria-labelledby="faq-title">
+    <section id="faq" class="section" aria-labelledby="faq-title">
       <div class="container">
         <h2 id="faq-title" data-i18n="faqTitle">Vanliga frågor från föräldrar och elever</h2>
         <p data-i18n="faqIntro">Här är svar på det som brukar avgöra om man bokar direkt eller vill fundera lite till.</p>
@@ -221,7 +221,35 @@
         </div>
       </div>
     </section>
+    <section class="section" aria-labelledby="explore-title">
+      <div class="container">
+        <div class="card soft">
+          <h2 id="explore-title" data-i18n="seoExploreTitle">Utforska nästa steg</h2>
+          <p data-i18n="seoExploreText">Härifrån kan besökaren gå vidare till rätt sida beroende på om fokus är programmering, mattehjälp, mini-labb eller bokning.</p>
+          <div class="quiz-actions">
+            <a class="btn ghost" href="programming.html" data-i18n="navProgrammering">Programmering</a>
+            <a class="btn ghost" href="math.html" data-i18n="navMatte">Mattehjälp</a>
+            <a class="btn ghost" href="labs.html" data-i18n="navPussel">Prova live</a>
+            <a class="btn primary" href="booking.html#booking" data-i18n="navBoka">Boka lektion</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Passar det här även helt nybörjare?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Upplägget anpassas efter startnivå, tempo och ålder. Målet är att eleven ska känna tidiga framsteg, inte press." } },
+        { "@type": "Question", "name": "Hur fungerar onlinelektionerna i praktiken?", "acceptedAnswer": { "@type": "Answer", "text": "Lektionerna sker via Google Meet. Eleven får tydlig guidning, skärmdelning vid behov och konkreta nästa steg efter lektionen." } },
+        { "@type": "Question", "name": "Hur vet jag vad mitt barn behöver börja med?", "acceptedAnswer": { "@type": "Answer", "text": "Använd rekommendationsguiden ovan eller boka en första lektion så anpassas innehåll och nivå direkt efter elevens mål." } },
+        { "@type": "Question", "name": "Kan man få hjälp med skolmatte eller specifika kursmoment?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Mattehjälpen kan fokusera på läxor, prov, nationella prov eller områden som eleven fastnat på." } },
+        { "@type": "Question", "name": "Behöver eleven en dator före lektionen?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. För programmering och de flesta mattelektioner behövs en PC eller laptop så att skärmdelning, kod och uppgifter fungerar smidigt. Mobil eller surfplatta räcker inte som huvudenhet." } }
+      ]
+    }
+  </script>
 
   <!-- Floating CTA Button -->
   <a href="booking.html#booking" class="floating-cta" data-i18n-aria="navBoka">
