@@ -294,17 +294,18 @@
     return { x: pos.x + delta.x, y: pos.y + delta.y };
   }
 
-  function applyCodeTileEffects(pos, collected, challenge, teleportMap) {
+  function applyCodeTileEffects(pos, collected, challenge, teleportMap, gemSet) {
     let nextPos = { ...pos };
     const nextCollected = new Set(collected);
     const tileKey = makeKey(nextPos.x, nextPos.y);
-    if (challenge.gems.includes(tileKey)) nextCollected.add(tileKey);
+    const gems = gemSet || new Set(challenge.gems);
+    if (gems.has(tileKey)) nextCollected.add(tileKey);
 
     if (teleportMap.has(tileKey)) {
       const [x, y] = teleportMap.get(tileKey).split(',').map(Number);
       nextPos = { x, y };
       const landingKey = makeKey(nextPos.x, nextPos.y);
-      if (challenge.gems.includes(landingKey)) nextCollected.add(landingKey);
+      if (gems.has(landingKey)) nextCollected.add(landingKey);
     }
 
     return { pos: nextPos, collected: nextCollected };
@@ -318,6 +319,7 @@
     if (codeOptimalStepsCache.has(challenge.id)) return codeOptimalStepsCache.get(challenge.id);
 
     const blockSet = new Set(challenge.blocks);
+    const gemSet = new Set(challenge.gems);
     const teleportMap = buildTeleportMap(challenge);
     const targetGems = challenge.gems.slice().sort().join('|');
     const queue = [{
@@ -340,7 +342,7 @@
         if (isOutside(candidate, challenge)) return;
         if (blockSet.has(makeKey(candidate.x, candidate.y))) return;
 
-        const nextState = applyCodeTileEffects(candidate, current.collected, challenge, teleportMap);
+        const nextState = applyCodeTileEffects(candidate, current.collected, challenge, teleportMap, gemSet);
         const collectedKey = Array.from(nextState.collected).sort().join('|');
         const stateKey = `${nextState.pos.x},${nextState.pos.y}|${collectedKey}`;
         if (seen.has(stateKey)) return;
@@ -367,6 +369,7 @@
   async function runCodeLab() {
     const challenge = getCodeChallenge();
     const blockSet = new Set(challenge.blocks);
+    const gemSet = new Set(challenge.gems);
     const teleportMap = buildTeleportMap(challenge);
     if (codeState.running) return;
     if (!codeState.sequence.length) {
@@ -412,7 +415,7 @@
         return;
       }
 
-      const nextState = applyCodeTileEffects(candidate, collected, challenge, teleportMap);
+      const nextState = applyCodeTileEffects(candidate, collected, challenge, teleportMap, gemSet);
       pos = nextState.pos;
       codeState.pos = { ...pos };
       codeState.collected = nextState.collected;
