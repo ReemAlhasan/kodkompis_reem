@@ -120,13 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
         // For URI schemes and intent URIs, attempt to navigate
-        let opened = false;
         try {
           window.location.href = target;
-          opened = true;
-        } catch (e) {
-          opened = false;
-        }
+        } catch (e) {}
 
         // If navigation didn't occur, try next after short delay
         setTimeout(() => {
